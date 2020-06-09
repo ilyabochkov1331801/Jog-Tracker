@@ -118,6 +118,7 @@
 		EAF6E4EE248EB4640093FD16 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */,
 				EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */,
 				EAFB8F61248E9773008BE894 /* AuthenticationViewController.swift */,
 			);
@@ -127,6 +128,7 @@
 		EAF6E4EF248EB4750093FD16 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EAF6E510248F7E3E0093FD16 /* JogViewController.xib */,
 				EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */,
 				EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */,
 				EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */,
@@ -193,8 +195,6 @@
 				EAF6E4EE248EB4640093FD16 /* View Controllers */,
 				EAFB8F56248E91B2008BE894 /* Assets.xcassets */,
 				EAFB8F5B248E91B2008BE894 /* Info.plist */,
-				EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */,
-				EAF6E510248F7E3E0093FD16 /* JogViewController.xib */,
 			);
 			path = "Jog Tracker";
 			sourceTree = "<group>";
