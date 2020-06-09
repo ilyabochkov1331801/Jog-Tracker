@@ -19,6 +19,7 @@ class JogViewController: UIViewController {
     init(newJog: Jog) {
         super.init(nibName: nil, bundle: nil)
         self.jog = newJog
+        datePicker.maximumDate = Date()
     }
     
     init() {

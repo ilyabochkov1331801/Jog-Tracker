@@ -18,7 +18,7 @@ class FeedbackService {
     private let topicIdKey = "topic_id"
     private let feedbackKey = "text"
     
-    func send(feedback: Feedback, completionHandler: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    func send(feedback: String, topicId: Int, completionHandler: @escaping (Data?, URLResponse?, Error?) -> ()) {
         guard let accessToken = authentication.accessToken else {
             return
         }
@@ -28,8 +28,8 @@ class FeedbackService {
                 
         urlComponents.queryItems = [
             URLQueryItem(name: accessTokenKey, value: accessToken),
-            URLQueryItem(name: topicIdKey, value: String(feedback.topicId)),
-            URLQueryItem(name: feedbackKey, value: feedback.feedback)
+            URLQueryItem(name: topicIdKey, value: String(topicId)),
+            URLQueryItem(name: feedbackKey, value: feedback)
         ]
         
         guard let url = urlComponents.url else {

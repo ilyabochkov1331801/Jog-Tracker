@@ -32,11 +32,27 @@
                         <action selector="sendFeedbackButtonTapped:" destination="-1" eventType="touchUpInside" id="NjF-s2-ur8"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shT-ad-8lm">
+                    <rect key="frame" x="148" y="152" width="240" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="JZZ-Tt-i0X"/>
+                        <constraint firstAttribute="width" constant="240" id="aJc-8a-FFm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="Weekly report">
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="58"/>
+                    </state>
+                    <connections>
+                        <action selector="weeklyReportBottonTupped:" destination="-1" eventType="touchUpInside" id="ptF-WG-6ZO"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="hCI-dN-3kE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5cp-6L-pSh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCI-dN-3kE" secondAttribute="trailing" constant="26" id="8Ft-b1-jsc"/>
+                <constraint firstItem="shT-ad-8lm" firstAttribute="leading" secondItem="hCI-dN-3kE" secondAttribute="trailing" constant="-240" id="X6b-Kz-6Pe"/>
+                <constraint firstItem="shT-ad-8lm" firstAttribute="top" secondItem="hCI-dN-3kE" secondAttribute="bottom" constant="8" id="q3h-We-blw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>

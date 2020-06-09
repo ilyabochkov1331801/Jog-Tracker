@@ -17,4 +17,7 @@ class LeftMenuViewController: UIViewController {
     @IBAction func sendFeedbackButtonTapped(_ sender: UIButton) {
         present(SendFeedbackViewController(), animated: true)
     }
+    @IBAction func weeklyReportBottonTupped(_ sender: UIButton) {
+        present(WeeklyReportTableViewController(), animated: true)
+    }
 }

@@ -19,7 +19,8 @@ class Feedback {
     }
     
     func sendFeedback() {
-        FeedbackService().send(feedback: self) {
+        let feedbackService = FeedbackService()
+        feedbackService.send(feedback: feedback, topicId: topicId) {
             (data, response, error) in
             guard error == nil else {
                 self.delegate?.feedbackWasCancel(with: error!)
