@@ -43,7 +43,20 @@ class AuthenticationViewController: UIViewController {
         guard let error = (param.userInfo as? [String: Any])?["error"] as? Error else {
             return
         }
-        print(error)
+        DispatchQueue.main.async {
+            self.alertConfiguration(with: error)
+        }
+    }
+    
+    func alertConfiguration(with error: Error) {
+        let alert = UIAlertController(title: "Error",
+                                      message: error.localizedDescription,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK",
+                                     style: .default)
+        alert.addAction(okAction)
+        present(alert,
+                animated: true)
     }
 }
 

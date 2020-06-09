@@ -112,6 +112,17 @@ class JogsTableViewController: UITableViewController {
     @objc func successAuthentication(param: Notification) {
         jogs.loadFromAPI()
     }
+    
+    func alertConfiguration(with error: Error) {
+        let alert = UIAlertController(title: "Error",
+                                      message: error.localizedDescription,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK",
+                                     style: .default)
+        alert.addAction(okAction)
+        present(alert,
+                animated: true)
+    }
 }
 
 extension JogsTableViewController: JogsDelegate {
@@ -127,7 +138,9 @@ extension JogsTableViewController: JogsDelegate {
             let authenticationViewController = AuthenticationViewController()
             present(authenticationViewController, animated: true)
         default:
-            print(error)
+            DispatchQueue.main.async {
+                self.alertConfiguration(with: error)
+            }
         }
     }
 }
