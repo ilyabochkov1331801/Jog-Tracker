@@ -10,6 +10,8 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
 
+    private let errorKey = "error"
+    
     var authentication: Authentication!
     
     @IBOutlet weak var uuidTextField: UITextField!
@@ -20,11 +22,11 @@ class AuthenticationViewController: UIViewController {
         uuidTextField.delegate = self
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(successAuthentication(param:)),
-                                               name: NSNotification.Name(rawValue: "authenticationPassed"),
+                                               name: .AuthenticationPassed,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(cancelAuthentication(param:)),
-                                               name: NSNotification.Name(rawValue: "authenticationPassedWithError"),
+                                               name: .AuthenticationPassedWithError,
                                                object: nil)
     }
     @IBAction func authorizationButtonTupped(_ sender: UIButton) {
@@ -40,7 +42,7 @@ class AuthenticationViewController: UIViewController {
         }
     }
     @objc func cancelAuthentication(param: Notification) {
-        guard let error = (param.userInfo as? [String: Any])?["error"] as? Error else {
+        guard let error = (param.userInfo as? [String: Any])?[errorKey] as? Error else {
             return
         }
         DispatchQueue.main.async {

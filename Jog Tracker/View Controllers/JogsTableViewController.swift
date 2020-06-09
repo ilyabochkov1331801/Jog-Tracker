@@ -30,7 +30,7 @@ class JogsTableViewController: UITableViewController {
         } else {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(successAuthentication(param:)),
-                                                   name: NSNotification.Name(rawValue: "authenticationPassed"),
+                                                   name: .AuthenticationPassed,
                                                    object: nil)
             present(AuthenticationViewController(), animated: true)
         }

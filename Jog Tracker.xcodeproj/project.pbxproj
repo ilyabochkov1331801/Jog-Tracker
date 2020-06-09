@@ -16,7 +16,6 @@
 		EAF6E4F9248ED1400093FD16 /* JogsServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F8248ED1400093FD16 /* JogsServiceErrors.swift */; };
 		EAF6E4FB248ED1930093FD16 /* JogsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4FA248ED1930093FD16 /* JogsDelegate.swift */; };
 		EAF6E4FD248ED5C40093FD16 /* JpgsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4FC248ED5C40093FD16 /* JpgsErrors.swift */; };
-		EAF6E4FF248EE0A50093FD16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4FE248EE0A50093FD16 /* User.swift */; };
 		EAF6E501248EE1100093FD16 /* ApiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E500248EE1100093FD16 /* ApiMessage.swift */; };
 		EAF6E503248EE1AA0093FD16 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E502248EE1AA0093FD16 /* Response.swift */; };
 		EAF6E507248EE3020093FD16 /* JogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */; };
@@ -25,6 +24,7 @@
 		EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */; };
 		EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */; };
 		EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E510248F7E3E0093FD16 /* JogViewController.xib */; };
+		EAF6E514248FC3D60093FD16 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E513248FC3D50093FD16 /* NotificationNameExtension.swift */; };
 		EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */; };
 		EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F56248E91B2008BE894 /* Assets.xcassets */; };
 		EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F58248E91B2008BE894 /* LaunchScreen.storyboard */; };
@@ -47,7 +47,6 @@
 		EAF6E4F8248ED1400093FD16 /* JogsServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsServiceErrors.swift; sourceTree = "<group>"; };
 		EAF6E4FA248ED1930093FD16 /* JogsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsDelegate.swift; sourceTree = "<group>"; };
 		EAF6E4FC248ED5C40093FD16 /* JpgsErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JpgsErrors.swift; sourceTree = "<group>"; };
-		EAF6E4FE248EE0A50093FD16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EAF6E500248EE1100093FD16 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
 		EAF6E502248EE1AA0093FD16 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsTableViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogViewController.swift; sourceTree = "<group>"; };
 		EAF6E510248F7E3E0093FD16 /* JogViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogViewController.xib; sourceTree = "<group>"; };
+		EAF6E513248FC3D50093FD16 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		EAFB8F4A248E91AC008BE894 /* Jog Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jog Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFB8F56248E91B2008BE894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				EAF6E4F0248ECC560093FD16 /* Jog.swift */,
-				EAF6E4FE248EE0A50093FD16 /* User.swift */,
 				EAF6E500248EE1100093FD16 /* ApiMessage.swift */,
 				EAF6E502248EE1AA0093FD16 /* Response.swift */,
 			);
@@ -224,6 +223,7 @@
 				EAFB8F68248E97EF008BE894 /* AuthenticationWithUUID.swift */,
 				EAFB8F6C248E9847008BE894 /* Authentication.swift */,
 				EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */,
+				EAF6E513248FC3D50093FD16 /* NotificationNameExtension.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -339,7 +339,6 @@
 				EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */,
 				EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */,
 				EAF6E4F4248ECD2E0093FD16 /* Jogs.swift in Sources */,
-				EAF6E4FF248EE0A50093FD16 /* User.swift in Sources */,
 				EAF6E4F9248ED1400093FD16 /* JogsServiceErrors.swift in Sources */,
 				EAF6E501248EE1100093FD16 /* ApiMessage.swift in Sources */,
 				EAF6E4FD248ED5C40093FD16 /* JpgsErrors.swift in Sources */,
@@ -347,6 +346,7 @@
 				EAF6E4F7248ED1300093FD16 /* JogsService.swift in Sources */,
 				EAF6E507248EE3020093FD16 /* JogsTableViewController.swift in Sources */,
 				EAFB8F69248E97EF008BE894 /* AuthenticationWithUUID.swift in Sources */,
+				EAF6E514248FC3D60093FD16 /* NotificationNameExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

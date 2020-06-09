@@ -9,10 +9,13 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
+    
+    private let stringFormat = "%.1f"
+    
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timesLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,7 +25,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func configurateCell(distance: Double, times: Int, date: Int) {
-        distanceLabel.text = String(format: "%.1f", distance)
+        distanceLabel.text = String(format: stringFormat, distance)
         timesLabel.text = String(times)
         dateLabel.text = convert(timeInterval: date)
     }

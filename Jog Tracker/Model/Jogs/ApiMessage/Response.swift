@@ -10,5 +10,4 @@ import Foundation
 
 struct Response: Codable {
     var jogs: Array<Jog>
-    var users: Array<User>
 }

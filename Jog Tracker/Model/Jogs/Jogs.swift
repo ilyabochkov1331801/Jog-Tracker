@@ -10,8 +10,8 @@ import Foundation
 
 class Jogs {
     
+    //MARK: Singletone
     static var shared = Jogs()
-    
     private init() { }
     
     private(set) var jogsList: Array<Jog> = [] {
@@ -20,7 +20,15 @@ class Jogs {
         }
     }
     
-    private var commonCompletionHandler: (_ target: Jogs,  _ data: Data?, _ response: URLResponse?, _ error: Error?, _ dataCombiner: (Data) -> Bool) -> () = {
+    //MARK: Constants
+    private let responseKey = "response"
+    private let idKey = "id"
+    private let userIdKey = "user_id"
+    private let distanceKey = "distance"
+    private let timeKey = "time"
+    private let dateKey = "date"
+    
+    private lazy var commonCompletionHandler: (_ target: Jogs,  _ data: Data?, _ response: URLResponse?, _ error: Error?, _ dataCombiner: (Data) -> Bool) -> () = {
         (target, data, response, error, dataCombiner) in
         
         guard error == nil else {
@@ -45,12 +53,22 @@ class Jogs {
         }
     }
     
+    private lazy var dateFormatter: ISO8601DateFormatter = {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate,
+                                   .withTime,
+                                   .withDashSeparatorInDate,
+                                   .withColonSeparatorInTime]
+        return dateFormatter
+    }()
+    
+    //MARK: Delegate for updating data
     var delegate: JogsDelegate?
     
+    //MARK: Update jogsList
     func append(newJog: Jog) {
-        
         let jogsService = JogsService()
-        jogsService.updateExisting(jog: newJog) {
+        jogsService.addNew(jog: newJog) {
             [weak self] (data, response, error) in
             guard let self = self else {
                 return
@@ -61,15 +79,6 @@ class Jogs {
             }
         }
     }
-    
-    private let dateFormatter: ISO8601DateFormatter = {
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withFullDate,
-                                   .withTime,
-                                   .withDashSeparatorInDate,
-                                   .withColonSeparatorInTime]
-        return dateFormatter
-    }()
     
     func append(date: Date, time: Int, distance: Double) {
         let jogsService = JogsService()
@@ -95,12 +104,13 @@ class Jogs {
             }
             self.commonCompletionHandler(self, data, response, error) {
                 data in
-                return self.loadJogsList(with: data)
+                return self.loadNewJogsList(with: data)
             }
         }
     }
     
-    private func loadJogsList(with data: Data) -> Bool {
+    
+    private func loadNewJogsList(with data: Data) -> Bool {
         guard let apiMessage = try? JSONDecoder().decode(ApiMessage.self, from: data) else {
             return false
         }
@@ -110,12 +120,12 @@ class Jogs {
     
     private func appendToJogsList(with data: Data) -> Bool {
         guard let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-            let response = responseDictionary["response"] as? [String: Any],
-            let id = response["id"] as? Int,
-            let userId = response["user_id"] as? Int,
-            let distance = response["distance"] as? Double,
-            let time = response["time"] as? Int,
-            let isoDate = response["date"] as? String,
+            let response = responseDictionary[responseKey] as? [String: Any],
+            let id = response[idKey] as? Int,
+            let userId = response[userIdKey] as? Int,
+            let distance = response[distanceKey] as? Double,
+            let time = response[timeKey] as? Int,
+            let isoDate = response[dateKey] as? String,
             let date = dateFormatter.date(from: isoDate) else {
                 return false
         }
@@ -126,9 +136,7 @@ class Jogs {
     }
     
     private func appendToList(newJog: Jog) {
-        
         var flag = false
-        
         for (index, jog) in jogsList.enumerated() {
             if jog.id == newJog.id {
                 jogsList[index] = newJog
@@ -136,7 +144,6 @@ class Jogs {
                 break
             }
         }
-        
         if !flag {
             jogsList.append(newJog)
         }
