@@ -20,6 +20,31 @@ class Jogs {
         }
     }
     
+    private var commonCompletionHandler: (_ target: Jogs,  _ data: Data?, _ response: URLResponse?, _ error: Error?, _ dataCombiner: (Data) -> Bool) -> () = {
+        (target, data, response, error, dataCombiner) in
+        
+        guard error == nil else {
+            target.delegate?.updatingDataDidFinished(with: error!)
+            return
+        }
+        guard let response = response as? HTTPURLResponse else {
+            target.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
+            return
+        }
+        switch response.statusCode {
+        case 200 ..< 300:
+            break
+        default:
+            target.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
+            return
+        }
+        guard let data = data,
+            dataCombiner(data) else {
+            target.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
+            return
+        }
+    }
+    
     var delegate: JogsDelegate?
     
     func append(newJog: Jog) {
@@ -27,32 +52,12 @@ class Jogs {
         let jogsService = JogsService()
         jogsService.updateExisting(jog: newJog) {
             [weak self] (data, response, error) in
-            guard error == nil else {
-                self?.delegate?.updatingDataDidFinished(with: error!)
+            guard let self = self else {
                 return
             }
-            guard let response = response as? HTTPURLResponse else {
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
-                return
-            }
-            switch response.statusCode {
-            case 200 ..< 300:
-                break
-            default:
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
-                return
-            }
-            guard let data = data,
-                self?.appendToJogsList(with: data) ?? false else {
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
-                return
-            }
-        }
-        
-        for (index, jog) in jogsList.enumerated() {
-            if jog.id == newJog.id {
-                jogsList[index] = newJog
-                break
+            self.commonCompletionHandler(self, data, response, error) {
+                data in
+                return self.appendToJogsList(with: data)
             }
         }
     }
@@ -71,25 +76,12 @@ class Jogs {
         
         jogsService.addNew(date: date, time: time, distance: distance) {
             [weak self] (data, response, error) in
-            guard error == nil else {
-                self?.delegate?.updatingDataDidFinished(with: error!)
+            guard let self = self else {
                 return
             }
-            guard let response = response as? HTTPURLResponse else {
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
-                return
-            }
-            switch response.statusCode {
-            case 200 ..< 300:
-                break
-            default:
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
-                return
-            }
-            guard let data = data,
-                self?.appendToJogsList(with: data) ?? false else {
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
-                return
+            self.commonCompletionHandler(self, data, response, error) {
+                data in
+                return self.appendToJogsList(with: data)
             }
         }
     }
@@ -98,25 +90,12 @@ class Jogs {
         let jogsService = JogsService()
         jogsService.loadJogsList {
             [weak self] (data, response, error) in
-            guard error == nil else {
-                self?.delegate?.updatingDataDidFinished(with: error!)
+            guard let self = self else {
                 return
             }
-            guard let response = response as? HTTPURLResponse else {
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
-                return
-            }
-            switch response.statusCode {
-            case 200 ..< 300:
-                break
-            default:
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
-                return
-            }
-            guard let data = data,
-                self?.loadJogsList(with: data) ?? false else {
-                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
-                return
+            self.commonCompletionHandler(self, data, response, error) {
+                data in
+                return self.loadJogsList(with: data)
             }
         }
     }

@@ -126,8 +126,8 @@
             filePath = "Jog Tracker/Model/Jogs/Jogs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "loadFromAPI()"
             landmarkType = "7">
             <Locations>
@@ -174,25 +174,9 @@
             filePath = "Jog Tracker/Model/Jogs/Jogs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "loadJogsList(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "92248F91-68FC-4A09-ADF8-C2B0329287DC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jog Tracker/Model/Jogs/Jogs.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "loadFromAPI()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
