@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */; };
 		EAF6E4E7248E9F900093FD16 /* AuthenticationServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4E6248E9F900093FD16 /* AuthenticationServiceErrors.swift */; };
 		EAF6E4EB248EA7450093FD16 /* AuthenticationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */; };
 		EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F0248ECC560093FD16 /* Jog.swift */; };
@@ -33,6 +34,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25B0CFCC96C9AE6F2608FC96 /* Pods-Jog Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jog Tracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.release.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		EAF6E4E6248E9F900093FD16 /* AuthenticationServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceErrors.swift; sourceTree = "<group>"; };
 		EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrors.swift; sourceTree = "<group>"; };
 		EAF6E4F0248ECC560093FD16 /* Jog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jog.swift; sourceTree = "<group>"; };
@@ -65,12 +69,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F270808216391446997ED2C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25B0CFCC96C9AE6F2608FC96 /* Pods-Jog Tracker.debug.xcconfig */,
+				C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		60F36FA8818D09653140D0A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EAF6E4EC248EB43D0093FD16 /* AuthenticationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +167,8 @@
 			children = (
 				EAFB8F4C248E91AC008BE894 /* Jog Tracker */,
 				EAFB8F4B248E91AC008BE894 /* Products */,
+				4F270808216391446997ED2C /* Pods */,
+				60F36FA8818D09653140D0A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +229,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAFB8F5E248E91B2008BE894 /* Build configuration list for PBXNativeTarget "Jog Tracker" */;
 			buildPhases = (
+				365BC163456BFCF67A4F14B2 /* [CP] Check Pods Manifest.lock */,
 				EAFB8F46248E91AC008BE894 /* Sources */,
 				EAFB8F47248E91AC008BE894 /* Frameworks */,
 				EAFB8F48248E91AC008BE894 /* Resources */,
@@ -265,6 +290,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		365BC163456BFCF67A4F14B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jog Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EAFB8F46248E91AC008BE894 /* Sources */ = {
@@ -422,6 +472,7 @@
 		};
 		EAFB8F5F248E91B2008BE894 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25B0CFCC96C9AE6F2608FC96 /* Pods-Jog Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -441,6 +492,7 @@
 		};
 		EAFB8F60248E91B2008BE894 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

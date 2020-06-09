@@ -1,0 +1,4 @@
+
+target 'Jog Tracker' do
+  pod 'SwiftKeychainWrapper'
+end

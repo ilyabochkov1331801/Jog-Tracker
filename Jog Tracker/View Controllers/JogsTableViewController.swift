@@ -15,8 +15,13 @@ class JogsTableViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Your jogs"
+        
         jogs.delegate = self
+        
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
         let authentication = AuthenticationWithUUID.shared
         if authentication.isAuthorized {
             jogs.loadFromAPI()
@@ -107,7 +112,6 @@ class JogsTableViewController: UITableViewController {
     @objc func successAuthentication(param: Notification) {
         jogs.loadFromAPI()
     }
-    
 }
 
 extension JogsTableViewController: JogsDelegate {

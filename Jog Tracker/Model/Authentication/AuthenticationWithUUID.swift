@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class AuthenticationWithUUID: Authentication {
     static var shared: Authentication = AuthenticationWithUUID()
@@ -16,7 +17,7 @@ class AuthenticationWithUUID: Authentication {
     private init() { }
     
     var accessToken: String? {
-        guard let newAccessToken = UserDefaults.standard.string(forKey: userDefaultsKey) else {
+        guard let newAccessToken = KeychainWrapper.standard.string(forKey: userDefaultsKey) else {
             return nil
         }
         return newAccessToken
@@ -60,7 +61,7 @@ class AuthenticationWithUUID: Authentication {
             let newAccessToken = response["access_token"] as? String else {
             return false
         }
-        UserDefaults.standard.set(newAccessToken, forKey: userDefaultsKey)
+        KeychainWrapper.standard.set(newAccessToken, forKey: userDefaultsKey)
         return true
     }
 }

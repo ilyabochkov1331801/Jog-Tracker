@@ -28,15 +28,13 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGA-4l-i3d">
                     <rect key="frame" x="146" y="430" width="122" height="38"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <state key="normal" title="Authorization">
-                        <color key="titleColor" red="0.78207090359999998" green="0.42129986489999999" blue="0.21112267209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </state>
+                    <state key="normal" title="Authorization"/>
                     <connections>
                         <action selector="authorizationButtonTupped:" destination="-1" eventType="touchUpInside" id="OBN-Hg-wzg"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="NGA-4l-i3d" firstAttribute="top" secondItem="n6i-cJ-aFK" secondAttribute="bottom" constant="80" id="6jG-Ov-O3a"/>
                 <constraint firstItem="n6i-cJ-aFK" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="GmA-7N-yCH"/>
