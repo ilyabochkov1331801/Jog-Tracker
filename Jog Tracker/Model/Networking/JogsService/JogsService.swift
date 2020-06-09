@@ -73,8 +73,6 @@ class JogsService {
             return
         }
                 
-        
-        
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: accessToken),
             URLQueryItem(name: "distance", value: String(jog.distance)),
@@ -95,4 +93,5 @@ class JogsService {
         
         URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
     }
+    
 }

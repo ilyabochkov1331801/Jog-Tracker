@@ -54,9 +54,9 @@ class JogViewController: UIViewController {
             jog.date = Int(datePicker.date.timeIntervalSince1970)
             jog.distance = distance
             jog.time = time
-            jogs.appendToList(newJog: jog)
+            jogs.append(newJog: jog)
         } else {
-            jogs.appendToList(date: datePicker.date, time: time, distance: distance)
+            jogs.append(date: datePicker.date, time: time, distance: distance)
         }
         navigationController?.popViewController(animated: true)
     }

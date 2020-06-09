@@ -22,7 +22,32 @@ class Jogs {
     
     var delegate: JogsDelegate?
     
-    func appendToList(newJog: Jog) {
+    func append(newJog: Jog) {
+        
+        let jogsService = JogsService()
+        jogsService.updateExisting(jog: newJog) {
+            [weak self] (data, response, error) in
+            guard error == nil else {
+                self?.delegate?.updatingDataDidFinished(with: error!)
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
+                return
+            }
+            switch response.statusCode {
+            case 200 ..< 300:
+                break
+            default:
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
+                return
+            }
+            guard let data = data,
+                self?.appendToJogsList(with: data) ?? false else {
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
+                return
+            }
+        }
         
         for (index, jog) in jogsList.enumerated() {
             if jog.id == newJog.id {
@@ -41,7 +66,7 @@ class Jogs {
         return dateFormatter
     }()
     
-    func appendToList(date: Date, time: Int, distance: Double) {
+    func append(date: Date, time: Int, distance: Double) {
         let jogsService = JogsService()
         
         jogsService.addNew(date: date, time: time, distance: distance) {
@@ -115,7 +140,26 @@ class Jogs {
             let date = dateFormatter.date(from: isoDate) else {
                 return false
         }
-        jogsList.append(Jog(id: id, user_id: String(userId), distance: distance, time: time, date: Int(date.timeIntervalSince1970)))
+        
+        let newJog = Jog(id: id, user_id: String(userId), distance: distance, time: time, date: Int(date.timeIntervalSince1970))
+        self.appendToList(newJog: newJog)
         return true
+    }
+    
+    private func appendToList(newJog: Jog) {
+        
+        var flag = false
+        
+        for (index, jog) in jogsList.enumerated() {
+            if jog.id == newJog.id {
+                jogsList[index] = newJog
+                flag = true
+                break
+            }
+        }
+        
+        if !flag {
+            jogsList.append(newJog)
+        }
     }
 }
