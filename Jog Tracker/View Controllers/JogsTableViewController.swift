@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class JogsTableViewController: UITableViewController {
     
@@ -41,6 +42,10 @@ class JogsTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = true
         
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipe))
+        swipe.delegate = self
+        swipe.direction = .right
+        view.addGestureRecognizer(swipe)
     }
 
     // MARK: - Table view data source
@@ -75,7 +80,15 @@ class JogsTableViewController: UITableViewController {
         jogs.loadFromAPI()
     }
     
-    func alertConfiguration(with error: Error) {
+    @objc func leftSwipe() {
+        let leftMenu = SideMenuNavigationController(rootViewController: LeftMenuViewController())
+        leftMenu.presentationStyle = .menuSlideIn
+        leftMenu.leftSide = true
+        leftMenu.menuWidth = 300
+        present(leftMenu, animated: true)
+    }
+    
+    private func alertConfiguration(with error: Error) {
         let alert = UIAlertController(title: "Error",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
@@ -105,4 +118,8 @@ extension JogsTableViewController: JogsDelegate {
             }
         }
     }
+}
+
+extension JogsTableViewController: UIGestureRecognizerDelegate {
+    
 }

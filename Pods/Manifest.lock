@@ -1,16 +1,20 @@
 PODS:
+  - SideMenu (6.4.8)
   - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
+  - SideMenu
   - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
+    - SideMenu
     - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
+  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: 57a068948bacf9c7fb702679e56a4f66ef6f42b9
+PODFILE CHECKSUM: abe00ba8b321a788f24621d5ae1b2a33024501d2
 
 COCOAPODS: 1.8.4
