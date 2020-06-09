@@ -23,6 +23,8 @@
 		EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */; };
 		EAF6E50B248EE8200093FD16 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */; };
 		EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */; };
+		EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */; };
+		EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E510248F7E3E0093FD16 /* JogViewController.xib */; };
 		EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */; };
 		EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F56248E91B2008BE894 /* Assets.xcassets */; };
 		EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F58248E91B2008BE894 /* LaunchScreen.storyboard */; };
@@ -52,6 +54,8 @@
 		EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogsTableViewController.xib; sourceTree = "<group>"; };
 		EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogViewController.swift; sourceTree = "<group>"; };
+		EAF6E510248F7E3E0093FD16 /* JogViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogViewController.xib; sourceTree = "<group>"; };
 		EAFB8F4A248E91AC008BE894 /* Jog Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jog Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFB8F56248E91B2008BE894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				EAF6E4EE248EB4640093FD16 /* View Controllers */,
 				EAFB8F56248E91B2008BE894 /* Assets.xcassets */,
 				EAFB8F5B248E91B2008BE894 /* Info.plist */,
+				EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */,
+				EAF6E510248F7E3E0093FD16 /* JogViewController.xib */,
 			);
 			path = "Jog Tracker";
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 				EAFB8F64248E9773008BE894 /* AuthenticationViewController.xib in Resources */,
 				EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */,
 				EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */,
+				EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */,
 				EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */,
 				EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */,
 			);
@@ -329,6 +336,7 @@
 				EAF6E50B248EE8200093FD16 /* CustomTableViewCell.swift in Sources */,
 				EAFB8F63248E9773008BE894 /* AuthenticationViewController.swift in Sources */,
 				EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */,
+				EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */,
 				EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */,
 				EAF6E4F4248ECD2E0093FD16 /* Jogs.swift in Sources */,
 				EAF6E4FF248EE0A50093FD16 /* User.swift in Sources */,

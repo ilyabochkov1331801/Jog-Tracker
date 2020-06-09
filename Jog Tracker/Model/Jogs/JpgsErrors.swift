@@ -11,4 +11,5 @@ import Foundation
 enum JogsErrors: Error {
     case wrongResponse
     case badResponse(code: Int)
+    case wrongData
 }

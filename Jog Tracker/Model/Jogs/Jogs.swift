@@ -10,6 +10,9 @@ import Foundation
 
 class Jogs {
     
+    static var shared = Jogs()
+    
+    private init() { }
     
     private(set) var jogsList: Array<Jog> = [] {
         didSet {
@@ -20,16 +23,49 @@ class Jogs {
     var delegate: JogsDelegate?
     
     func appendToList(newJog: Jog) {
-        var flag = false // костыль
         
         for (index, jog) in jogsList.enumerated() {
             if jog.id == newJog.id {
                 jogsList[index] = newJog
-                flag = true
+                break
             }
         }
-        if !flag {
-            jogsList.append(newJog)
+    }
+    
+    private let dateFormatter: ISO8601DateFormatter = {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate,
+                                   .withTime,
+                                   .withDashSeparatorInDate,
+                                   .withColonSeparatorInTime]
+        return dateFormatter
+    }()
+    
+    func appendToList(date: Date, time: Int, distance: Double) {
+        let jogsService = JogsService()
+        
+        jogsService.addNew(date: date, time: time, distance: distance) {
+            [weak self] (data, response, error) in
+            guard error == nil else {
+                self?.delegate?.updatingDataDidFinished(with: error!)
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
+                return
+            }
+            switch response.statusCode {
+            case 200 ..< 300:
+                break
+            default:
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
+                return
+            }
+            guard let data = data,
+                self?.appendToJogsList(with: data) ?? false else {
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
+                return
+            }
         }
     }
     
@@ -53,18 +89,33 @@ class Jogs {
                 return
             }
             guard let data = data,
-                self?.updateJogsList(with: data) ?? false else {
-                self?.delegate?.updatingDataDidFinished(with: AuthenticationErrors.wrongData)
+                self?.loadJogsList(with: data) ?? false else {
+                self?.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
                 return
             }
         }
     }
     
-    private func updateJogsList(with data: Data) -> Bool {
+    private func loadJogsList(with data: Data) -> Bool {
         guard let apiMessage = try? JSONDecoder().decode(ApiMessage.self, from: data) else {
             return false
         }
         jogsList = apiMessage.response.jogs
+        return true
+    }
+    
+    private func appendToJogsList(with data: Data) -> Bool {
+        guard let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+            let response = responseDictionary["response"] as? [String: Any],
+            let id = response["id"] as? Int,
+            let userId = response["user_id"] as? Int,
+            let distance = response["distance"] as? Double,
+            let time = response["time"] as? Int,
+            let isoDate = response["date"] as? String,
+            let date = dateFormatter.date(from: isoDate) else {
+                return false
+        }
+        jogsList.append(Jog(id: id, user_id: String(userId), distance: distance, time: time, date: Int(date.timeIntervalSince1970)))
         return true
     }
 }
