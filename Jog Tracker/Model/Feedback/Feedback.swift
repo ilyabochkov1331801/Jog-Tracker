@@ -19,25 +19,27 @@ class Feedback {
     }
     
     func sendFeedback() {
-        let feedbackService = FeedbackService()
-        feedbackService.send(feedback: feedback, topicId: topicId) {
-            (data, response, error) in
-            guard error == nil else {
-                self.delegate?.feedbackWasCancel(with: error!)
-                return
+        DispatchQueue.global(qos: .userInitiated).async {
+            let feedbackService = FeedbackService()
+            feedbackService.send(feedback: self.feedback, topicId: self.topicId) {
+                (data, response, error) in
+                guard error == nil else {
+                    self.delegate?.feedbackWasCancel(with: error!)
+                    return
+                }
+                guard let response = response as? HTTPURLResponse else {
+                    self.delegate?.feedbackWasCancel(with: FeedbackErrors.wrongResponse)
+                    return
+                }
+                switch response.statusCode {
+                case 200 ..< 300:
+                    break
+                default:
+                    self.delegate?.feedbackWasCancel(with: FeedbackErrors.badResponse(code: response.statusCode))
+                    return
+                }
+                self.delegate?.feedbackWasPosted()
             }
-            guard let response = response as? HTTPURLResponse else {
-                self.delegate?.feedbackWasCancel(with: FeedbackErrors.wrongResponse)
-                return
-            }
-            switch response.statusCode {
-            case 200 ..< 300:
-                break
-            default:
-                self.delegate?.feedbackWasCancel(with: FeedbackErrors.badResponse(code: response.statusCode))
-                return
-            }
-            self.delegate?.feedbackWasPosted()
         }
     }
 }

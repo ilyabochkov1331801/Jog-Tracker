@@ -67,44 +67,49 @@ class Jogs {
     
     //MARK: Update jogsList
     func append(newJog: Jog) {
-        let jogsService = JogsService()
-        jogsService.addNew(jog: newJog) {
-            [weak self] (data, response, error) in
-            guard let self = self else {
-                return
-            }
-            self.commonCompletionHandler(self, data, response, error) {
-                data in
-                return self.appendToJogsList(with: data)
+        DispatchQueue.global(qos: .userInteractive).async {
+            let jogsService = JogsService()
+            jogsService.addNew(jog: newJog) {
+                [weak self] (data, response, error) in
+                guard let self = self else {
+                    return
+                }
+                self.commonCompletionHandler(self, data, response, error) {
+                    data in
+                    return self.appendToJogsList(with: data)
+                }
             }
         }
     }
     
     func append(date: Date, time: Int, distance: Double) {
-        let jogsService = JogsService()
-        
-        jogsService.addNew(date: date, time: time, distance: distance) {
-            [weak self] (data, response, error) in
-            guard let self = self else {
-                return
-            }
-            self.commonCompletionHandler(self, data, response, error) {
-                data in
-                return self.appendToJogsList(with: data)
+        DispatchQueue.global(qos: .userInteractive).async {
+            let jogsService = JogsService()
+            jogsService.addNew(date: date, time: time, distance: distance) {
+                [weak self] (data, response, error) in
+                guard let self = self else {
+                    return
+                }
+                self.commonCompletionHandler(self, data, response, error) {
+                    data in
+                    return self.appendToJogsList(with: data)
+                }
             }
         }
     }
     
     func loadFromAPI() {
-        let jogsService = JogsService()
-        jogsService.loadJogsList {
-            [weak self] (data, response, error) in
-            guard let self = self else {
-                return
-            }
-            self.commonCompletionHandler(self, data, response, error) {
-                data in
-                return self.loadNewJogsList(with: data)
+        DispatchQueue.global(qos: .userInteractive).async {
+            let jogsService = JogsService()
+            jogsService.loadJogsList {
+                [weak self] (data, response, error) in
+                guard let self = self else {
+                    return
+                }
+                self.commonCompletionHandler(self, data, response, error) {
+                    data in
+                    return self.loadNewJogsList(with: data)
+                }
             }
         }
     }

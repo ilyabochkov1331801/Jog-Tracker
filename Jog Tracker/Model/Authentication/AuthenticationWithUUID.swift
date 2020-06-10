@@ -34,30 +34,32 @@ class AuthenticationWithUUID: Authentication {
     }
     
     func authorization(with UUID: String) -> () {
-        let authenticationService = AuthenticationService()
-        authenticationService.authorization(with: UUID) {
-            [weak self] (data, response, error) in
-            guard error == nil else {
-                NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: error!])
-                return
+        DispatchQueue.global(qos: .userInteractive).async {
+            let authenticationService = AuthenticationService()
+            authenticationService.authorization(with: UUID) {
+                [weak self] (data, response, error) in
+                guard error == nil else {
+                    NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: error!])
+                    return
+                }
+                guard let response = response as? HTTPURLResponse else {
+                    NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.wrongResponse])
+                    return
+                }
+                switch response.statusCode {
+                case 200 ..< 300:
+                    break
+                default:
+                    NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.badResponse(code: response.statusCode)])
+                    return
+                }
+                guard let data = data,
+                    self?.updateToken(with: data) ?? false else {
+                         NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.wrongData])
+                    return
+                }
+                NotificationCenter.default.post(name: .AuthenticationPassed, object: nil)
             }
-            guard let response = response as? HTTPURLResponse else {
-                NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.wrongResponse])
-                return
-            }
-            switch response.statusCode {
-            case 200 ..< 300:
-                break
-            default:
-                NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.badResponse(code: response.statusCode)])
-                return
-            }
-            guard let data = data,
-                self?.updateToken(with: data) ?? false else {
-                     NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.wrongData])
-                return
-            }
-            NotificationCenter.default.post(name: .AuthenticationPassed, object: nil)
         }
     }
     

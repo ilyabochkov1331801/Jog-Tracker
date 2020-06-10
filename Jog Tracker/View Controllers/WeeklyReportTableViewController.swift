@@ -18,9 +18,7 @@ class WeeklyReportTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.weeklyReports.calculateWeaklyReportsList()
-        }
+        self.weeklyReports.calculateWeaklyReportsList()
         tableView.rowHeight = 100
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
