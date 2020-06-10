@@ -14,12 +14,18 @@ class WeeklyReports {
     private let weekTimeInterval = Int(TimeInterval(60 * 60 * 24 * 7))
     
     private(set) var weaklyReportsList: Array<WeaklyReport> = []
+    private let reportFilterSettings = ReportFilterSettings.shared
     
     func calculateWeaklyReportsList() {
+        weaklyReportsList = []
         let jogsList = jogs.jogsList
         var weeks: Dictionary<Int, Array<Jog>> = [:]
         let now = Int(Date().timeIntervalSince1970)
         for jog in jogsList {
+            let date = Date(timeIntervalSince1970: TimeInterval(jog.date))
+            if date.compare(reportFilterSettings.fromDate) == .orderedAscending || date.compare(reportFilterSettings.toDate) == .orderedDescending {
+                continue
+            }
             let weekNumber = Int((now - jog.date) / weekTimeInterval)
             if weeks[weekNumber] != nil {
                 weeks[weekNumber]!.append(jog)

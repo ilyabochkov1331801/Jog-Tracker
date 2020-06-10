@@ -23,6 +23,15 @@ class WeeklyReportTableViewController: UITableViewController {
         }
         tableView.rowHeight = UITableView.automaticDimension
         tableView.rowHeight = 100
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                            target: self,
+                                                            action: #selector(openReportFilterSettings))
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reportFilterSettingsDidChange),
+                                               name: .ReportFilterSettingsChanged,
+                                               object: nil)
     }
 
     // MARK: - Table view data source
@@ -40,5 +49,14 @@ class WeeklyReportTableViewController: UITableViewController {
         for: indexPath) as! WeeklyReportTableViewCell
         cell.configurateCell(weaklyReport: weeklyReports.weaklyReportsList[indexPath.row])
         return cell
+    }
+    
+    @objc func openReportFilterSettings() {
+        present(ReportFilterSettingsViewController(), animated: true)
+    }
+    
+    @objc func reportFilterSettingsDidChange() {
+        self.weeklyReports.calculateWeaklyReportsList()
+        tableView.reloadData()
     }
 }
