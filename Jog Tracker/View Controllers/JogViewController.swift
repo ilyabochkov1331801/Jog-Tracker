@@ -19,7 +19,6 @@ class JogViewController: UIViewController {
     init(newJog: Jog) {
         super.init(nibName: nil, bundle: nil)
         self.jog = newJog
-        datePicker.maximumDate = Date()
     }
     
     init() {
@@ -41,6 +40,7 @@ class JogViewController: UIViewController {
             timeTextField.text = String(jog.time)
             datePicker.date = Date(timeIntervalSince1970: TimeInterval(jog.date))
         }
+        datePicker.maximumDate = Date()
     }
     
     @objc func save() {

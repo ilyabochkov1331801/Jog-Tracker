@@ -13,13 +13,14 @@ class JogsTableViewController: UITableViewController {
     
     let jogs = Jogs.shared
     
+    private let controllerTitle = "Your jogs"
     private let cellIdentifier = "customCell"
     private let cellNibName = "CustomTableViewCell"
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Your jogs"
+        title = controllerTitle
         
         jogs.delegate = self
         
@@ -46,6 +47,9 @@ class JogsTableViewController: UITableViewController {
         swipe.delegate = self
         swipe.direction = .right
         view.addGestureRecognizer(swipe)
+        
+        tableView.rowHeight = 60
+
     }
 
     // MARK: - Table view data source

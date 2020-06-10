@@ -21,7 +21,6 @@ class WeeklyReportTableViewController: UITableViewController {
         DispatchQueue.global(qos: .userInteractive).async {
             self.weeklyReports.calculateWeaklyReportsList()
         }
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.rowHeight = 100
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,

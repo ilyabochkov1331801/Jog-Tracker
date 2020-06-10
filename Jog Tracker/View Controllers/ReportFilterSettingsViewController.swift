@@ -17,13 +17,12 @@ class ReportFilterSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fromDatePicker.date = reportFilterSettings.fromDate
-        toDatePicker.date = reportFilterSettings.toDate
+        fromDatePicker.date = reportFilterSettings.reportFilter.fromDate
+        toDatePicker.date = reportFilterSettings.reportFilter.toDate
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        reportFilterSettings.fromDate = fromDatePicker.date
-        reportFilterSettings.toDate = toDatePicker.date
+        reportFilterSettings.reportFilter = ReportFilter(fromDate: fromDatePicker.date, toDate: toDatePicker.date)
     }
 }

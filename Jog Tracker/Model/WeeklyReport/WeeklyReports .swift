@@ -23,7 +23,7 @@ class WeeklyReports {
         let now = Int(Date().timeIntervalSince1970)
         for jog in jogsList {
             let date = Date(timeIntervalSince1970: TimeInterval(jog.date))
-            if date.compare(reportFilterSettings.fromDate) == .orderedAscending || date.compare(reportFilterSettings.toDate) == .orderedDescending {
+            if date.compare(reportFilterSettings.reportFilter.fromDate) == .orderedAscending || date.compare(reportFilterSettings.reportFilter.toDate) == .orderedDescending {
                 continue
             }
             let weekNumber = Int((now - jog.date) / weekTimeInterval)

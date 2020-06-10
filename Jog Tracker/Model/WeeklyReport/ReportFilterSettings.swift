@@ -14,12 +14,7 @@ class ReportFilterSettings {
     static let shared = ReportFilterSettings()
     private init() { }
     
-    var fromDate: Date = Date(timeIntervalSince1970: 0) {
-        didSet {
-            notify()
-        }
-    }
-    var toDate: Date = Date() {
+    var reportFilter = ReportFilter() {
         didSet {
             notify()
         }

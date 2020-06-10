@@ -29,12 +29,13 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eu4-Gh-LeS">
                             <rect key="frame" x="0.0" y="0.0" width="80" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E94-b4-gVd">
                             <rect key="frame" x="100" y="0.0" width="237.5" height="34"/>
+                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -48,23 +49,32 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="aG8-SS-tvi"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ve-ZD-sv6">
                             <rect key="frame" x="100" y="0.0" width="237.5" height="34"/>
+                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
                 </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTP-4m-bcq">
+                    <rect key="frame" x="167" y="387" width="41.5" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="CLT-xr-Kx7" firstAttribute="top" secondItem="NTP-4m-bcq" secondAttribute="bottom" constant="5" id="GjF-iA-oe8"/>
                 <constraint firstItem="CLT-xr-Kx7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Fqe-Xy-T2e" secondAttribute="bottom" constant="20" id="IQn-mw-G48"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CLT-xr-Kx7" secondAttribute="bottom" constant="35" id="JX9-q7-NHo"/>
                 <constraint firstItem="Fqe-Xy-T2e" firstAttribute="top" secondItem="zGF-wS-lgo" secondAttribute="bottom" constant="8" id="LuI-tO-LWK"/>
+                <constraint firstItem="NTP-4m-bcq" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="MSZ-FZ-Jc2"/>
                 <constraint firstItem="zGF-wS-lgo" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="MYy-d7-qPG"/>
                 <constraint firstItem="CLT-xr-Kx7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="T1v-DK-bYH"/>
                 <constraint firstItem="Fqe-Xy-T2e" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="UHD-OI-uQw"/>
