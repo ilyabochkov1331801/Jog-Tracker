@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="feedbackTextView" destination="2Tr-06-9fx" id="iQa-km-lho"/>
                 <outlet property="scrollView" destination="6pY-dq-8KC" id="2sx-Hz-Nh0"/>
+                <outlet property="sendFeedbackButton" destination="28W-6l-voE" id="bof-ch-PNR"/>
                 <outlet property="topicPicker" destination="plo-fQ-qtf" id="PE8-Lk-Fzq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,20 +26,20 @@
                     <rect key="frame" x="8" y="15" width="398" height="696"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="XdZ-jt-heA">
-                            <rect key="frame" x="0.0" y="0.0" width="398" height="693"/>
+                            <rect key="frame" x="0.0" y="0.0" width="398" height="593"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Tr-06-9fx">
-                                    <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="398" height="200"/>
                                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="c1O-TQ-zbC"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="c1O-TQ-zbC"/>
                                     </constraints>
                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUL-hR-lFj">
-                                    <rect key="frame" x="0.0" y="337" width="398" height="24"/>
+                                    <rect key="frame" x="0.0" y="237" width="398" height="24"/>
                                     <string key="text">Select topic number
 </string>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -46,10 +47,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plo-fQ-qtf">
-                                    <rect key="frame" x="0.0" y="398" width="398" height="216"/>
+                                    <rect key="frame" x="0.0" y="298" width="398" height="216"/>
                                 </pickerView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28W-6l-voE">
-                                    <rect key="frame" x="0.0" y="651" width="398" height="42"/>
+                                    <rect key="frame" x="0.0" y="551" width="398" height="42"/>
+                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                     <state key="normal" title="SEND">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

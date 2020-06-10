@@ -13,14 +13,16 @@ class SendFeedbackViewController: UIViewController {
     @IBOutlet weak var feedbackTextView: UITextView!
     @IBOutlet weak var topicPicker: UIPickerView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var sendFeedbackButton: UIButton!
     
     let activityView = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        feedbackTextView.layer.borderWidth = 1
+        
         topicPicker.dataSource = self
         topicPicker.delegate = self
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardAction(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -34,6 +36,10 @@ class SendFeedbackViewController: UIViewController {
         swipeDown.delegate = self
         swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         view.addGestureRecognizer(swipeDown)
+        
+        sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2
+        feedbackTextView.layer.borderWidth = 1
+        feedbackTextView.layer.cornerRadius = 5
     }
 
     @IBAction func sendButtonTupped(_ sender: UIButton) {
@@ -48,6 +54,7 @@ class SendFeedbackViewController: UIViewController {
                                     width: 100,
                                     height: 100)
         activityView.center = view.center
+        activityView.hidesWhenStopped = true
         view.addSubview(activityView)
         activityView.startAnimating()
     }
@@ -104,6 +111,7 @@ extension SendFeedbackViewController: FeedbackDelegate {
     func feedbackWasCancel(with error: Error) {
         DispatchQueue.main.async {
             self.alertConfiguration(with: error)
+            self.activityView.stopAnimating()
         }
     }
     
