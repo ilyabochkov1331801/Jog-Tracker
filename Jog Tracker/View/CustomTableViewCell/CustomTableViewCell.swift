@@ -24,17 +24,17 @@ class CustomTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configurateCell(distance: Double, times: Int, date: Int) {
+    func configurateCell(distance: Double, times: Int, date: TimeInterval) {
         distanceLabel.text = String(format: stringFormat, distance)
         timesLabel.text = String(times)
         dateLabel.text = convert(timeInterval: date)
     }
     
-    private func convert(timeInterval: Int) -> String {
+    private func convert(timeInterval: TimeInterval) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        let date = Date(timeIntervalSince1970: Double(timeInterval))
+        let date = Date(timeIntervalSince1970: timeInterval)
         return dateFormatter.string(from: date)
     }
 }

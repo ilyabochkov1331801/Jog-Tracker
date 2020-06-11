@@ -11,22 +11,26 @@ import Foundation
 class WeeklyReports {
     
     private let jogs = Jogs.shared
-    private let weekTimeInterval = Int(TimeInterval(60 * 60 * 24 * 7))
+    private let weekTimeInterval = TimeInterval(60 * 60 * 24 * 7)
+    var mondayDate: TimeInterval {
+        return Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))!.timeIntervalSince1970 + weekTimeInterval
+    }
     
     private(set) var weaklyReportsList: Array<WeaklyReport> = []
     private let reportFilterSettings = ReportFilterSettings.shared
     
     func calculateWeaklyReportsList() {
-        self.weaklyReportsList = []
-        let jogsList = self.jogs.jogsList
+        self.weaklyReportsList.removeAll()
+        
+        let jogsList = jogs.jogsList
         var weeks: Dictionary<Int, Array<Jog>> = [:]
-        let now = Int(Date().timeIntervalSince1970)
+        
         for jog in jogsList {
-            let date = Date(timeIntervalSince1970: TimeInterval(jog.date))
-            if date.compare(self.reportFilterSettings.reportFilter.fromDate) == .orderedAscending || date.compare(self.reportFilterSettings.reportFilter.toDate) == .orderedDescending {
+            let date = Date(timeIntervalSince1970: jog.date)
+            if date.compare(reportFilterSettings.reportFilter.fromDate) == .orderedAscending || date.compare(reportFilterSettings.reportFilter.toDate) == .orderedDescending {
                 continue
             }
-            let weekNumber = Int((now - jog.date) / self.weekTimeInterval)
+            let weekNumber = Int((mondayDate - jog.date) / weekTimeInterval)
             if weeks[weekNumber] != nil {
                 weeks[weekNumber]!.append(jog)
             } else {
@@ -42,8 +46,8 @@ class WeeklyReports {
                     allTime += jog.time
                 }
                 let weaklyReport = WeaklyReport(numberOfWeek: weekNumber,
-                                                beginOfWeek: Date(timeIntervalSince1970: TimeInterval(now - (weekNumber + 1) * self.weekTimeInterval)),
-                                                endOfWeek: Date(timeIntervalSince1970: TimeInterval(now - weekNumber * self.weekTimeInterval)),
+                                                beginOfWeek: Date(timeIntervalSince1970: TimeInterval(mondayDate - Double((weekNumber + 1)) * weekTimeInterval)),
+                                                endOfWeek: Date(timeIntervalSince1970: TimeInterval(mondayDate - Double(weekNumber) * weekTimeInterval)),
                                                 avaregeSpeed: (allDistance * 1000) / (Double(allTime) * 60),
                                                 allTime: allTime,
                                                 allDistance: allDistance)
@@ -53,5 +57,7 @@ class WeeklyReports {
         self.weaklyReportsList.sort {
             $0.numberOfWeek < $1.numberOfWeek
         }
+        weaklyReportsList[0].endOfWeek = reportFilterSettings.reportFilter.toDate
+        weaklyReportsList[weaklyReportsList.count - 1].beginOfWeek = reportFilterSettings.reportFilter.fromDate
     }
 }

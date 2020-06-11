@@ -195,8 +195,8 @@
 		EAF6E4ED248EB4540093FD16 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				EAFB8F58248E91B2008BE894 /* LaunchScreen.storyboard */,
 				EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */,
+				EAFB8F58248E91B2008BE894 /* LaunchScreen.storyboard */,
 			);
 			path = Application;
 			sourceTree = "<group>";

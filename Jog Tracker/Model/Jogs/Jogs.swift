@@ -135,7 +135,7 @@ class Jogs {
                 return false
         }
         
-        let newJog = Jog(id: id, user_id: String(userId), distance: distance, time: time, date: Int(date.timeIntervalSince1970))
+        let newJog = Jog(id: id, user_id: String(userId), distance: distance, time: time, date: date.timeIntervalSince1970)
         self.appendToList(newJog: newJog)
         return true
     }

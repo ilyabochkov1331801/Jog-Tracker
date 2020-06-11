@@ -23,6 +23,7 @@ class JogViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +40,8 @@ class JogViewController: UIViewController {
             distanceTextFiled.text = String(jog.distance)
             timeTextField.text = String(jog.time)
             datePicker.date = Date(timeIntervalSince1970: TimeInterval(jog.date))
+        } else {
+            datePicker.date = Date()
         }
         datePicker.maximumDate = Date()
     }
@@ -52,7 +55,7 @@ class JogViewController: UIViewController {
                 return
         }
         if var jog = jog {
-            jog.date = Int(datePicker.date.timeIntervalSince1970)
+            jog.date = datePicker.date.timeIntervalSince1970
             jog.distance = distance
             jog.time = time
             jogs.append(newJog: jog)

@@ -10,10 +10,19 @@ import UIKit
 
 class SendFeedbackViewController: UIViewController {
 
-    @IBOutlet weak var feedbackTextView: UITextView!
+    @IBOutlet weak var feedbackTextView: UITextView! {
+        didSet {
+            feedbackTextView.layer.borderWidth = 1
+            feedbackTextView.layer.cornerRadius = 5
+        }
+    }
     @IBOutlet weak var topicPicker: UIPickerView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
+    @IBOutlet weak var sendFeedbackButton: UIButton! {
+        didSet {
+            sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2 
+        }
+    }
     
     let activityView = UIActivityIndicatorView(style: .gray)
     
@@ -36,10 +45,6 @@ class SendFeedbackViewController: UIViewController {
         swipeDown.delegate = self
         swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         view.addGestureRecognizer(swipeDown)
-        
-        sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2
-        feedbackTextView.layer.borderWidth = 1
-        feedbackTextView.layer.cornerRadius = 5
     }
 
     @IBAction func sendButtonTupped(_ sender: UIButton) {

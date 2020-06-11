@@ -14,6 +14,6 @@ struct Jog: Codable {
     var user_id: String
     var distance: Double
     var time: Int
-    var date: Int
+    var date: TimeInterval
 }
 

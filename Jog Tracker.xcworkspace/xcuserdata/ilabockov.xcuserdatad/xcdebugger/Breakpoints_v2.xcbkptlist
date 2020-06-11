@@ -65,7 +65,7 @@
             startingLineNumber = "127"
             endingLineNumber = "127"
             landmarkName = "appendToJogsList(with:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -81,7 +81,7 @@
             startingLineNumber = "89"
             endingLineNumber = "89"
             landmarkName = "append(date:time:distance:)"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "A784F31E-3D55-48A6-9AF8-6936255B33A6 - bb94ba57ed8a337b"
@@ -129,7 +129,7 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "appendToJogsList(with:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,8 +142,8 @@
             filePath = "Jog Tracker/View Controllers/SendFeedbackViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "alertConfiguration(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -160,8 +160,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "sendFeedback()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

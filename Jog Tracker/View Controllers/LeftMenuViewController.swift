@@ -12,15 +12,22 @@ class LeftMenuViewController: UIViewController {
 
     private let controllerTitle = "Actions"
     
-    @IBOutlet weak var weeklyReportButton: UIButton!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
+    @IBOutlet weak var weeklyReportButton: UIButton! {
+        didSet {
+            weeklyReportButton.layer.cornerRadius = weeklyReportButton.bounds.height / 2
+        }
+    }
+    
+    @IBOutlet weak var sendFeedbackButton: UIButton! {
+        didSet {
+            sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = controllerTitle
-        
-        weeklyReportButton.layer.cornerRadius = weeklyReportButton.bounds.height / 2
-        sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2
     }
 
     @IBAction func sendFeedbackButtonTapped(_ sender: UIButton) {
