@@ -30,6 +30,7 @@
 		EA81B4942493AFD800DA5D48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4932493AFD800DA5D48 /* User.swift */; };
 		EA81B4972493B09300DA5D48 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4962493B09300DA5D48 /* UserService.swift */; };
 		EA81B4992493B1BD00DA5D48 /* UserServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4982493B1BD00DA5D48 /* UserServiceErrors.swift */; };
+		EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EA81B49B2493BBE900DA5D48 /* .gitignore */; };
 		EAF6E4E7248E9F900093FD16 /* AuthenticationServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4E6248E9F900093FD16 /* AuthenticationServiceErrors.swift */; };
 		EAF6E4EB248EA7450093FD16 /* AuthenticationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */; };
 		EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F0248ECC560093FD16 /* Jog.swift */; };
@@ -83,6 +84,7 @@
 		EA81B4932493AFD800DA5D48 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EA81B4962493B09300DA5D48 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		EA81B4982493B1BD00DA5D48 /* UserServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceErrors.swift; sourceTree = "<group>"; };
+		EA81B49B2493BBE900DA5D48 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EAF6E4E6248E9F900093FD16 /* AuthenticationServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceErrors.swift; sourceTree = "<group>"; };
 		EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrors.swift; sourceTree = "<group>"; };
 		EAF6E4F0248ECC560093FD16 /* Jog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jog.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 		EAFB8F41248E91AC008BE894 = {
 			isa = PBXGroup;
 			children = (
+				EA81B49B2493BBE900DA5D48 /* .gitignore */,
 				EAFB8F4C248E91AC008BE894 /* Jog Tracker */,
 				EAFB8F4B248E91AC008BE894 /* Products */,
 				4F270808216391446997ED2C /* Pods */,
@@ -413,6 +416,7 @@
 				EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */,
 				EA6ABB7C24902A8800E59BFB /* WeeklyReportTableViewCell.xib in Resources */,
 				EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */,
+				EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */,
 				EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */,
 				EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */,
 				EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */,
