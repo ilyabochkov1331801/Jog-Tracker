@@ -60,7 +60,9 @@ class LeftMenuViewController: UIViewController {
     }
     @IBAction func logoutButtonTupped(_ sender: UIButton) {
         AuthenticationWithUUID.shared.logout()
-        present(AuthenticationViewController(), animated: true)
+        let authenticationViewController = AuthenticationViewController()
+        authenticationViewController.modalPresentationStyle = .fullScreen
+        present(authenticationViewController, animated: true)
     }
     
     @objc private func updateUserData() {
