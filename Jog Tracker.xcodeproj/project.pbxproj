@@ -27,7 +27,10 @@
 		EA6ABB822490D58F00E59BFB /* ReportFilterSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */; };
 		EA6ABB842490D82700E59BFB /* ReportFilterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB832490D82700E59BFB /* ReportFilterSettings.swift */; };
 		EA6ABB862490EC6E00E59BFB /* ReportFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */; };
-		EA81B49E2493BC4F00DA5D48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EA81B49D2493BC4F00DA5D48 /* .gitignore */; };
+		EA81B4942493AFD800DA5D48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4932493AFD800DA5D48 /* User.swift */; };
+		EA81B4972493B09300DA5D48 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4962493B09300DA5D48 /* UserService.swift */; };
+		EA81B4992493B1BD00DA5D48 /* UserServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4982493B1BD00DA5D48 /* UserServiceErrors.swift */; };
+		EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EA81B49B2493BBE900DA5D48 /* .gitignore */; };
 		EAF6E4E7248E9F900093FD16 /* AuthenticationServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4E6248E9F900093FD16 /* AuthenticationServiceErrors.swift */; };
 		EAF6E4EB248EA7450093FD16 /* AuthenticationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */; };
 		EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F0248ECC560093FD16 /* Jog.swift */; };
@@ -78,7 +81,10 @@
 		EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportFilterSettingsViewController.xib; sourceTree = "<group>"; };
 		EA6ABB832490D82700E59BFB /* ReportFilterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilterSettings.swift; sourceTree = "<group>"; };
 		EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilter.swift; sourceTree = "<group>"; };
-		EA81B49D2493BC4F00DA5D48 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EA81B4932493AFD800DA5D48 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EA81B4962493B09300DA5D48 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		EA81B4982493B1BD00DA5D48 /* UserServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceErrors.swift; sourceTree = "<group>"; };
+		EA81B49B2493BBE900DA5D48 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EAF6E4E6248E9F900093FD16 /* AuthenticationServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceErrors.swift; sourceTree = "<group>"; };
 		EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrors.swift; sourceTree = "<group>"; };
 		EAF6E4F0248ECC560093FD16 /* Jog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jog.swift; sourceTree = "<group>"; };
@@ -185,6 +191,23 @@
 			path = CustomTableViewCell;
 			sourceTree = "<group>";
 		};
+		EA81B4952493B07F00DA5D48 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				EA81B4962493B09300DA5D48 /* UserService.swift */,
+				EA81B4982493B1BD00DA5D48 /* UserServiceErrors.swift */,
+			);
+			path = UserService;
+			sourceTree = "<group>";
+		};
+		EA81B49A2493B4E400DA5D48 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				EA81B4932493AFD800DA5D48 /* User.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		EAF6E4EC248EB43D0093FD16 /* AuthenticationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,7 +289,7 @@
 		EAFB8F41248E91AC008BE894 = {
 			isa = PBXGroup;
 			children = (
-				EA81B49D2493BC4F00DA5D48 /* .gitignore */,
+				EA81B49B2493BBE900DA5D48 /* .gitignore */,
 				EAFB8F4C248E91AC008BE894 /* Jog Tracker */,
 				EAFB8F4B248E91AC008BE894 /* Products */,
 				4F270808216391446997ED2C /* Pods */,
@@ -298,6 +321,7 @@
 		EAFB8F65248E978E008BE894 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				EA81B4952493B07F00DA5D48 /* UserService */,
 				EAF6E4F5248ED1140093FD16 /* JogsService */,
 				EAF6E4EC248EB43D0093FD16 /* AuthenticationService */,
 				EA6ABB69248FFBEE00E59BFB /* FeedbackService */,
@@ -308,6 +332,7 @@
 		EAFB8F6A248E97F8008BE894 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EA81B49A2493B4E400DA5D48 /* User */,
 				EA6ABB74249028EC00E59BFB /* WeeklyReport */,
 				EA6ABB64248FFB2A00E59BFB /* Feedback */,
 				EAF6E4F2248ECD1C0093FD16 /* Jogs */,
@@ -391,7 +416,7 @@
 				EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */,
 				EA6ABB7C24902A8800E59BFB /* WeeklyReportTableViewCell.xib in Resources */,
 				EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */,
-				EA81B49E2493BC4F00DA5D48 /* .gitignore in Resources */,
+				EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */,
 				EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */,
 				EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */,
 				EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */,
@@ -455,14 +480,17 @@
 				EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */,
 				EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */,
 				EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */,
+				EA81B4972493B09300DA5D48 /* UserService.swift in Sources */,
 				EAF6E4F4248ECD2E0093FD16 /* Jogs.swift in Sources */,
 				EAF6E4F9248ED1400093FD16 /* JogsServiceErrors.swift in Sources */,
 				EAF6E501248EE1100093FD16 /* ApiMessage.swift in Sources */,
+				EA81B4942493AFD800DA5D48 /* User.swift in Sources */,
 				EAF6E4FD248ED5C40093FD16 /* JpgsErrors.swift in Sources */,
 				EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */,
 				EAFB8F6D248E9847008BE894 /* Authentication.swift in Sources */,
 				EAF6E4F7248ED1300093FD16 /* JogsService.swift in Sources */,
 				EA6ABB6F248FFF4A00E59BFB /* FeedbackErrors.swift in Sources */,
+				EA81B4992493B1BD00DA5D48 /* UserServiceErrors.swift in Sources */,
 				EAF6E507248EE3020093FD16 /* JogsTableViewController.swift in Sources */,
 				EAFB8F69248E97EF008BE894 /* AuthenticationWithUUID.swift in Sources */,
 				EA6ABB6D248FFE6200E59BFB /* FeedbackDelegate.swift in Sources */,
