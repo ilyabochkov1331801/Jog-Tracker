@@ -11,5 +11,7 @@ import Foundation
 extension Notification.Name {
     public static let AuthenticationPassedWithError = NSNotification.Name("authenticationPassedWithError")
     public static let AuthenticationPassed = NSNotification.Name("authenticationPassed")
-    public static let ReportFilterSettingsChanged = NSNotification.Name("ReportFilterSettingsChanged")
+    public static let ReportFilterSettingsChanged = NSNotification.Name("reportFilterSettingsChanged")
+    public static let UserInfoLoaded = NSNotification.Name("UserInfoLoaded")
+
 }

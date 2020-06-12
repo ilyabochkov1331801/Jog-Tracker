@@ -13,4 +13,5 @@ protocol Authentication {
     var accessToken: String? { get }
     var isAuthorized: Bool { get }
     func authorization(with UUID: String)
+    func logout()
 }
