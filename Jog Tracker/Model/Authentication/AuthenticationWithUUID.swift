@@ -63,10 +63,6 @@ class AuthenticationWithUUID: Authentication {
         }
     }
     
-    func logout() {
-        KeychainWrapper.standard.removeObject(forKey: userDefaultsKey)
-    }
-    
     private func updateToken(with data: Data) -> Bool {
         guard let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
             let response = responseDictionary[responseKey] as? [String: Any],

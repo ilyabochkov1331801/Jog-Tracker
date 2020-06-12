@@ -10,10 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeftMenuViewController" customModule="Jog_Tracker" customModuleProvider="target">
             <connections>
-                <outlet property="emailLabel" destination="0Ek-t1-Ekl" id="bCc-G0-0cB"/>
-                <outlet property="logoutButton" destination="9pH-FO-Epq" id="YPW-3S-Dtf"/>
-                <outlet property="nameLabel" destination="hK7-JQ-Ygp" id="tR5-FK-cDV"/>
-                <outlet property="phoneLabel" destination="qpa-NG-j65" id="MoJ-RJ-cJx"/>
                 <outlet property="sendFeedbackButton" destination="hCI-dN-3kE" id="r3q-HK-8Wq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weeklyReportButton" destination="shT-ad-8lm" id="aqN-et-WxW"/>
@@ -25,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCI-dN-3kE">
-                    <rect key="frame" x="134" y="552" width="260" height="80"/>
+                    <rect key="frame" x="134" y="64" width="260" height="100"/>
                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="Fvm-gi-fXa"/>
+                        <constraint firstAttribute="height" constant="100" id="Fvm-gi-fXa"/>
                         <constraint firstAttribute="width" constant="260" id="j1M-8l-s9y"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -41,10 +37,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shT-ad-8lm">
-                    <rect key="frame" x="134" y="652" width="260" height="80"/>
+                    <rect key="frame" x="134" y="184" width="260" height="100"/>
                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="JZZ-Tt-i0X"/>
+                        <constraint firstAttribute="height" constant="100" id="JZZ-Tt-i0X"/>
                         <constraint firstAttribute="width" constant="260" id="aJc-8a-FFm"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -56,70 +52,13 @@
                         <action selector="weeklyReportBottonTupped:" destination="-1" eventType="touchUpInside" id="ptF-WG-6ZO"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F97-k8-gLi">
-                    <rect key="frame" x="114" y="44" width="300" height="160"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK7-JQ-Ygp">
-                            <rect key="frame" x="10" y="39" width="270" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpa-NG-j65">
-                            <rect key="frame" x="10" y="47" width="270" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ek-t1-Ekl">
-                            <rect key="frame" x="10" y="55" width="270" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="qpa-NG-j65" firstAttribute="top" secondItem="hK7-JQ-Ygp" secondAttribute="bottom" constant="8" id="0Vo-81-dYY"/>
-                        <constraint firstAttribute="trailing" secondItem="0Ek-t1-Ekl" secondAttribute="trailing" constant="20" id="15k-32-xYH"/>
-                        <constraint firstItem="hK7-JQ-Ygp" firstAttribute="top" secondItem="F97-k8-gLi" secondAttribute="top" constant="39" id="AGe-Bm-MuT"/>
-                        <constraint firstItem="0Ek-t1-Ekl" firstAttribute="width" secondItem="F97-k8-gLi" secondAttribute="width" multiplier="0.9" id="R3r-1p-KMG"/>
-                        <constraint firstAttribute="width" constant="300" id="S9M-6E-rOw"/>
-                        <constraint firstAttribute="height" constant="160" id="ZNE-bi-Dz8"/>
-                        <constraint firstItem="qpa-NG-j65" firstAttribute="width" secondItem="F97-k8-gLi" secondAttribute="width" multiplier="0.9" id="bv5-ld-Zy1"/>
-                        <constraint firstAttribute="trailing" secondItem="hK7-JQ-Ygp" secondAttribute="trailing" constant="20" id="c41-cR-j0d"/>
-                        <constraint firstItem="hK7-JQ-Ygp" firstAttribute="width" secondItem="F97-k8-gLi" secondAttribute="width" multiplier="0.9" id="hRM-X6-xzq"/>
-                        <constraint firstItem="0Ek-t1-Ekl" firstAttribute="top" secondItem="qpa-NG-j65" secondAttribute="bottom" constant="8" id="l5q-Nx-owa"/>
-                        <constraint firstAttribute="trailing" secondItem="qpa-NG-j65" secondAttribute="trailing" constant="20" id="xRJ-BT-ucT"/>
-                    </constraints>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pH-FO-Epq">
-                    <rect key="frame" x="134" y="752" width="260" height="80"/>
-                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="88E-vN-z7r"/>
-                        <constraint firstAttribute="width" constant="260" id="Wdk-yw-aQE"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <state key="normal" title="Logout">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="58"/>
-                    </state>
-                    <connections>
-                        <action selector="logoutButtonTupped:" destination="-1" eventType="touchUpInside" id="axV-mz-qlL"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="shT-ad-8lm" secondAttribute="trailing" constant="20" id="1Uf-ki-DiS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCI-dN-3kE" secondAttribute="trailing" constant="20" id="3gN-9f-60M"/>
-                <constraint firstItem="9pH-FO-Epq" firstAttribute="top" secondItem="shT-ad-8lm" secondAttribute="bottom" constant="20" id="9Ln-rC-1sh"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F97-k8-gLi" secondAttribute="trailing" id="Tjj-Ym-Wpb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9pH-FO-Epq" secondAttribute="bottom" constant="30" id="g1X-5m-7tG"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9pH-FO-Epq" secondAttribute="trailing" constant="20" id="kE9-hS-N3w"/>
+                <constraint firstItem="hCI-dN-3kE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Veh-KV-Nrc"/>
                 <constraint firstItem="shT-ad-8lm" firstAttribute="top" secondItem="hCI-dN-3kE" secondAttribute="bottom" constant="20" id="ngg-dp-oxI"/>
-                <constraint firstItem="F97-k8-gLi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="sHg-uR-dFC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>

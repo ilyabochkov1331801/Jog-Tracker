@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthenticationViewController" customModule="Jog_Tracker" customModuleProvider="target">
             <connections>
-                <outlet property="authorizationButton" destination="NGA-4l-i3d" id="ltA-LP-TRq"/>
                 <outlet property="uuidTextField" destination="n6i-cJ-aFK" id="RRV-St-FJs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,7 +27,6 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGA-4l-i3d">
                     <rect key="frame" x="146" y="430" width="122" height="38"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="Authorization">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

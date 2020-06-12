@@ -14,7 +14,6 @@ class JogViewController: UIViewController {
     @IBOutlet weak var timeTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    private let controllerTitle = "Your jog"
     private var jog: Jog?
     
     init(newJog: Jog) {
@@ -33,9 +32,6 @@ class JogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = controllerTitle
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
                                                             style: .done,
                                                             target: self,

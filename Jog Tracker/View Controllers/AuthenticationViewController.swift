@@ -14,11 +14,6 @@ class AuthenticationViewController: UIViewController {
     
     var authentication: Authentication!
     
-    @IBOutlet weak var authorizationButton: UIButton! {
-        didSet {
-            authorizationButton.layer.cornerRadius = authorizationButton.bounds.height / 2
-        }
-    }
     @IBOutlet weak var uuidTextField: UITextField!
     
     override func viewDidLoad() {

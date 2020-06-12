@@ -34,9 +34,7 @@ class JogsTableViewController: UITableViewController {
                                                    selector: #selector(successAuthentication(param:)),
                                                    name: .AuthenticationPassed,
                                                    object: nil)
-            let authenticationViewController = AuthenticationViewController()
-            authenticationViewController.modalPresentationStyle = .fullScreen
-            present(authenticationViewController, animated: true)
+            present(AuthenticationViewController(), animated: true)
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
