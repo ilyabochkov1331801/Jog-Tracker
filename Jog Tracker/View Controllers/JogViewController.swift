@@ -48,6 +48,9 @@ class JogViewController: UIViewController {
             datePicker.date = Date()
         }
         datePicker.maximumDate = Date()
+        
+        timeTextField.delegate = self
+        distanceTextFiled.delegate = self
     }
     
     @objc func save() {
@@ -67,5 +70,11 @@ class JogViewController: UIViewController {
             jogs.append(date: datePicker.date, time: time, distance: distance)
         }
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension JogViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
