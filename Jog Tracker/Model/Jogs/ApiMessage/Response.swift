@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Response: Codable {
+struct JogsResponse: Codable {
     var jogs: Array<Jog>
 }

@@ -20,7 +20,12 @@ class Jogs {
         }
     }
     
+    private let authentication: AuthenticationWithUUID = AuthenticationWithUUID.shared
+    
     //MARK: Constants
+    private let loadAllJogsURL = "https://jogtracker.herokuapp.com/api/v1/data/sync"
+    private let accessTokenKey = "access_token"
+    
     private let responseKey = "response"
     private let idKey = "id"
     private let userIdKey = "user_id"
@@ -98,30 +103,41 @@ class Jogs {
         }
     }
     
-    func loadFromAPI() {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let jogsService = JogsService()
-            jogsService.loadJogsList {
-                [weak self] (data, response, error) in
-                guard let self = self else {
-                    return
-                }
-                self.commonCompletionHandler(self, data, response, error) {
-                    data in
-                    return self.loadNewJogsList(with: data)
-                }
+    func loadFromAPI(completionHandler: @escaping (Result<Void, Error>) -> ()) {
+            
+        let networkingService = NetworkingService<JogsResponseMessage>()
+        guard let request = configureRequestForLoadJogList() else {
+            return
+        }
+        networkingService.makeURLRequest(with: request) {
+            (result) in
+            switch result {
+            case .success(let newJogsResponseMessage):
+                self.jogsList = newJogsResponseMessage.response.jogs
+                completionHandler(.success(()))
+            case .failure(let error):
+                completionHandler(.failure(error))
             }
         }
     }
     
-    
-    private func loadNewJogsList(with data: Data) -> Bool {
-        guard let apiMessage = try? JSONDecoder().decode(ApiMessage.self, from: data) else {
-            return false
+    private func configureRequestForLoadJogList() -> URLRequest? {
+        guard let accessToken = authentication.accessToken else {
+            return nil
         }
-        jogsList = apiMessage.response.jogs
-        return true
+        guard var urlComponents = URLComponents(string: loadAllJogsURL) else {
+            return nil
+        }
+        urlComponents.queryItems = [
+            URLQueryItem(name: accessTokenKey, value: accessToken)
+        ]
+        guard let url = urlComponents.url else {
+            return nil
+        }
+        return URLRequest(url: url)
     }
+    
+
     
     private func appendToJogsList(with data: Data) -> Bool {
         guard let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],

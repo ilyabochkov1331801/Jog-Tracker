@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct ApiMessage: Codable {
-    var response: Response
+struct JogsResponseMessage: Codable {
+    var response: JogsResponse
 }

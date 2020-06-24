@@ -10,7 +10,7 @@
 		90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */; };
 		EA424CEA24A3ACBE001A5180 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CE824A3ACBE001A5180 /* NetworkingService.swift */; };
 		EA424CEB24A3ACBE001A5180 /* NetworkingServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CE924A3ACBE001A5180 /* NetworkingServiceErrors.swift */; };
-		EA424CED24A3AD23001A5180 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CEC24A3AD23001A5180 /* AuthenticationResponse.swift */; };
+		EA424CED24A3AD23001A5180 /* AuthenticationResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CEC24A3AD23001A5180 /* AuthenticationResponseMessage.swift */; };
 		EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */; };
 		EA6ABB5F248FEC3300E59BFB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */; };
 		EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */; };
@@ -42,7 +42,7 @@
 		EAF6E4F9248ED1400093FD16 /* JogsServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F8248ED1400093FD16 /* JogsServiceErrors.swift */; };
 		EAF6E4FB248ED1930093FD16 /* JogsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4FA248ED1930093FD16 /* JogsDelegate.swift */; };
 		EAF6E4FD248ED5C40093FD16 /* JpgsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4FC248ED5C40093FD16 /* JpgsErrors.swift */; };
-		EAF6E501248EE1100093FD16 /* ApiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E500248EE1100093FD16 /* ApiMessage.swift */; };
+		EAF6E501248EE1100093FD16 /* JogsResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E500248EE1100093FD16 /* JogsResponseMessage.swift */; };
 		EAF6E503248EE1AA0093FD16 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E502248EE1AA0093FD16 /* Response.swift */; };
 		EAF6E507248EE3020093FD16 /* JogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */; };
 		EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */; };
@@ -66,7 +66,7 @@
 		C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.release.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		EA424CE824A3ACBE001A5180 /* NetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		EA424CE924A3ACBE001A5180 /* NetworkingServiceErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingServiceErrors.swift; sourceTree = "<group>"; };
-		EA424CEC24A3AD23001A5180 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
+		EA424CEC24A3AD23001A5180 /* AuthenticationResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponseMessage.swift; sourceTree = "<group>"; };
 		EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
 		EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		EAF6E4F8248ED1400093FD16 /* JogsServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsServiceErrors.swift; sourceTree = "<group>"; };
 		EAF6E4FA248ED1930093FD16 /* JogsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsDelegate.swift; sourceTree = "<group>"; };
 		EAF6E4FC248ED5C40093FD16 /* JpgsErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JpgsErrors.swift; sourceTree = "<group>"; };
-		EAF6E500248EE1100093FD16 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
+		EAF6E500248EE1100093FD16 /* JogsResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsResponseMessage.swift; sourceTree = "<group>"; };
 		EAF6E502248EE1AA0093FD16 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsTableViewController.swift; sourceTree = "<group>"; };
 		EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogsTableViewController.xib; sourceTree = "<group>"; };
@@ -145,6 +145,15 @@
 				50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA424CEE24A3BFC2001A5180 /* NetworkingService */ = {
+			isa = PBXGroup;
+			children = (
+				EA424CE824A3ACBE001A5180 /* NetworkingService.swift */,
+				EA424CE924A3ACBE001A5180 /* NetworkingServiceErrors.swift */,
+			);
+			path = NetworkingService;
 			sourceTree = "<group>";
 		};
 		EA6ABB64248FFB2A00E59BFB /* Feedback */ = {
@@ -284,7 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				EAF6E4F0248ECC560093FD16 /* Jog.swift */,
-				EAF6E500248EE1100093FD16 /* ApiMessage.swift */,
+				EAF6E500248EE1100093FD16 /* JogsResponseMessage.swift */,
 				EAF6E502248EE1AA0093FD16 /* Response.swift */,
 			);
 			path = ApiMessage;
@@ -325,8 +334,7 @@
 		EAFB8F65248E978E008BE894 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				EA424CE824A3ACBE001A5180 /* NetworkingService.swift */,
-				EA424CE924A3ACBE001A5180 /* NetworkingServiceErrors.swift */,
+				EA424CEE24A3BFC2001A5180 /* NetworkingService */,
 				EA81B4952493B07F00DA5D48 /* UserService */,
 				EAF6E4F5248ED1140093FD16 /* JogsService */,
 				EAF6E4EC248EB43D0093FD16 /* AuthenticationService */,
@@ -354,7 +362,7 @@
 				EAFB8F68248E97EF008BE894 /* AuthenticationWithUUID.swift */,
 				EAF6E4EA248EA7450093FD16 /* AuthenticationErrors.swift */,
 				EAF6E513248FC3D50093FD16 /* NotificationNameExtension.swift */,
-				EA424CEC24A3AD23001A5180 /* AuthenticationResponse.swift */,
+				EA424CEC24A3AD23001A5180 /* AuthenticationResponseMessage.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -490,8 +498,8 @@
 				EA81B4972493B09300DA5D48 /* UserService.swift in Sources */,
 				EAF6E4F4248ECD2E0093FD16 /* Jogs.swift in Sources */,
 				EAF6E4F9248ED1400093FD16 /* JogsServiceErrors.swift in Sources */,
-				EA424CED24A3AD23001A5180 /* AuthenticationResponse.swift in Sources */,
-				EAF6E501248EE1100093FD16 /* ApiMessage.swift in Sources */,
+				EA424CED24A3AD23001A5180 /* AuthenticationResponseMessage.swift in Sources */,
+				EAF6E501248EE1100093FD16 /* JogsResponseMessage.swift in Sources */,
 				EA81B4942493AFD800DA5D48 /* User.swift in Sources */,
 				EAF6E4FD248ED5C40093FD16 /* JpgsErrors.swift in Sources */,
 				EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */,

@@ -21,7 +21,6 @@ class AuthenticationWithUUID {
     private let post = "POST"
     private let uuidKey = "uuid"
     
-    //MARK: Authentication
     var accessToken: String? {
         guard let newAccessToken = KeychainWrapper.standard.string(forKey: userDefaultsKey) else {
             return nil
@@ -34,18 +33,10 @@ class AuthenticationWithUUID {
     }
     
     func authorization(with UUID: String, completionHandler: @escaping (Result<Void, Error>) -> ()) {
-        guard var urlComponents = URLComponents(string: authenticationURL) else {
+        guard let request = configureRequest(with: UUID) else {
             return
         }
-        urlComponents.queryItems = [
-            URLQueryItem(name: uuidKey, value: UUID)
-        ]
-        guard let url = urlComponents.url else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = post
-        
+
         let networkingService = NetworkingService<AuthenticationResponseMessage>()
         networkingService.makeURLRequest(with: request) {
             (result) in
@@ -66,5 +57,20 @@ class AuthenticationWithUUID {
     
     private func updateToken(with newAccessToken: String) {
         KeychainWrapper.standard.set(newAccessToken, forKey: userDefaultsKey)
+    }
+    
+    private func configureRequest(with UUID: String) -> URLRequest? {
+        guard var urlComponents = URLComponents(string: authenticationURL) else {
+            return nil
+        }
+        urlComponents.queryItems = [
+            URLQueryItem(name: uuidKey, value: UUID)
+        ]
+        guard let url = urlComponents.url else {
+            return nil
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = post
+        return request
     }
 }

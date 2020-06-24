@@ -28,12 +28,19 @@ class JogsTableViewController: UITableViewController {
         
         let authentication = AuthenticationWithUUID.shared
         if authentication.isAuthorized {
-            jogs.loadFromAPI()
+            jogs.loadFromAPI {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         } else {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(successAuthentication(param:)),
-                                                   name: .AuthenticationPassed,
-                                                   object: nil)
             let authenticationViewController = AuthenticationViewController()
             authenticationViewController.modalPresentationStyle = .fullScreen
             present(authenticationViewController, animated: true)
@@ -80,10 +87,6 @@ class JogsTableViewController: UITableViewController {
     @objc func newJog() {
         let jogViewController = JogViewController()
         navigationController?.pushViewController(jogViewController, animated: true)
-    }
-    
-    @objc func successAuthentication(param: Notification) {
-        jogs.loadFromAPI()
     }
     
     @objc func leftSwipe() {
