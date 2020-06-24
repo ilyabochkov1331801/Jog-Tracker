@@ -10,7 +10,7 @@ import Foundation
 
 class FeedbackService {
     private let urlForFeedback = "https://jogtracker.herokuapp.com/api/v1/feedback/send"
-    private let authentication: Authentication = AuthenticationWithUUID.shared
+    private let authentication: AuthenticationWithUUID = AuthenticationWithUUID.shared
     
     //MARK: Constants
     private let post = "POST"

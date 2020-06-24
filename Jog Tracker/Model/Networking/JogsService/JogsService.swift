@@ -25,7 +25,7 @@ class JogsService {
     private let put = "PUT"
     
     //MARK: Authentication
-    private let authentication: Authentication = AuthenticationWithUUID.shared
+    private let authentication: AuthenticationWithUUID = AuthenticationWithUUID.shared
     
     private let dateFormatter: ISO8601DateFormatter = {
         let dateFormatter = ISO8601DateFormatter()

@@ -9,17 +9,17 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class AuthenticationWithUUID: Authentication {
+class AuthenticationWithUUID {
     
     //MARK: Singletone
-    static var shared: Authentication = AuthenticationWithUUID()
+    static var shared: AuthenticationWithUUID = AuthenticationWithUUID()
     private init() { }
     
     //MARK: Constants
     private let userDefaultsKey = "accessToken"
-    private let responseKey = "response"
-    private let accessTokenKey = "access_token"
-    private let errorKey = "error"
+    private let authenticationURL = "https://jogtracker.herokuapp.com/api/v1/auth/uuidLogin"
+    private let post = "POST"
+    private let uuidKey = "uuid"
     
     //MARK: Authentication
     var accessToken: String? {
@@ -33,32 +33,29 @@ class AuthenticationWithUUID: Authentication {
         return accessToken != nil
     }
     
-    func authorization(with UUID: String) -> () {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let authenticationService = AuthenticationService()
-            authenticationService.authorization(with: UUID) {
-                [weak self] (data, response, error) in
-                guard error == nil else {
-                    NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: error!])
-                    return
-                }
-                guard let response = response as? HTTPURLResponse else {
-                    NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.wrongResponse])
-                    return
-                }
-                switch response.statusCode {
-                case 200 ..< 300:
-                    break
-                default:
-                    NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.badResponse(code: response.statusCode)])
-                    return
-                }
-                guard let data = data,
-                    self?.updateToken(with: data) ?? false else {
-                         NotificationCenter.default.post(name: .AuthenticationPassedWithError, object: nil, userInfo: [self?.errorKey: AuthenticationErrors.wrongData])
-                    return
-                }
-                NotificationCenter.default.post(name: .AuthenticationPassed, object: nil)
+    func authorization(with UUID: String, completionHandler: @escaping (Result<Void, Error>) -> ()) {
+        guard var urlComponents = URLComponents(string: authenticationURL) else {
+            return
+        }
+        urlComponents.queryItems = [
+            URLQueryItem(name: uuidKey, value: UUID)
+        ]
+        guard let url = urlComponents.url else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = post
+        
+        let networkingService = NetworkingService<AuthenticationResponseMessage>()
+        networkingService.makeURLRequest(with: request) {
+            (result) in
+            switch result {
+            case .success(let newAuthenticationResponseMessage):
+                let newAccessToken = newAuthenticationResponseMessage.response.access_token
+                self.updateToken(with: newAccessToken)
+                completionHandler(.success(()))
+            case .failure(let error):
+                completionHandler(.failure(error))
             }
         }
     }
@@ -67,13 +64,7 @@ class AuthenticationWithUUID: Authentication {
         KeychainWrapper.standard.removeObject(forKey: userDefaultsKey)
     }
     
-    private func updateToken(with data: Data) -> Bool {
-        guard let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-            let response = responseDictionary[responseKey] as? [String: Any],
-            let newAccessToken = response[accessTokenKey] as? String else {
-            return false
-        }
+    private func updateToken(with newAccessToken: String) {
         KeychainWrapper.standard.set(newAccessToken, forKey: userDefaultsKey)
-        return true
     }
 }
