@@ -10,5 +10,4 @@ import Foundation
 
 protocol JogsDelegate {
     func updatingDataDidFinished()
-    func updatingDataDidFinished(with error: Error)
 }

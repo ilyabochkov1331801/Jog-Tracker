@@ -1,19 +1,17 @@
 //
-//  Jog.swift
+//  UpdatedJog.swift
 //  Jog Tracker
 //
-//  Created by Илья Бочков  on 6/8/20.
+//  Created by Илья Бочков  on 6/24/20.
 //  Copyright © 2020 Илья Бочков . All rights reserved.
 //
 
 import Foundation
 
-
-struct Jog: Codable {
+struct UpdatedJogResponse: Codable {
     var id: Int
-    var user_id: String
+    var user_id: Int
     var distance: Double
     var time: Int
-    var date: TimeInterval
+    var date: String
 }
-

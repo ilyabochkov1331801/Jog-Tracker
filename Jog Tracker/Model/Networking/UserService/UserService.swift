@@ -13,7 +13,7 @@ class UserService {
     private let userInfoURL = "https://jogtracker.herokuapp.com/api/v1/auth/user"
     private let accessTokenKey = "access_token"
 
-    private let authentication: AuthenticationWithUUID = AuthenticationWithUUID.shared
+    private let authentication: Authentication = Authentication.shared
 
     func loadUserInfo(completionHandler: @escaping (Data?, URLResponse?, Error?) -> ()) {
         guard let accessToken = authentication.accessToken else {

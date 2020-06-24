@@ -9,10 +9,10 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class AuthenticationWithUUID {
+class Authentication {
     
     //MARK: Singletone
-    static var shared: AuthenticationWithUUID = AuthenticationWithUUID()
+    static var shared: Authentication = Authentication()
     private init() { }
     
     //MARK: Constants

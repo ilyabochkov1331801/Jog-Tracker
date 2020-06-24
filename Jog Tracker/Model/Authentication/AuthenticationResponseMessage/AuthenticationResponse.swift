@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct AuthenticationResponseMessage: Decodable {
-    var response: AuthenticationResponse
-}
-
 struct AuthenticationResponse: Decodable {
     var access_token: String
 }

@@ -9,37 +9,60 @@
 import Foundation
 
 class Feedback {
+    
+    private let urlForFeedback = "https://jogtracker.herokuapp.com/api/v1/feedback/send"
+    private let authentication: Authentication = Authentication.shared
+    
+    //MARK: Constants
+    private let post = "POST"
+    private let accessTokenKey = "access_token"
+    private let topicIdKey = "topic_id"
+    private let feedbackKey = "text"
+    
     var topicId: Int
     var feedback: String
-    var delegate: FeedbackDelegate?
     
     init(topicId: Int, feedback: String) {
         self.topicId = topicId
         self.feedback = feedback
     }
     
-    func sendFeedback() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let feedbackService = FeedbackService()
-            feedbackService.send(feedback: self.feedback, topicId: self.topicId) {
-                (data, response, error) in
-                guard error == nil else {
-                    self.delegate?.feedbackWasCancel(with: error!)
-                    return
-                }
-                guard let response = response as? HTTPURLResponse else {
-                    self.delegate?.feedbackWasCancel(with: FeedbackErrors.wrongResponse)
-                    return
-                }
-                switch response.statusCode {
-                case 200 ..< 300:
-                    break
-                default:
-                    self.delegate?.feedbackWasCancel(with: FeedbackErrors.badResponse(code: response.statusCode))
-                    return
-                }
-                self.delegate?.feedbackWasPosted()
+    func sendFeedback(completionHandler: @escaping (Result<Void, Error>) -> ()) {
+        let networkingService = NetworkingService<FeedbackResponseMessage>()
+        guard let request = configureRequest() else {
+            return
+        }
+        networkingService.makeURLRequest(with: request) {
+            (result) in
+            switch result {
+            case .success(_):
+                completionHandler(.success(()))
+            case .failure(let error):
+                completionHandler(.failure(error))
             }
         }
+    }
+    
+    private func configureRequest() -> URLRequest? {
+        guard let accessToken = authentication.accessToken else {
+            return nil
+        }
+        guard var urlComponents = URLComponents(string: urlForFeedback) else {
+            return nil
+        }
+                
+        urlComponents.queryItems = [
+            URLQueryItem(name: accessTokenKey, value: accessToken),
+            URLQueryItem(name: topicIdKey, value: String(topicId)),
+            URLQueryItem(name: feedbackKey, value: feedback)
+        ]
+        
+        guard let url = urlComponents.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = post
+        return request
     }
 }

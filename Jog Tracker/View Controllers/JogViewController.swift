@@ -65,9 +65,31 @@ class JogViewController: UIViewController {
             jog.date = datePicker.date.timeIntervalSince1970
             jog.distance = distance
             jog.time = time
-            jogs.append(newJog: jog)
+            jogs.append(newJog: jog) {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    break
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         } else {
-            jogs.append(date: datePicker.date, time: time, distance: distance)
+            jogs.append(date: datePicker.date, time: time, distance: distance) {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    break
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         }
         navigationController?.popViewController(animated: true)
     }

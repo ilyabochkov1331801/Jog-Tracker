@@ -19,45 +19,22 @@ class Jogs {
             delegate?.updatingDataDidFinished()
         }
     }
-    
-    private let authentication: AuthenticationWithUUID = AuthenticationWithUUID.shared
+
+    private let authentication: Authentication = Authentication.shared
     
     //MARK: Constants
     private let loadAllJogsURL = "https://jogtracker.herokuapp.com/api/v1/data/sync"
-    private let accessTokenKey = "access_token"
+    private let addJogURL = "https://jogtracker.herokuapp.com/api/v1/data/jog"
     
-    private let responseKey = "response"
-    private let idKey = "id"
-    private let userIdKey = "user_id"
+    private let accessTokenKey = "access_token"
     private let distanceKey = "distance"
     private let timeKey = "time"
     private let dateKey = "date"
-    
-    private lazy var commonCompletionHandler: (_ target: Jogs,  _ data: Data?, _ response: URLResponse?, _ error: Error?, _ dataCombiner: (Data) -> Bool) -> () = {
-        (target, data, response, error, dataCombiner) in
+    private let jogIdKey = "jog_id"
+    private let userIdKey = "user_id"
+    private let post = "POST"
+    private let put = "PUT"
         
-        guard error == nil else {
-            target.delegate?.updatingDataDidFinished(with: error!)
-            return
-        }
-        guard let response = response as? HTTPURLResponse else {
-            target.delegate?.updatingDataDidFinished(with: JogsErrors.wrongResponse)
-            return
-        }
-        switch response.statusCode {
-        case 200 ..< 300:
-            break
-        default:
-            target.delegate?.updatingDataDidFinished(with: JogsErrors.badResponse(code: response.statusCode))
-            return
-        }
-        guard let data = data,
-            dataCombiner(data) else {
-            target.delegate?.updatingDataDidFinished(with: JogsErrors.wrongData)
-            return
-        }
-    }
-    
     private lazy var dateFormatter: ISO8601DateFormatter = {
         let dateFormatter = ISO8601DateFormatter()
         dateFormatter.formatOptions = [.withFullDate,
@@ -71,44 +48,30 @@ class Jogs {
     var delegate: JogsDelegate?
     
     //MARK: Update jogsList
-    func append(newJog: Jog) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let jogsService = JogsService()
-            jogsService.addNew(jog: newJog) {
-                [weak self] (data, response, error) in
-                guard let self = self else {
-                    return
-                }
-                self.commonCompletionHandler(self, data, response, error) {
-                    data in
-                    return self.appendToJogsList(with: data)
-                }
-            }
+    func append(newJog: Jog, completionHandler: @escaping (Result<Void, Error>) -> ()) {
+        guard let request = configureRequestForUpdating(jog: newJog) else {
+            return
         }
+        appendJog(with: request, completionHandler: completionHandler)
     }
     
-    func append(date: Date, time: Int, distance: Double) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let jogsService = JogsService()
-            jogsService.addNew(date: date, time: time, distance: distance) {
-                [weak self] (data, response, error) in
-                guard let self = self else {
-                    return
-                }
-                self.commonCompletionHandler(self, data, response, error) {
-                    data in
-                    return self.appendToJogsList(with: data)
-                }
-            }
+    func append(date: Date, time: Int, distance: Double, completionHandler: @escaping (Result<Void, Error>) -> ()) {
+    
+        guard let request = configureRequestForAppendingNewJogToJogList(date: date,
+                                                                        time: time,
+                                                                        distance: distance) else {
+            return
         }
+        
+        appendJog(with: request, completionHandler: completionHandler)
     }
     
     func loadFromAPI(completionHandler: @escaping (Result<Void, Error>) -> ()) {
             
-        let networkingService = NetworkingService<JogsResponseMessage>()
         guard let request = configureRequestForLoadJogList() else {
             return
         }
+        let networkingService = NetworkingService<JogsResponseMessage>()
         networkingService.makeURLRequest(with: request) {
             (result) in
             switch result {
@@ -137,23 +100,74 @@ class Jogs {
         return URLRequest(url: url)
     }
     
-
-    
-    private func appendToJogsList(with data: Data) -> Bool {
-        guard let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-            let response = responseDictionary[responseKey] as? [String: Any],
-            let id = response[idKey] as? Int,
-            let userId = response[userIdKey] as? Int,
-            let distance = response[distanceKey] as? Double,
-            let time = response[timeKey] as? Int,
-            let isoDate = response[dateKey] as? String,
-            let date = dateFormatter.date(from: isoDate) else {
-                return false
+    private func configureRequestForUpdating(jog: Jog) -> URLRequest? {
+        guard let accessToken = authentication.accessToken else {
+            return nil
+        }
+        guard var urlComponents = URLComponents(string: addJogURL) else {
+            return nil
+        }
+        urlComponents.queryItems = [
+            URLQueryItem(name: accessTokenKey, value: accessToken),
+            URLQueryItem(name: distanceKey, value: String(jog.distance)),
+            URLQueryItem(name: timeKey, value: String(jog.time)),
+            URLQueryItem(name: dateKey,
+                         value: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(jog.date)))),
+            URLQueryItem(name: jogIdKey, value: String(jog.id)),
+            URLQueryItem(name: userIdKey, value: String(jog.user_id))
+        ]
+        
+        guard let url = urlComponents.url else {
+            return nil
         }
         
-        let newJog = Jog(id: id, user_id: String(userId), distance: distance, time: time, date: date.timeIntervalSince1970)
-        self.appendToList(newJog: newJog)
-        return true
+        var request = URLRequest(url: url)
+        request.httpMethod = put
+        return request
+    }
+    
+    private func configureRequestForAppendingNewJogToJogList(date: Date, time: Int, distance: Double) -> URLRequest? {
+        guard let accessToken = authentication.accessToken else {
+            return nil
+        }
+        guard var urlComponents = URLComponents(string: addJogURL) else {
+            return nil
+        }
+                
+        urlComponents.queryItems = [
+            URLQueryItem(name: accessTokenKey, value: accessToken),
+            URLQueryItem(name: distanceKey, value: String(distance)),
+            URLQueryItem(name: timeKey, value: String(time)),
+            URLQueryItem(name: dateKey, value: dateFormatter.string(from: date))
+        ]
+        
+        guard let url = urlComponents.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = post
+        return request
+    }
+    
+    private func appendJog(with request: URLRequest, completionHandler: @escaping (Result<Void, Error>) -> ()) {
+        let networkingService = NetworkingService<UpdatedJogResponseMessage>()
+        networkingService.makeURLRequest(with: request) {
+            (result) in
+            switch result {
+                case .success(let newJogsResponseMessage):
+                    let updatedJog = newJogsResponseMessage.response
+                    let newJog = Jog(id: updatedJog.id,
+                                     user_id: String(updatedJog.user_id),
+                                     distance: updatedJog.distance,
+                                     time: updatedJog.time,
+                                     date: self.dateFormatter.date(from: updatedJog.date)!.timeIntervalSince1970)
+                    self.appendToList(newJog: newJog)
+                    completionHandler(.success(()))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+            }
+        }
     }
     
     private func appendToList(newJog: Jog) {

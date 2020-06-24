@@ -12,7 +12,7 @@ class AuthenticationViewController: UIViewController {
 
     private let errorKey = "error"
     
-    var authentication: AuthenticationWithUUID!
+    var authentication: Authentication!
     
     @IBOutlet weak var authorizationButton: UIButton! {
         didSet {
@@ -23,7 +23,7 @@ class AuthenticationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authentication = AuthenticationWithUUID.shared
+        authentication = Authentication.shared
         uuidTextField.delegate = self
     }
     @IBAction func authorizationButtonTupped(_ sender: UIButton) {
@@ -42,17 +42,6 @@ class AuthenticationViewController: UIViewController {
                 self.alertConfiguration(with: error)
             }
         }
-    }
-    
-    func alertConfiguration(with error: Error) {
-        let alert = UIAlertController(title: "Error",
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
-        alert.addAction(okAction)
-        present(alert,
-                animated: true)
     }
 }
 

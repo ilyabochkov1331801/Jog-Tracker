@@ -46,10 +46,6 @@ class LeftMenuViewController: UIViewController {
                                                selector: #selector(updateUserData),
                                                name: .UserInfoLoaded,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(successAuthentication),
-                                               name: .AuthenticationPassed,
-                                               object: nil)
     }
 
     @IBAction func sendFeedbackButtonTapped(_ sender: UIButton) {
@@ -59,7 +55,7 @@ class LeftMenuViewController: UIViewController {
         navigationController?.pushViewController(WeeklyReportTableViewController(), animated: true)
     }
     @IBAction func logoutButtonTupped(_ sender: UIButton) {
-        AuthenticationWithUUID.shared.logout()
+        Authentication.shared.logout()
         let authenticationViewController = AuthenticationViewController()
         authenticationViewController.modalPresentationStyle = .fullScreen
         present(authenticationViewController, animated: true)
