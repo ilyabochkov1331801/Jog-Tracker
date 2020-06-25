@@ -10,7 +10,7 @@ import Foundation
 
 struct UpdatedJogResponse: Codable {
     var id: Int
-    var user_id: Int
+    var userId: Int
     var distance: Double
     var time: Int
     var date: String

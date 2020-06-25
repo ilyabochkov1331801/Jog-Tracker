@@ -10,7 +10,7 @@ import Foundation
 
 struct Jog: Codable {
     var id: Int
-    var user_id: String
+    var userId: String
     var distance: Double
     var time: Int
     var date: TimeInterval

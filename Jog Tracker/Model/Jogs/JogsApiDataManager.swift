@@ -47,7 +47,7 @@ class JogsApiDataManager: ApiDataManager {
                 case .success(let newUpdatedJogResponseMessage):
                     let updatedJog = newUpdatedJogResponseMessage.response
                     let newJog = Jog(id: updatedJog.id,
-                                    user_id: String(updatedJog.user_id),
+                                    userId: String(updatedJog.userId),
                                     distance: updatedJog.distance,
                                     time: updatedJog.time,
                                     date: self.dateFormatter.date(from: updatedJog.date)!.timeIntervalSince1970)
@@ -64,7 +64,7 @@ class JogsApiDataManager: ApiDataManager {
                                                         time: String(jog.time),
                                                         date: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(jog.date))),
                                                         jogId: String(jog.id),
-                                                        userId: jog.user_id) else {
+                                                        userId: jog.userId) else {
                                                             completionHandler(.failure(ApiDataManagerErrors.nilRequest))
                                                             return
         }
@@ -73,7 +73,7 @@ class JogsApiDataManager: ApiDataManager {
                 case .success(let newUpdatedJogResponseMessage):
                     let updatedJog = newUpdatedJogResponseMessage.response
                     let newJog = Jog(id: updatedJog.id,
-                                    user_id: String(updatedJog.user_id),
+                                    userId: String(updatedJog.userId),
                                     distance: updatedJog.distance,
                                     time: updatedJog.time,
                                     date: self.dateFormatter.date(from: updatedJog.date)!.timeIntervalSince1970)

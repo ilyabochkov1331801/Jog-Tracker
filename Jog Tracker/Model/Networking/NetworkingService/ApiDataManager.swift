@@ -10,6 +10,12 @@ import Foundation
 
 class ApiDataManager {
     
+    var decoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }
+    
     func makeURLRequest<T: Decodable>(with request: URLRequest, completionHandler: @escaping (Result<T, Error>) -> ()) {
         DispatchQueue.global(qos: .userInteractive).async {
             URLSession.shared.dataTask(with: request) {
@@ -34,7 +40,7 @@ class ApiDataManager {
                         completionHandler(.failure(ApiDataManagerErrors.nilData))
                         return
                     }
-                    guard let decodedData = try? JSONDecoder().decode(T.self, from: data) else {
+                    guard let decodedData = try? self.decoder.decode(T.self, from: data) else {
                         completionHandler(.failure(ApiDataManagerErrors.decodingError))
                         return
                     }

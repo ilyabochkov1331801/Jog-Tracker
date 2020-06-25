@@ -9,5 +9,5 @@
 import Foundation
 
 struct AuthenticationResponse: Decodable {
-    var access_token: String
+    var accessToken: String
 }

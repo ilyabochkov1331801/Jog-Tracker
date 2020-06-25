@@ -19,7 +19,7 @@ class AuthenticationApiDataManager: ApiDataManager {
         super.makeURLRequest(with: request) { (result: Result<AuthenticationResponseMessage, Error>) in
             switch result {
                 case .success(let newAuthenticationResponseMessage):
-                    completionHandler(.success(newAuthenticationResponseMessage.response.access_token))
+                    completionHandler(.success(newAuthenticationResponseMessage.response.accessToken))
             case .failure(let error):
                     completionHandler(.failure(error))
             }
