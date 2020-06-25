@@ -18,12 +18,15 @@ class JogsViewController: UIViewController {
     var logoImageView: UIImageView!
     var menuButton: UIButton!
     var filterButton: UIButton!
+    
     var tableView: UITableView!
+    var addNewJogButton: UIButton!
         
     private let cellIdentifier = "customCell"
     private let logoImageName = "logoImage"
     private let filterImageName = "filterImage"
     private let menuImageName = "menuImage"
+    private let addJogImageName = "addJogImage"
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +34,14 @@ class JogsViewController: UIViewController {
         navigationBarView = UIView()
         logoImageView = UIImageView()
         menuButton = UIButton()
+        menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
         filterButton = UIButton()
+        addNewJogButton = UIButton()
+        addNewJogButton.addTarget(self, action: #selector(newJog), for: .touchUpInside)
         
         tableView = UITableView()
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.rowHeight = 190
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
@@ -44,6 +51,10 @@ class JogsViewController: UIViewController {
         if authentication.isAuthorized {
             jogs.loadFromAPI()
         } else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(successAuthentication(param:)),
+                                                   name: .AuthenticationPassed,
+                                                   object: nil)
             let authenticationViewController = AuthenticationViewController()
             authenticationViewController.modalPresentationStyle = .fullScreen
             present(authenticationViewController, animated: true)
@@ -107,6 +118,18 @@ class JogsViewController: UIViewController {
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
         menuButton.setImage(UIImage(named: menuImageName), for: .normal)
+        
+        //MARK: AddNewJogButton Settings
+        
+        view.addSubview(addNewJogButton)
+        addNewJogButton.snp.makeConstraints {
+            (make) in
+            make.height.size.equalTo(47)
+            make.width.size.equalTo(47)
+            make.right.equalTo(view.snp.right).offset(-30)
+            make.bottom.equalTo(view.snp.bottom).offset(-30)
+        }
+        addNewJogButton.setImage(UIImage(named: addJogImageName), for: .normal)
     }
 
     @objc func newJog() {
@@ -124,6 +147,12 @@ class JogsViewController: UIViewController {
         leftMenu.leftSide = true
         leftMenu.menuWidth = 300
         present(leftMenu, animated: true)
+    }
+    
+    @objc func openMenu() {
+        let menuViewController = MenuViewController()
+        menuViewController.modalPresentationStyle = .fullScreen
+        present(MenuViewController(), animated: true)
     }
     
     private func alertConfiguration(with error: Error) {
@@ -180,8 +209,9 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let jogViewController = JogViewController(newJog: jogs.jogsList[indexPath.row])
         navigationController?.pushViewController(jogViewController, animated: true)
+        return false
     }
 }
