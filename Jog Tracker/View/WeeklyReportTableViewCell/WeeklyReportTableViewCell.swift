@@ -7,15 +7,13 @@
 //
 
 import UIKit
+import SnapKit
 
 class WeeklyReportTableViewCell: UITableViewCell {
 
     private let stringFormat = "%.1f"
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var allTimeLabel: UILabel!
-    @IBOutlet weak var allDistanceLabel: UILabel!
-    @IBOutlet weak var averageSpeedLabel: UILabel!
+    var jogIconImageView: UIImageView!
     
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -26,7 +24,7 @@ class WeeklyReportTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        jogIconImageView = UIImageView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,11 +33,24 @@ class WeeklyReportTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.addSubview(jogIconImageView)
+        jogIconImageView.snp.makeConstraints {
+            (make) in
+            make.height.size.equalTo(87)
+            make.width.size.equalTo(87)
+            make.left.equalTo(contentView).offset(66)
+            make.centerY.equalToSuperview()
+        }
+    }
+    
     func configurateCell(weaklyReport: WeaklyReport) {
-        dateLabel.text = dateFormatter.string(from: weaklyReport.beginOfWeek) + " - " + dateFormatter.string(from: weaklyReport.endOfWeek)
-        allTimeLabel.text = String(weaklyReport.allTime)
-        allDistanceLabel.text = String(weaklyReport.allDistance)
-        averageSpeedLabel.text = String(format: stringFormat, weaklyReport.avaregeSpeed)
+//        dateLabel.text = dateFormatter.string(from: weaklyReport.beginOfWeek) + " - " + dateFormatter.string(from: weaklyReport.endOfWeek)
+//        allTimeLabel.text = String(weaklyReport.allTime)
+//        allDistanceLabel.text = String(weaklyReport.allDistance)
+//        averageSpeedLabel.text = String(format: stringFormat, weaklyReport.avaregeSpeed)
     }
     
 }
