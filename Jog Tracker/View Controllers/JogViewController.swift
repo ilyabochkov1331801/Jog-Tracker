@@ -61,11 +61,13 @@ class JogViewController: UIViewController {
             let distance = Double(distanceString) else {
                 return
         }
-        if var jog = jog {
-            jog.date = datePicker.date.timeIntervalSince1970
-            jog.distance = distance
-            jog.time = time
-            jogs.update(jog: jog) {
+        if let jog = jog {
+            let newJog = Jog(id: jog.id,
+                             userId: jog.userId,
+                             distance: distance,
+                             time: time,
+                             date: datePicker.date.timeIntervalSince1970)
+            jogs.update(jog: newJog) {
                 [weak self] (result) in
                 guard let self = self else {
                     return
