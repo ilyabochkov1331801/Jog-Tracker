@@ -12,7 +12,7 @@ class AuthenticationViewController: UIViewController {
 
     private let errorKey = "error"
     
-    var authentication: Authentication!
+    var authentication: AuthenticationService!
     
     @IBOutlet weak var authorizationButton: UIButton! {
         didSet {
@@ -23,7 +23,7 @@ class AuthenticationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authentication = Authentication.shared
+        authentication = AuthenticationService.shared
         uuidTextField.delegate = self
     }
     @IBAction func authorizationButtonTupped(_ sender: UIButton) {

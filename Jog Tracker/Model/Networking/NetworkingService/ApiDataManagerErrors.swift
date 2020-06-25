@@ -8,9 +8,10 @@
 
 import Foundation
 
-enum NetworkingServiceErrors: Error {
+enum ApiDataManagerErrors: Error {
     case nilResponse
     case badResponseStatus(code: Int)
     case nilData
     case decodingError
+    case nilRequest
 }

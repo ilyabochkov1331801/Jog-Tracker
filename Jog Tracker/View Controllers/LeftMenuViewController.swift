@@ -55,7 +55,7 @@ class LeftMenuViewController: UIViewController {
         navigationController?.pushViewController(WeeklyReportTableViewController(), animated: true)
     }
     @IBAction func logoutButtonTupped(_ sender: UIButton) {
-        Authentication.shared.logout()
+        AuthenticationService.shared.logout()
         let authenticationViewController = AuthenticationViewController()
         authenticationViewController.modalPresentationStyle = .fullScreen
         present(authenticationViewController, animated: true)

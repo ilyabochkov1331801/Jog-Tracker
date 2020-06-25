@@ -54,7 +54,7 @@ class JogViewController: UIViewController {
     }
     
     @objc func save() {
-        let jogs = Jogs.shared
+        let jogs = JogsService.shared
         guard let timeString = timeTextField.text,
             let time = Int(timeString),
             let distanceString = distanceTextFiled.text,
@@ -65,7 +65,7 @@ class JogViewController: UIViewController {
             jog.date = datePicker.date.timeIntervalSince1970
             jog.distance = distance
             jog.time = time
-            jogs.append(newJog: jog) {
+            jogs.update(jog: jog) {
                 [weak self] (result) in
                 guard let self = self else {
                     return
@@ -78,7 +78,7 @@ class JogViewController: UIViewController {
                 }
             }
         } else {
-            jogs.append(date: datePicker.date, time: time, distance: distance) {
+            jogs.add(date: datePicker.date, time: time, distance: distance) {
                 [weak self] (result) in
                 guard let self = self else {
                     return

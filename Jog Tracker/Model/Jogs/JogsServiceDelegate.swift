@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol JogsDelegate {
+protocol JogsServiceDelegate {
     func updatingDataDidFinished()
 }

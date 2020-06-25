@@ -11,7 +11,7 @@ import SideMenu
 
 class JogsTableViewController: UITableViewController {
     
-    let jogs = Jogs.shared
+    let jogs = JogsService.shared
     
     private let controllerTitle = "Your jogs"
     private let cellIdentifier = "customCell"
@@ -26,9 +26,9 @@ class JogsTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
-        let authentication = Authentication.shared
+        let authentication = AuthenticationService.shared
         if authentication.isAuthorized {
-            jogs.loadFromAPI {
+            jogs.loadJogList {
                 [weak self] (result) in
                 guard let self = self else {
                     return
@@ -100,7 +100,7 @@ class JogsTableViewController: UITableViewController {
 
 }
 
-extension JogsTableViewController: JogsDelegate {
+extension JogsTableViewController: JogsServiceDelegate {
     func updatingDataDidFinished() {
         DispatchQueue.main.async {
             self.tableView.reloadData()

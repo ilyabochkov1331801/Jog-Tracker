@@ -10,7 +10,7 @@ import Foundation
 
 class WeeklyReports {
     
-    private let jogs = Jogs.shared
+    private let jogs = JogsService.shared
     private let weekTimeInterval = TimeInterval(60 * 60 * 24 * 7)
     var mondayDate: TimeInterval {
         return Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))!.timeIntervalSince1970 + weekTimeInterval
