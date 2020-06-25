@@ -13,11 +13,12 @@ class WeeklyReportTableViewController: UITableViewController {
     private let cellIdentifier = "customCell"
     private let cellNibName = "WeeklyReportTableViewCell"
     
-    private var weeklyReports = WeeklyReports()
+    private var weeklyReports = WeeklyReports.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        weeklyReports.delegate = self
         self.weeklyReports.calculateWeaklyReportsList()
         tableView.rowHeight = 100
         
@@ -25,10 +26,6 @@ class WeeklyReportTableViewController: UITableViewController {
                                                             target: self,
                                                             action: #selector(openReportFilterSettings))
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reportFilterSettingsDidChange),
-                                               name: .ReportFilterSettingsChanged,
-                                               object: nil)
     }
 
     // MARK: - Table view data source
@@ -51,9 +48,10 @@ class WeeklyReportTableViewController: UITableViewController {
     @objc func openReportFilterSettings() {
         present(ReportFilterSettingsViewController(), animated: true)
     }
-    
-    @objc func reportFilterSettingsDidChange() {
-        self.weeklyReports.calculateWeaklyReportsList()
+}
+
+extension WeeklyReportTableViewController: WeeklyReportsDelegate {
+    func updatingDataDidFinished() {
         tableView.reloadData()
     }
 }

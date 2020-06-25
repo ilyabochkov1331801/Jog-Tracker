@@ -9,6 +9,5 @@
 import Foundation
 
 extension Notification.Name {
-    public static let ReportFilterSettingsChanged = NSNotification.Name("reportFilterSettingsChanged")
     public static let UserInfoLoaded = NSNotification.Name("UserInfoLoaded")
 }

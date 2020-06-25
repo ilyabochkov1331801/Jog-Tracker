@@ -13,16 +13,16 @@ class ReportFilterSettingsViewController: UIViewController {
     @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var toDatePicker: UIDatePicker!
     
-    private let reportFilterSettings = ReportFilterSettings.shared
+    private let weeklyReports = WeeklyReports.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fromDatePicker.date = reportFilterSettings.reportFilter.fromDate
-        toDatePicker.date = reportFilterSettings.reportFilter.toDate
+        fromDatePicker.date = weeklyReports.reportFilter.fromDate
+        toDatePicker.date = weeklyReports.reportFilter.toDate
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        weeklyReports.reportFilter = ReportFilter(fromDate: fromDatePicker.date, toDate: toDatePicker.date)
         super.viewWillDisappear(animated)
-        reportFilterSettings.reportFilter = ReportFilter(fromDate: fromDatePicker.date, toDate: toDatePicker.date)
     }
 }
