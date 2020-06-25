@@ -1,4 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks.sh
-${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework

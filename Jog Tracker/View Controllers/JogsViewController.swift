@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SideMenu
 
 class JogsViewController: UIViewController {
     
@@ -36,6 +35,7 @@ class JogsViewController: UIViewController {
         menuButton = UIButton()
         menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
         filterButton = UIButton()
+        filterButton.addTarget(self, action: #selector(presentWeaklyReport), for: .touchUpInside)
         addNewJogButton = UIButton()
         addNewJogButton.addTarget(self, action: #selector(newJog), for: .touchUpInside)
         
@@ -59,12 +59,7 @@ class JogsViewController: UIViewController {
             authenticationViewController.modalPresentationStyle = .fullScreen
             present(authenticationViewController, animated: true)
         }
-        
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipe))
-        swipe.delegate = self
-        swipe.direction = .right
-        view.addGestureRecognizer(swipe)
-        
+    
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
     }
@@ -77,7 +72,7 @@ class JogsViewController: UIViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
             (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 77, left: 0, bottom: 0, right: 0))
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 77, left: 0, bottom: 0, right: 0))
         }
         
         //MARK: NavigationBarView Settings
@@ -141,18 +136,14 @@ class JogsViewController: UIViewController {
         jogs.loadFromAPI()
     }
     
-    @objc func leftSwipe() {
-        let leftMenu = SideMenuNavigationController(rootViewController: LeftMenuViewController())
-        leftMenu.presentationStyle = .menuSlideIn
-        leftMenu.leftSide = true
-        leftMenu.menuWidth = 300
-        present(leftMenu, animated: true)
-    }
-    
     @objc func openMenu() {
-        let menuViewController = MenuViewController()
+        let menuViewController =  MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
-        present(MenuViewController(), animated: true)
+        present(menuViewController, animated: true)
+    }
+    @objc func presentWeaklyReport() {
+        let weeklyReportViewController = WeeklyReportViewController()
+        navigationController?.pushViewController(weeklyReportViewController, animated: true)
     }
     
     private func alertConfiguration(with error: Error) {
@@ -185,10 +176,6 @@ extension JogsViewController: JogsDelegate {
             }
         }
     }
-}
-
-extension JogsViewController: UIGestureRecognizerDelegate {
-    
 }
 
 extension JogsViewController: UITableViewDelegate, UITableViewDataSource {

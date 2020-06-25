@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		DD61AA6EC4155A81B50A7C0B /* Pods_Jog_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47A72C26ADD3A63F8A7CD6A /* Pods_Jog_Tracker.framework */; };
 		EA424D0024A4BCC2001A5180 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CFF24A4BCC2001A5180 /* MenuViewController.swift */; };
-		EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */; };
-		EA6ABB5F248FEC3300E59BFB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */; };
 		EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */; };
 		EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */; };
 		EA6ABB66248FFB4D00E59BFB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB65248FFB4D00E59BFB /* Feedback.swift */; };
@@ -20,11 +18,9 @@
 		EA6ABB6F248FFF4A00E59BFB /* FeedbackErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB6E248FFF4A00E59BFB /* FeedbackErrors.swift */; };
 		EA6ABB7124901CF700E59BFB /* WeeklyReports .swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7024901CF700E59BFB /* WeeklyReports .swift */; };
 		EA6ABB7324901E0400E59BFB /* WeaklyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7224901E0400E59BFB /* WeaklyReport.swift */; };
-		EA6ABB7724902A6300E59BFB /* WeeklyReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7524902A6300E59BFB /* WeeklyReportTableViewController.swift */; };
-		EA6ABB7824902A6300E59BFB /* WeeklyReportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB7624902A6300E59BFB /* WeeklyReportTableViewController.xib */; };
+		EA6ABB7724902A6300E59BFB /* WeeklyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */; };
 		EA6ABB7B24902A8800E59BFB /* WeeklyReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */; };
 		EA6ABB812490D58F00E59BFB /* ReportFilterSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7F2490D58F00E59BFB /* ReportFilterSettingsViewController.swift */; };
-		EA6ABB822490D58F00E59BFB /* ReportFilterSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */; };
 		EA6ABB842490D82700E59BFB /* ReportFilterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB832490D82700E59BFB /* ReportFilterSettings.swift */; };
 		EA6ABB862490EC6E00E59BFB /* ReportFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */; };
 		EA81B4942493AFD800DA5D48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA81B4932493AFD800DA5D48 /* User.swift */; };
@@ -58,8 +54,6 @@
 		25B0CFCC96C9AE6F2608FC96 /* Pods-Jog Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.release.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		EA424CFF24A4BCC2001A5180 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
-		EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
 		EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackViewController.swift; sourceTree = "<group>"; };
 		EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendFeedbackViewController.xib; sourceTree = "<group>"; };
 		EA6ABB65248FFB4D00E59BFB /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
@@ -69,11 +63,9 @@
 		EA6ABB6E248FFF4A00E59BFB /* FeedbackErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackErrors.swift; sourceTree = "<group>"; };
 		EA6ABB7024901CF700E59BFB /* WeeklyReports .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyReports .swift"; sourceTree = "<group>"; };
 		EA6ABB7224901E0400E59BFB /* WeaklyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaklyReport.swift; sourceTree = "<group>"; };
-		EA6ABB7524902A6300E59BFB /* WeeklyReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportTableViewController.swift; sourceTree = "<group>"; };
-		EA6ABB7624902A6300E59BFB /* WeeklyReportTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeeklyReportTableViewController.xib; sourceTree = "<group>"; };
+		EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportViewController.swift; sourceTree = "<group>"; };
 		EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportTableViewCell.swift; sourceTree = "<group>"; };
 		EA6ABB7F2490D58F00E59BFB /* ReportFilterSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilterSettingsViewController.swift; sourceTree = "<group>"; };
-		EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportFilterSettingsViewController.xib; sourceTree = "<group>"; };
 		EA6ABB832490D82700E59BFB /* ReportFilterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilterSettings.swift; sourceTree = "<group>"; };
 		EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilter.swift; sourceTree = "<group>"; };
 		EA81B4932493AFD800DA5D48 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -222,9 +214,8 @@
 				EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */,
 				EAF6E505248EE3020093FD16 /* JogsViewController.swift */,
 				EAFB8F61248E9773008BE894 /* AuthenticationViewController.swift */,
-				EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */,
 				EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */,
-				EA6ABB7524902A6300E59BFB /* WeeklyReportTableViewController.swift */,
+				EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */,
 				EA6ABB7F2490D58F00E59BFB /* ReportFilterSettingsViewController.swift */,
 				EA424CFF24A4BCC2001A5180 /* MenuViewController.swift */,
 			);
@@ -236,10 +227,7 @@
 			children = (
 				EA6ABB7D249033C300E59BFB /* WeeklyReportTableViewCell */,
 				EA6ABB7E249033D700E59BFB /* CustomTableViewCell */,
-				EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */,
 				EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */,
-				EA6ABB7624902A6300E59BFB /* WeeklyReportTableViewController.xib */,
-				EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -404,9 +392,6 @@
 				EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */,
 				EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */,
 				EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */,
-				EA6ABB822490D58F00E59BFB /* ReportFilterSettingsViewController.xib in Resources */,
-				EA6ABB7824902A6300E59BFB /* WeeklyReportTableViewController.xib in Resources */,
-				EA6ABB5F248FEC3300E59BFB /* LeftMenuViewController.xib in Resources */,
 				EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,7 +456,7 @@
 				EA6ABB842490D82700E59BFB /* ReportFilterSettings.swift in Sources */,
 				EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */,
 				EA6ABB7124901CF700E59BFB /* WeeklyReports .swift in Sources */,
-				EA6ABB7724902A6300E59BFB /* WeeklyReportTableViewController.swift in Sources */,
+				EA6ABB7724902A6300E59BFB /* WeeklyReportViewController.swift in Sources */,
 				EA6ABB862490EC6E00E59BFB /* ReportFilter.swift in Sources */,
 				EAF6E4EB248EA7450093FD16 /* AuthenticationErrors.swift in Sources */,
 				EAF6E50B248EE8200093FD16 /* CustomTableViewCell.swift in Sources */,
@@ -488,7 +473,6 @@
 				EA81B4942493AFD800DA5D48 /* User.swift in Sources */,
 				EA424D0024A4BCC2001A5180 /* MenuViewController.swift in Sources */,
 				EAF6E4FD248ED5C40093FD16 /* JpgsErrors.swift in Sources */,
-				EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */,
 				EAFB8F6D248E9847008BE894 /* Authentication.swift in Sources */,
 				EAF6E4F7248ED1300093FD16 /* JogsService.swift in Sources */,
 				EA6ABB6F248FFF4A00E59BFB /* FeedbackErrors.swift in Sources */,
