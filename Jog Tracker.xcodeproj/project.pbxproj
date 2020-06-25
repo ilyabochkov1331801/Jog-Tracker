@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */; };
+		DD61AA6EC4155A81B50A7C0B /* Pods_Jog_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47A72C26ADD3A63F8A7CD6A /* Pods_Jog_Tracker.framework */; };
 		EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */; };
 		EA6ABB5F248FEC3300E59BFB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */; };
 		EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */; };
@@ -46,7 +46,6 @@
 		EAF6E50B248EE8200093FD16 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */; };
 		EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */; };
 		EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */; };
-		EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E510248F7E3E0093FD16 /* JogViewController.xib */; };
 		EAF6E514248FC3D60093FD16 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E513248FC3D50093FD16 /* NotificationNameExtension.swift */; };
 		EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */; };
 		EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F56248E91B2008BE894 /* Assets.xcassets */; };
@@ -60,7 +59,6 @@
 
 /* Begin PBXFileReference section */
 		25B0CFCC96C9AE6F2608FC96 /* Pods-Jog Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.debug.xcconfig"; sourceTree = "<group>"; };
-		50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jog Tracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.release.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 		EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogViewController.swift; sourceTree = "<group>"; };
-		EAF6E510248F7E3E0093FD16 /* JogViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogViewController.xib; sourceTree = "<group>"; };
 		EAF6E513248FC3D50093FD16 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		EAFB8F4A248E91AC008BE894 /* Jog Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jog Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +109,7 @@
 		EAFB8F66248E97BA008BE894 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		EAFB8F68248E97EF008BE894 /* AuthenticationWithUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWithUUID.swift; sourceTree = "<group>"; };
 		EAFB8F6C248E9847008BE894 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		F47A72C26ADD3A63F8A7CD6A /* Pods_Jog_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jog_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */,
+				DD61AA6EC4155A81B50A7C0B /* Pods_Jog_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +136,7 @@
 		60F36FA8818D09653140D0A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */,
+				F47A72C26ADD3A63F8A7CD6A /* Pods_Jog_Tracker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,7 +244,6 @@
 				EA6ABB7D249033C300E59BFB /* WeeklyReportTableViewCell */,
 				EA6ABB7E249033D700E59BFB /* CustomTableViewCell */,
 				EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */,
-				EAF6E510248F7E3E0093FD16 /* JogViewController.xib */,
 				EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */,
 				EAFB8F62248E9773008BE894 /* AuthenticationViewController.xib */,
 				EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */,
@@ -364,6 +361,7 @@
 				EAFB8F46248E91AC008BE894 /* Sources */,
 				EAFB8F47248E91AC008BE894 /* Frameworks */,
 				EAFB8F48248E91AC008BE894 /* Resources */,
+				16ACF89DB1A464099D69A2A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -417,7 +415,6 @@
 				EA6ABB7C24902A8800E59BFB /* WeeklyReportTableViewCell.xib in Resources */,
 				EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */,
 				EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */,
-				EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */,
 				EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */,
 				EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */,
 				EA6ABB822490D58F00E59BFB /* ReportFilterSettingsViewController.xib in Resources */,
@@ -430,6 +427,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16ACF89DB1A464099D69A2A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		365BC163456BFCF67A4F14B2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

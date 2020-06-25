@@ -1,20 +1,24 @@
 PODS:
   - SideMenu (6.4.8)
+  - SnapKit (4.2.0)
   - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - SideMenu
+  - SnapKit (~> 4.0)
   - SwiftKeychainWrapper
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - SideMenu
+    - SnapKit
     - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: abe00ba8b321a788f24621d5ae1b2a33024501d2
+PODFILE CHECKSUM: 8703d92db59d451c4832f2d0c6b9f653135bf3eb
 
 COCOAPODS: 1.8.4
