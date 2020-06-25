@@ -9,5 +9,5 @@
 import Foundation
 
 struct JogsResponse: Codable {
-    var jogs: Array<Jog>
+    let jogs: Array<Jog>
 }

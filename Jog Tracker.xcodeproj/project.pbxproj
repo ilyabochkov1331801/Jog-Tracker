@@ -153,7 +153,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA424CEE24A3BFC2001A5180 /* NetworkingService */ = {
+		EA424CEE24A3BFC2001A5180 /* ApiDataManager */ = {
 			isa = PBXGroup;
 			children = (
 				EA424CE824A3ACBE001A5180 /* ApiDataManager.swift */,
@@ -162,7 +162,7 @@
 				EAF7F65324A4E4320047A737 /* ApiKeys.swift */,
 				EAF7F65524A4E5190047A737 /* HTTPMethod.swift */,
 			);
-			path = NetworkingService;
+			path = ApiDataManager;
 			sourceTree = "<group>";
 		};
 		EA424CF124A3C8FA001A5180 /* UpdatedJogResponseMessage */ = {
@@ -337,7 +337,7 @@
 		EAFB8F65248E978E008BE894 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				EA424CEE24A3BFC2001A5180 /* NetworkingService */,
+				EA424CEE24A3BFC2001A5180 /* ApiDataManager */,
 				EA81B4952493B07F00DA5D48 /* UserService */,
 			);
 			path = Networking;

@@ -9,6 +9,6 @@
 import Foundation
 
 struct AuthenticationResponseMessage: Decodable {
-    var response: AuthenticationResponse
+    let response: AuthenticationResponse
 }
 

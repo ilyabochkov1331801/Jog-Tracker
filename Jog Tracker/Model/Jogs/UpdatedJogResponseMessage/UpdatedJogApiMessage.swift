@@ -9,5 +9,5 @@
 import Foundation
 
 struct UpdatedJogResponseMessage: Codable {
-    var response: UpdatedJogResponse
+    let response: UpdatedJogResponse
 }

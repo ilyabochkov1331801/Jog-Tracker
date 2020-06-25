@@ -9,9 +9,9 @@
 import Foundation
 
 struct UpdatedJogResponse: Codable {
-    var id: Int
-    var userId: Int
-    var distance: Double
-    var time: Int
-    var date: String
+    let id: Int
+    let userId: Int
+    let distance: Double
+    let time: Int
+    let date: String
 }
