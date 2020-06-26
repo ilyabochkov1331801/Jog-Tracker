@@ -10,7 +10,8 @@ import UIKit
 
 class JogsViewController: UIViewController {
     
-    let jogs = Jogs.shared
+    let jogs = JogsService.shared
+    var jogsList: Array<Jog> = []
     
     //MARK: NavigationBar
     var navigationBarView: UIView!
@@ -40,17 +41,13 @@ class JogsViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 190
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        
-        jogs.delegate = self
-        
-        let authentication = AuthenticationWithUUID.shared
+                
+        let authentication = AuthenticationService.shared
         if authentication.isAuthorized {
-            jogs.loadFromAPI()
+            jogs.getJogs { [weak self] (result) in
+                self?.updateData()
+            }
         } else {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(successAuthentication(param:)),
-                                                   name: .AuthenticationPassed,
-                                                   object: nil)
             let authenticationViewController = AuthenticationViewController()
             authenticationViewController.modalPresentationStyle = .fullScreen
             present(authenticationViewController, animated: true)
@@ -128,11 +125,8 @@ class JogsViewController: UIViewController {
 
     @objc func newJog() {
         let jogViewController = JogViewController()
+        jogViewController.delegate = self
         navigationController?.pushViewController(jogViewController, animated: true)
-    }
-    
-    @objc func successAuthentication(param: Notification) {
-        jogs.loadFromAPI()
     }
     
     @objc func openMenu() {
@@ -146,37 +140,6 @@ class JogsViewController: UIViewController {
         let weeklyReportViewController = WeeklyReportViewController()
         navigationController?.pushViewController(weeklyReportViewController, animated: false)
     }
-    
-    private func alertConfiguration(with error: Error) {
-        let alert = UIAlertController(title: "Error",
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
-        alert.addAction(okAction)
-        present(alert,
-                animated: true)
-    }
-}
-
-extension JogsViewController: JogsDelegate {
-    func updatingDataDidFinished() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func updatingDataDidFinished(with error: Error) {
-        switch error {
-        case JogsServiceErrors.noAuthentication:
-            let authenticationViewController = AuthenticationViewController()
-            present(authenticationViewController, animated: true)
-        default:
-            DispatchQueue.main.async {
-                self.alertConfiguration(with: error)
-            }
-        }
-    }
 }
 
 extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -185,20 +148,39 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jogs.jogsList.count
+        return jogsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
         for: indexPath) as! CustomTableViewCell
-        let jog = jogs.jogsList[indexPath.row]
+        let jog = jogsList[indexPath.row]
         cell.configurateCell(distance: jog.distance, time: jog.time, date: jog.date)
         return cell
     }
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        let jogViewController = JogViewController(newJog: jogs.jogsList[indexPath.row])
+        let jogViewController = JogViewController(newJog: jogsList[indexPath.row])
+        jogViewController.delegate = self
         navigationController?.pushViewController(jogViewController, animated: true)
         return false
+    }
+}
+
+extension JogsViewController: JogViewControllerDelegate {
+    func updateData() {
+        jogs.getJogs {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(let newJogsList):
+                self.jogsList = newJogsList
+                self.tableView.reloadData()
+            case .failure(let error):
+                self.alertConfiguration(with: error)
+            }
+        }
     }
 }

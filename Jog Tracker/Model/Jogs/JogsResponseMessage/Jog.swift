@@ -1,5 +1,5 @@
 //
-//  AuthenticationServiceErrors.swift
+//  Jog.swift
 //  Jog Tracker
 //
 //  Created by Илья Бочков  on 6/8/20.
@@ -8,6 +8,11 @@
 
 import Foundation
 
-enum AuthenticationServiceErrors: Error {
-    case urlError
+struct Jog: Codable {
+    let id: Int
+    let userId: String
+    let distance: Double
+    let time: Int
+    let date: TimeInterval
 }
+

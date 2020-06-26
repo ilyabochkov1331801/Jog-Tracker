@@ -23,6 +23,7 @@ class SendFeedbackViewController: UIViewController {
     let activityView = UIActivityIndicatorView(style: .gray)
     let topicNumberLabelText = "Topic number:"
     let sendFeedbackButtonText = "Send"
+    let feedbackService = FeedbackService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,9 +133,24 @@ class SendFeedbackViewController: UIViewController {
             let topicId = Int(topicIdString) else {
                 return
         }
-        let feedback = Feedback(topicId: topicId, feedback: textForFeedback)
-        feedback.delegate = self
-        feedback.sendFeedback()
+   
+        feedbackService.sendFeedback(text: textForFeedback, topicNumber: topicId) {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(()):
+                let menuViewController =  MenuViewController()
+                menuViewController.modalPresentationStyle = .fullScreen
+                menuViewController.currentNavigationController = self.navigationController
+                self.present(menuViewController, animated: true)
+            case .failure(let error):
+                self.alertConfiguration(with: error)
+                self.activityView.stopAnimating()
+            }
+        }
+        
         activityView.frame = CGRect(x: 0,
                                     y: 0,
                                     width: 100,
@@ -150,32 +166,17 @@ class SendFeedbackViewController: UIViewController {
     }
     
     @objc func openMenu() {
-        let menuViewController =  MenuViewController()
+        let menuViewController = MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
         menuViewController.currentNavigationController = navigationController
         present(menuViewController, animated: true)
     }
 }
 
-extension SendFeedbackViewController: FeedbackDelegate {
-    func feedbackWasPosted() {
-        DispatchQueue.main.async {
-            self.activityView.stopAnimating()
-            let menuViewController =  MenuViewController()
-            menuViewController.modalPresentationStyle = .fullScreen
-            menuViewController.currentNavigationController = self.navigationController
-            self.present(menuViewController, animated: true)
-        }
-    }
+extension SendFeedbackViewController {
+
     
-    func feedbackWasCancel(with error: Error) {
-        DispatchQueue.main.async {
-            self.activityView.stopAnimating()
-            self.alertConfiguration(with: error)
-        }
-    }
-    
-    private func alertConfiguration(with error: Error) {
+    override func alertConfiguration(with error: Error) {
         let alert = UIAlertController(title: "Error",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)

@@ -15,7 +15,7 @@ class WeeklyReportViewController: UIViewController {
     private let toDateLabelText = "Date to"
     private let labelsFont = UIFont(name: "SFUIText-Regular", size: 10)
     
-    private var weeklyReports = WeeklyReports()
+    private var weeklyReports = WeeklyReports.shared
     private var tableView: UITableView!
     
     //MARK: NavigationBar
@@ -37,7 +37,9 @@ class WeeklyReportViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(WeeklyReportTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        self.weeklyReports.calculateWeaklyReportsList()
+        self.weeklyReports.set(newReportFilter: ReportFilter()) {
+            self.tableView.reloadData()
+        }
         tableView.rowHeight = 190
         
         navigationBarView = UIView()
@@ -53,11 +55,7 @@ class WeeklyReportViewController: UIViewController {
         toDateTextFiled.delegate = self
         fromDateTextFiled.delegate = self
         toDateLabel = UILabel()
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reportFilterSettingsDidChange),
-                                               name: .ReportFilterSettingsChanged,
-                                               object: nil)
+    
         view.backgroundColor = .white
     }
     
@@ -157,11 +155,6 @@ class WeeklyReportViewController: UIViewController {
     
     @objc func closeWeaklyReport() {
         navigationController?.popViewController(animated: false)
-    }
-    
-    @objc func reportFilterSettingsDidChange() {
-        self.weeklyReports.calculateWeaklyReportsList()
-        tableView.reloadData()
     }
 }
 

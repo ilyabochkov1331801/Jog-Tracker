@@ -20,26 +20,17 @@ class AuthenticationViewController: UIViewController {
     private let authorizationButtonText = "Let me in"
     private let testUUID = "hello"
     
-    var authentication: Authentication!
+    var authentication: AuthenticationService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        authentication = AuthenticationService.shared
         navigationBarView = UIView()
         logoImageView = UIImageView()
         bearFaceImageView = UIImageView()
         authorizationButton = UIButton()
         authorizationButton.addTarget(self, action: #selector(authorizationButtonTupped), for: .touchUpInside)
         
-        authentication = AuthenticationWithUUID.shared
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(successAuthentication(param:)),
-                                               name: .AuthenticationPassed,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(cancelAuthentication(param:)),
-                                               name: .AuthenticationPassedWithError,
-                                               object: nil)
         view.backgroundColor = .white
     }
     
@@ -87,31 +78,17 @@ class AuthenticationViewController: UIViewController {
     }
     
     @objc func authorizationButtonTupped(_ sender: UIButton) {
-        authentication.authorization(with: testUUID)
-    }
-    
-    @objc func successAuthentication(param: Notification) {
-        DispatchQueue.main.async {
-            self.dismiss(animated: true)
+        authentication.authorization(with: testUUID) {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success():
+                self.dismiss(animated: true)
+            case .failure(let error):
+                self.alertConfiguration(with: error)
+            }
         }
-    }
-    @objc func cancelAuthentication(param: Notification) {
-        guard let error = (param.userInfo as? [String: Any])?[errorKey] as? Error else {
-            return
-        }
-        DispatchQueue.main.async {
-            self.alertConfiguration(with: error)
-        }
-    }
-    
-    func alertConfiguration(with error: Error) {
-        let alert = UIAlertController(title: "Error",
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
-        alert.addAction(okAction)
-        present(alert,
-                animated: true)
     }
 }

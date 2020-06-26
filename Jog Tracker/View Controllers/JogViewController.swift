@@ -37,6 +37,7 @@ class JogViewController: UIViewController {
     private let labelsFont = UIFont(name: "SFUIText-Regular", size: 13)
     
     private var jog: Jog?
+    var delegate: JogViewControllerDelegate?
     
     init(newJog: Jog) {
         super.init(nibName: nil, bundle: nil)
@@ -211,7 +212,7 @@ class JogViewController: UIViewController {
     }
     
     @objc func save() {
-        let jogs = Jogs.shared
+        let jogs = JogsService.shared
         guard let timeString = timeTextField.text,
             let time = Int(timeString),
             let distanceString = distanceTextFiled.text,
@@ -220,15 +221,40 @@ class JogViewController: UIViewController {
             let date = dateFormatter.date(from: dateString )else {
                 return
         }
-        if var jog = jog {
-            jog.date = date.timeIntervalSince1970
-            jog.distance = distance
-            jog.time = time
-            jogs.append(newJog: jog)
+        if let jog = jog {
+            let newJog = Jog(id: jog.id,
+                             userId: jog.userId,
+                             distance: distance,
+                             time: time,
+                             date: date.timeIntervalSince1970)
+            jogs.update(jog: newJog) {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    self.delegate?.updateData()
+                    self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         } else {
-            jogs.append(date: date, time: time, distance: distance)
+            jogs.add(date: date, time: time, distance: distance) {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    self.delegate?.updateData()
+                    self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         }
-        navigationController?.popViewController(animated: true)
     }
 }
 
