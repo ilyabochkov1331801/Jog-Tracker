@@ -1,5 +1,5 @@
 //
-//  feedbackDelegate.swift
+//  ApiMessage.swift
 //  Jog Tracker
 //
 //  Created by Илья Бочков  on 6/9/20.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-protocol FeedbackDelegate {
-    func feedbackWasPosted()
-    func feedbackWasCancel(with error: Error)
+struct JogsResponseMessage: Codable {
+    let response: JogsResponse
 }

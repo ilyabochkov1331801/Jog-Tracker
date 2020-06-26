@@ -1,5 +1,5 @@
 //
-//  FeedbackServiceErrors.swift
+//  Response.swift
 //  Jog Tracker
 //
 //  Created by Илья Бочков  on 6/9/20.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum FeedbackServiceErrors {
-    case noAuthentication
+struct JogsResponse: Codable {
+    let jogs: Array<Jog>
 }

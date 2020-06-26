@@ -16,6 +16,7 @@ class JogViewController: UIViewController {
     
     private let controllerTitle = "Your jog"
     private var jog: Jog?
+    var delegate: JogViewControllerDelegate?
     
     init(newJog: Jog) {
         super.init(nibName: nil, bundle: nil)
@@ -54,20 +55,44 @@ class JogViewController: UIViewController {
     }
     
     @objc func save() {
-        let jogs = Jogs.shared
+        let jogs = JogsService.shared
         guard let timeString = timeTextField.text,
             let time = Int(timeString),
             let distanceString = distanceTextFiled.text,
             let distance = Double(distanceString) else {
                 return
         }
-        if var jog = jog {
-            jog.date = datePicker.date.timeIntervalSince1970
-            jog.distance = distance
-            jog.time = time
-            jogs.append(newJog: jog)
+        if let jog = jog {
+            let newJog = Jog(id: jog.id,
+                             userId: jog.userId,
+                             distance: distance,
+                             time: time,
+                             date: datePicker.date.timeIntervalSince1970)
+            jogs.update(jog: newJog) {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    self.delegate?.updateData()
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         } else {
-            jogs.append(date: datePicker.date, time: time, distance: distance)
+            jogs.add(date: datePicker.date, time: time, distance: distance) {
+                [weak self] (result) in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(()):
+                    self.delegate?.updateData()
+                case .failure(let error):
+                    self.alertConfiguration(with: error)
+                }
+            }
         }
         navigationController?.popViewController(animated: true)
     }

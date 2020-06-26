@@ -25,6 +25,7 @@ class SendFeedbackViewController: UIViewController {
     }
     
     let activityView = UIActivityIndicatorView(style: .gray)
+    let feedbackService = FeedbackService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +52,19 @@ class SendFeedbackViewController: UIViewController {
         guard let textForFeedback = feedbackTextView.text else {
             return
         }
-        let feedback = Feedback(topicId: topicPicker.selectedRow(inComponent: 0) + 1, feedback: textForFeedback)
-        feedback.delegate = self
-        feedback.sendFeedback()
+        feedbackService.sendFeedback(text: textForFeedback, topicNumber: topicPicker.selectedRow(inComponent: 0) + 1) {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(()):
+                self.dismiss(animated: true)
+            case .failure(let error):
+                self.alertConfiguration(with: error)
+                self.activityView.stopAnimating()
+            }
+        }
         activityView.frame = CGRect(x: 0,
                                     y: 0,
                                     width: 100,
@@ -106,21 +117,10 @@ extension SendFeedbackViewController: UIGestureRecognizerDelegate {
     
 }
 
-extension SendFeedbackViewController: FeedbackDelegate {
-    func feedbackWasPosted() {
-        DispatchQueue.main.async {
-            self.dismiss(animated: true)
-        }
-    }
+extension SendFeedbackViewController {
+
     
-    func feedbackWasCancel(with error: Error) {
-        DispatchQueue.main.async {
-            self.alertConfiguration(with: error)
-            self.activityView.stopAnimating()
-        }
-    }
-    
-    private func alertConfiguration(with error: Error) {
+    override func alertConfiguration(with error: Error) {
         let alert = UIAlertController(title: "Error",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)

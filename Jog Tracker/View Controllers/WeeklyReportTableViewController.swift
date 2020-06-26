@@ -13,22 +13,20 @@ class WeeklyReportTableViewController: UITableViewController {
     private let cellIdentifier = "customCell"
     private let cellNibName = "WeeklyReportTableViewCell"
     
-    private var weeklyReports = WeeklyReports()
+    private var weeklyReports = WeeklyReports.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.weeklyReports.calculateWeaklyReportsList()
+        self.weeklyReports.set(newReportFilter: ReportFilter()) { [weak self] in
+            self?.updateReport()
+        }
         tableView.rowHeight = 100
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
                                                             target: self,
                                                             action: #selector(openReportFilterSettings))
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reportFilterSettingsDidChange),
-                                               name: .ReportFilterSettingsChanged,
-                                               object: nil)
     }
 
     // MARK: - Table view data source
@@ -49,11 +47,14 @@ class WeeklyReportTableViewController: UITableViewController {
     }
     
     @objc func openReportFilterSettings() {
-        present(ReportFilterSettingsViewController(), animated: true)
+        let reportFilterSettingsViewController = ReportFilterSettingsViewController()
+        reportFilterSettingsViewController.delegate = self
+        present(reportFilterSettingsViewController, animated: true)
     }
-    
-    @objc func reportFilterSettingsDidChange() {
-        self.weeklyReports.calculateWeaklyReportsList()
+}
+
+extension WeeklyReportTableViewController: ReportFilterSettingsViewControllerDelegate {
+    func updateReport() {
         tableView.reloadData()
     }
 }
