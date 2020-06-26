@@ -42,7 +42,6 @@
 		EAF7F65A24A4EDC60047A737 /* JogsApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65924A4EDC60047A737 /* JogsApiDataManager.swift */; };
 		EAF7F65C24A4F9820047A737 /* JogsCacheDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65B24A4F9820047A737 /* JogsCacheDataManager.swift */; };
 		EAF7F65E24A516D80047A737 /* FeedbackApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65D24A516D80047A737 /* FeedbackApiDataManager.swift */; };
-		EAF7F66A24A5E1AE0047A737 /* JogViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */; };
 		EAF7F66C24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */; };
 		EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */; };
 		EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F56248E91B2008BE894 /* Assets.xcassets */; };
@@ -456,7 +455,6 @@
 				EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */,
 				EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */,
 				EAF36E2024A64A800080E25D /* InfoViewController.swift in Sources */,
-				EAF7F66A24A5E1AE0047A737 /* JogViewControllerDelegate.swift in Sources */,
 				EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */,
 				EA424CF524A3C95F001A5180 /* UpdatedJog.swift in Sources */,
 				EAF6E4F4248ECD2E0093FD16 /* JogsService.swift in Sources */,
