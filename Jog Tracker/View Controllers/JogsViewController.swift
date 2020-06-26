@@ -67,19 +67,17 @@ class JogsViewController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 77, left: 0, bottom: 0, right: 0))
+            $0.edges.equalTo(view.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 77, left: 0, bottom: 0, right: 0))
         }
         
         //MARK: NavigationBarView Settings
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            (make) in
-            make.width.equalTo(375)
-            make.height.equalTo(77)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(375)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
         navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         
@@ -87,11 +85,10 @@ class JogsViewController: UIViewController {
         
         navigationBarView.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.top.equalTo(navigationBarView.snp.top).offset(20)
-            make.left.equalTo(navigationBarView.snp.left).offset(25)
-            make.height.equalTo(37)
-            make.width.equalTo(98)
+            $0.top.equalTo(navigationBarView.snp.top).offset(20)
+            $0.left.equalTo(navigationBarView.snp.left).offset(25)
+            $0.height.equalTo(37)
+            $0.width.equalTo(98)
         }
         logoImageView.image = UIImage(named: ImageName.logoImageName)
         
@@ -99,11 +96,10 @@ class JogsViewController: UIViewController {
         
         navigationBarView.addSubview(filterButton)
         filterButton.snp.makeConstraints {
-            (make) in
-            make.top.equalTo(navigationBarView.snp.top).offset(26)
-            make.left.equalTo(navigationBarView.snp.left).offset(251)
-            make.height.equalTo(26)
-            make.width.equalTo(26)
+            $0.top.equalTo(navigationBarView.snp.top).offset(26)
+            $0.left.equalTo(navigationBarView.snp.left).offset(251)
+            $0.height.equalTo(26)
+            $0.width.equalTo(26)
         }
         filterButton.setImage(UIImage(named: ImageName.filterImageName), for: .normal)
         
@@ -111,11 +107,10 @@ class JogsViewController: UIViewController {
         
         navigationBarView.addSubview(menuButton)
         menuButton.snp.makeConstraints {
-            (make) in
-            make.top.equalTo(navigationBarView.snp.top).offset(27)
-            make.left.equalTo(navigationBarView.snp.left).offset(322)
-            make.height.equalTo(24)
-            make.width.equalTo(28)
+            $0.top.equalTo(navigationBarView.snp.top).offset(27)
+            $0.left.equalTo(navigationBarView.snp.left).offset(322)
+            $0.height.equalTo(24)
+            $0.width.equalTo(28)
         }
         menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
         
@@ -123,11 +118,10 @@ class JogsViewController: UIViewController {
         
         view.addSubview(addNewJogButton)
         addNewJogButton.snp.makeConstraints {
-            (make) in
-            make.height.equalTo(47)
-            make.width.equalTo(47)
-            make.right.equalTo(view.snp.right).offset(-30)
-            make.bottom.equalTo(view.snp.bottom).offset(-30)
+            $0.height.equalTo(47)
+            $0.width.equalTo(47)
+            $0.right.equalTo(view.snp.right).offset(-30)
+            $0.bottom.equalTo(view.snp.bottom).offset(-30)
         }
         addNewJogButton.setImage(UIImage(named: ImageName.addJogImageName), for: .normal)
     }

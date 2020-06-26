@@ -68,19 +68,17 @@ class WeeklyReportViewController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 137, left: 0, bottom: 0, right: 0))
+            $0.edges.equalTo(view.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 137, left: 0, bottom: 0, right: 0))
         }
         
         //MARK: NavigationBarView Settings
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            (make) in
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(77)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
         navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         
@@ -88,8 +86,7 @@ class WeeklyReportViewController: UIViewController {
         
         navigationBarView.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
         logoImageView.image = UIImage(named: ImageName.logoImageName)
         
@@ -97,8 +94,7 @@ class WeeklyReportViewController: UIViewController {
         
         navigationBarView.addSubview(filterButton)
         filterButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
         }
         filterButton.setImage(UIImage(named: ImageName.filterSelectImageName), for: .normal)
         
@@ -106,33 +102,32 @@ class WeeklyReportViewController: UIViewController {
         
         navigationBarView.addSubview(menuButton)
         menuButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
         menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
         
         //MARK: FilterSettings Settings
         
         view.addSubview(filterSettingsView)
-        filterSettingsView.snp.makeConstraints { (make) in
-            make.top.equalTo(navigationBarView.snp.bottom)
-            make.centerX.equalTo(view.snp.centerX)
-            make.width.equalTo(375)
-            make.height.equalTo(60)
+        filterSettingsView.snp.makeConstraints {
+            $0.top.equalTo(navigationBarView.snp.bottom)
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(375)
+            $0.height.equalTo(60)
         }
         filterSettingsView.backgroundColor = .lightGray
         
         //MARK: FromDateTextFiled and FromDateLabel Settings
         
         filterSettingsView.addSubview(fromDateTextFiled)
-        fromDateTextFiled.snp.makeConstraints { (make) in
-            make.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 111, bottom: 13, right: 193))
+        fromDateTextFiled.snp.makeConstraints {
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 111, bottom: 13, right: 193))
         }
         fromDateTextFiled.borderStyle = .roundedRect
 
         filterSettingsView.addSubview(fromDateLabel)
-        fromDateLabel.snp.makeConstraints { (make) in
-            make.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 19, bottom: 21, right: 280))
+        fromDateLabel.snp.makeConstraints {
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 19, bottom: 21, right: 280))
         }
         fromDateLabel.font = labelsFont
         fromDateLabel.text = fromDateLabelText
@@ -140,14 +135,14 @@ class WeeklyReportViewController: UIViewController {
         //MARK: ToDateTextFiled and ToDateLabel Settings
         
         filterSettingsView.addSubview(toDateTextFiled)
-        toDateTextFiled.snp.makeConstraints { (make) in
-            make.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 284, bottom: 13, right: 19))
+        toDateTextFiled.snp.makeConstraints {
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 284, bottom: 13, right: 19))
         }
         toDateTextFiled.borderStyle = .roundedRect
 
         filterSettingsView.addSubview(toDateLabel)
-        toDateLabel.snp.makeConstraints { (make) in
-            make.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 210, bottom: 21, right: 107))
+        toDateLabel.snp.makeConstraints { 
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 210, bottom: 21, right: 107))
         }
         toDateLabel.font = labelsFont
         toDateLabel.text = toDateLabelText

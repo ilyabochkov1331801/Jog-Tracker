@@ -45,11 +45,10 @@ class InfoViewController: UIViewController {
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            (make) in
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(77)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
         navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         
@@ -57,8 +56,7 @@ class InfoViewController: UIViewController {
         
         navigationBarView.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
         logoImageView.image = UIImage(named: ImageName.logoImageName)
         
@@ -66,17 +64,16 @@ class InfoViewController: UIViewController {
         
         navigationBarView.addSubview(menuButton)
         menuButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
         menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
         
         //MARK: TitleLabel Settings
         
         view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(navigationBarView.snp.bottom).offset(24)
-            make.left.equalTo(view.snp.left).offset(25)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(navigationBarView.snp.bottom).offset(24)
+            $0.left.equalTo(view.snp.left).offset(25)
         }
         titleLabel.font = titleFont
         titleLabel.text = titleText
@@ -86,11 +83,10 @@ class InfoViewController: UIViewController {
         
         view.addSubview(textLabel)
         textLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(view.snp.left).offset(25)
-            make.right.equalTo(view.snp.right).offset(-25)
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.bottom.equalTo(view.snp.bottom).offset(-20)
+            $0.left.equalTo(view.snp.left).offset(25)
+            $0.right.equalTo(view.snp.right).offset(-25)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.bottom.equalTo(view.snp.bottom).offset(-20)
         }
         textLabel.font = textFont
         textLabel.text = text

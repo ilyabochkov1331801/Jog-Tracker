@@ -49,8 +49,7 @@ class MenuViewController: UIViewController {
         
         view.addSubview(jogsButton)
         jogsButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 183, left: 103, bottom: 433, right: 103))
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 183, left: 103, bottom: 433, right: 103))
         }
         jogsButton.setTitle(jogsButtonText, for: .normal)
         jogsButton.setTitleColor(.black, for: .normal)
@@ -60,8 +59,7 @@ class MenuViewController: UIViewController {
         
         view.addSubview(infoButton)
         infoButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 233, left: 103, bottom: 383, right: 103))
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 233, left: 103, bottom: 383, right: 103))
         }
         infoButton.setTitle(infoButtonText, for: .normal)
         infoButton.setTitleColor(.black, for: .normal)
@@ -71,8 +69,7 @@ class MenuViewController: UIViewController {
         
         view.addSubview(contactButton)
         contactButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 283, left: 103, bottom: 333, right: 103))
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 283, left: 103, bottom: 333, right: 103))
         }
         contactButton.setTitle(contactButtonText, for: .normal)
         contactButton.setTitleColor(.black, for: .normal)
@@ -82,8 +79,7 @@ class MenuViewController: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: 28, left: 329, bottom: 618, right: 25))
+            $0.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: 28, left: 329, bottom: 618, right: 25))
         }
         closeButton.backgroundColor = .gray
         closeButton.setImage(UIImage(named: closeButtonImageName), for: .normal)
@@ -92,8 +88,7 @@ class MenuViewController: UIViewController {
         
         view.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: 20, left: 25, bottom: 610, right: 252))
+            $0.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: 20, left: 25, bottom: 610, right: 252))
         }
         logoImageView.image = UIImage(named: ImageName.logoGreenImageName)
     }

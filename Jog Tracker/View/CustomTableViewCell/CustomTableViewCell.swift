@@ -57,20 +57,18 @@ class CustomTableViewCell: UITableViewCell {
         //MARK: JogIconImageView Settings
         contentView.addSubview(jogIconImageView)
         jogIconImageView.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(contentView).offset(66)
-            make.centerY.equalTo(contentView.snp.centerY)
-            make.height.equalTo(87)
-            make.width.equalTo(87)
+            $0.left.equalTo(contentView).offset(66)
+            $0.centerY.equalTo(contentView.snp.centerY)
+            $0.height.equalTo(87)
+            $0.width.equalTo(87)
         }
         jogIconImageView.image = UIImage(named: jogIconImageName)
         
         //MARK: DateLabel Settings
         contentView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(contentView).offset(199)
-            make.bottom.equalTo(contentView).offset(-126.4)
+            $0.left.equalTo(contentView).offset(199)
+            $0.bottom.equalTo(contentView).offset(-126.4)
         }
         dateLabel.font = dateLabelFont
         dateLabel.textColor = .gray
@@ -80,16 +78,14 @@ class CustomTableViewCell: UITableViewCell {
         contentView.addSubview(distanceValueLabel)
         contentView.addSubview(distanceLabel)
         distanceLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(contentView).offset(199)
-            make.bottom.equalTo(contentView).offset(-73.4)
+            $0.left.equalTo(contentView).offset(199)
+            $0.bottom.equalTo(contentView).offset(-73.4)
         }
         distanceLabel.font = labelsFont
         distanceLabel.text = distanceLabelText
         distanceValueLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(distanceLabel.snp.right).offset(4)
-            make.centerY.equalTo(distanceLabel.snp.centerY)
+            $0.left.equalTo(distanceLabel.snp.right).offset(4)
+            $0.centerY.equalTo(distanceLabel.snp.centerY)
         }
         distanceValueLabel.font = labelsFont
         distanceValueLabel.textColor = .gray
@@ -99,16 +95,14 @@ class CustomTableViewCell: UITableViewCell {
         contentView.addSubview(timeValueLabel)
         contentView.addSubview(timeLabel)
         timeLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(contentView).offset(199)
-            make.bottom.equalTo(contentView).offset(-45.4)
+            $0.left.equalTo(contentView).offset(199)
+            $0.bottom.equalTo(contentView).offset(-45.4)
         }
         timeLabel.font = labelsFont
         timeLabel.text = timeLabelText
         timeValueLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(timeLabel.snp.right).offset(4)
-            make.centerY.equalTo(timeLabel.snp.centerY)
+            $0.left.equalTo(timeLabel.snp.right).offset(4)
+            $0.centerY.equalTo(timeLabel.snp.centerY)
         }
         timeValueLabel.font = labelsFont
         timeValueLabel.textColor = .gray
@@ -118,16 +112,14 @@ class CustomTableViewCell: UITableViewCell {
         contentView.addSubview(speedValueLabel)
         contentView.addSubview(speedLabel)
         speedLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(contentView).offset(199)
-            make.bottom.equalTo(contentView).offset(-101.4)
+            $0.left.equalTo(contentView).offset(199)
+            $0.bottom.equalTo(contentView).offset(-101.4)
         }
         speedLabel.font = labelsFont
         speedLabel.text = speedLabelText
         speedValueLabel.snp.makeConstraints {
-            (make) in
-            make.left.equalTo(speedLabel.snp.right).offset(4)
-            make.centerY.equalTo(speedLabel.snp.centerY)
+            $0.left.equalTo(speedLabel.snp.right).offset(4)
+            $0.centerY.equalTo(speedLabel.snp.centerY)
         }
         speedValueLabel.font = labelsFont
         speedValueLabel.textColor = .gray

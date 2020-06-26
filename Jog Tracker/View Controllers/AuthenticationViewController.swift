@@ -50,11 +50,10 @@ class AuthenticationViewController: UIViewController {
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            (make) in
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(77)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
         navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         
@@ -62,8 +61,7 @@ class AuthenticationViewController: UIViewController {
         
         navigationBarView.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
         logoImageView.image = UIImage(named: ImageName.logoImageName)
         
@@ -71,8 +69,7 @@ class AuthenticationViewController: UIViewController {
         
         view.addSubview(authorizationButton)
         authorizationButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 471, left: 112, bottom: 136, right: 112))
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 471, left: 112, bottom: 136, right: 112))
         }
         authorizationButton.layer.cornerRadius = 30
         authorizationButton.layer.borderWidth = 2
@@ -84,8 +81,7 @@ class AuthenticationViewController: UIViewController {
 
         view.addSubview(bearFaceImageView)
         bearFaceImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 218, left: 107, bottom: 299, right: 107))
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 218, left: 107, bottom: 299, right: 107))
         }
         bearFaceImageView.image = UIImage(named: ImageName.bearFaceImageName)
     }

@@ -14,8 +14,6 @@ class JogViewController: UIViewController {
     //MARK: NavigationBar
     var navigationBarView: UIView!
     var logoImageView: UIImageView!
-//    var menuButton: UIButton!
-//    var filterButton: UIButton!
     
     //MARK: ContentView
     var distanceTextFiled: UITextField!
@@ -66,8 +64,6 @@ class JogViewController: UIViewController {
         
         navigationBarView = UIView()
         logoImageView = UIImageView()
-//        menuButton = UIButton()
-//        filterButton = UIButton()
         distanceTextFiled = UITextField()
         timeTextField = UITextField()
         dateTextField = UITextField()
@@ -102,8 +98,7 @@ class JogViewController: UIViewController {
         //MARK: ContentView Settings
         view.addSubview(contentView)
         contentView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 159, left: 34, bottom: 128, right: 34))
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 159, left: 34, bottom: 128, right: 34))
         }
         contentView.layer.cornerRadius = 20
         contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
@@ -112,8 +107,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(saveButton)
         saveButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 301, left: 35, bottom: 37, right: 35))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 301, left: 35, bottom: 37, right: 35))
         }
         saveButton.layer.cornerRadius = 20
         saveButton.layer.borderColor = UIColor.white.cgColor
@@ -123,8 +117,7 @@ class JogViewController: UIViewController {
         
         saveButton.addSubview(buttonTextLabel)
         buttonTextLabel.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 315, left: 127, bottom: 50, right: 127))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 315, left: 127, bottom: 50, right: 127))
         }
         buttonTextLabel.text = buttonTextLabelText
         buttonTextLabel.textColor = .white
@@ -135,8 +128,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(dateTextField)
         dateTextField.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 229, left: 35, bottom: 120, right: 35))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 229, left: 35, bottom: 120, right: 35))
         }
         dateTextField.borderStyle = .roundedRect
         dateTextField.backgroundColor = .white
@@ -145,8 +137,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(timeTextField)
         timeTextField.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 157, left: 35, bottom: 192, right: 35))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 157, left: 35, bottom: 192, right: 35))
         }
         timeTextField.borderStyle = .roundedRect
         timeTextField.backgroundColor = .white
@@ -155,8 +146,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(distanceTextFiled)
         distanceTextFiled.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 85, left: 35, bottom: 264, right: 35))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 85, left: 35, bottom: 264, right: 35))
         }
         distanceTextFiled.borderStyle = .roundedRect
         distanceTextFiled.backgroundColor = .white
@@ -165,8 +155,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(closeButton)
         closeButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 19, left: 268, bottom: 342, right: 21))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 19, left: 268, bottom: 342, right: 21))
         }
         closeButton.setImage(UIImage(named: closeImageName), for: .normal)
         
@@ -174,8 +163,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(timeLabel)
         timeLabel.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 136, left: 38, bottom: 229, right: 215))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 136, left: 38, bottom: 229, right: 215))
         }
         timeLabel.text = timeLabelText
         timeLabel.font = labelsFont
@@ -184,8 +172,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(distanceLabel)
         distanceLabel.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 64, left: 38, bottom: 301, right: 200))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 64, left: 38, bottom: 301, right: 200))
         }
         distanceLabel.text = distanceLabelText
         distanceLabel.font = labelsFont
@@ -194,8 +181,7 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 208, left: 38, bottom: 157, right: 215))
+            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 208, left: 38, bottom: 157, right: 215))
         }
         dateLabel.text = dateLabelText
         dateLabel.font = labelsFont
@@ -204,11 +190,10 @@ class JogViewController: UIViewController {
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            (make) in
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(77)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
         navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         
@@ -216,28 +201,9 @@ class JogViewController: UIViewController {
         
         navigationBarView.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
         logoImageView.image = UIImage(named: ImageName.logoImageName)
-        
-//        //MARK: FilterButton Settings
-//
-//        navigationBarView.addSubview(filterButton)
-//        filterButton.snp.makeConstraints {
-//            (make) in
-//            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
-//        }
-//        filterButton.setImage(UIImage(named: filterImageName), for: .normal)
-//
-//        //MARK: MenuButton Settings
-//
-//        navigationBarView.addSubview(menuButton)
-//        menuButton.snp.makeConstraints {
-//            (make) in
-//            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
-//        }
-//        menuButton.setImage(UIImage(named: menuImageName), for: .normal)
     }
     
     @objc func close() {

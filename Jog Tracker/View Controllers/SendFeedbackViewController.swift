@@ -57,11 +57,10 @@ class SendFeedbackViewController: UIViewController {
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            (make) in
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(77)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalTo(view.snp.centerX)
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
         navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         
@@ -69,8 +68,7 @@ class SendFeedbackViewController: UIViewController {
         
         navigationBarView.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
         logoImageView.image = UIImage(named: ImageName.logoImageName)
         
@@ -78,8 +76,7 @@ class SendFeedbackViewController: UIViewController {
         
         navigationBarView.addSubview(menuButton)
         menuButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
         menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
         
@@ -87,11 +84,10 @@ class SendFeedbackViewController: UIViewController {
         
         view.addSubview(feedbackTextView)
         feedbackTextView.snp.makeConstraints {
-            (make) in
-            make.top.equalTo(navigationBarView.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(20)
-            make.right.equalTo(view.snp.right).offset(-20)
-            make.height.equalTo(200)
+            $0.top.equalTo(navigationBarView.snp.bottom).offset(20)
+            $0.left.equalTo(view.snp.left).offset(20)
+            $0.right.equalTo(view.snp.right).offset(-20)
+            $0.height.equalTo(200)
         }
         feedbackTextView.layer.borderWidth = 1
         feedbackTextView.layer.borderColor = UIColor.purple.cgColor
@@ -99,27 +95,27 @@ class SendFeedbackViewController: UIViewController {
         //MARK: TopicNumberLabel and TopicNumberTextField Settings
         
         view.addSubview(topicNumberLabel)
-        topicNumberLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(feedbackTextView.snp.bottom).offset(26)
-            make.left.equalTo(view.snp.left).offset(20)
+        topicNumberLabel.snp.makeConstraints {
+            $0.top.equalTo(feedbackTextView.snp.bottom).offset(26)
+            $0.left.equalTo(view.snp.left).offset(20)
         }
         topicNumberLabel.text = topicNumberLabelText
         view.addSubview(topicNumberTextField)
-        topicNumberTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(feedbackTextView.snp.bottom).offset(20)
-            make.left.equalTo(topicNumberLabel.snp.right).offset(20)
-            make.right.equalTo(view.snp.right).offset(-20)
+        topicNumberTextField.snp.makeConstraints {
+            $0.top.equalTo(feedbackTextView.snp.bottom).offset(20)
+            $0.left.equalTo(topicNumberLabel.snp.right).offset(20)
+            $0.right.equalTo(view.snp.right).offset(-20)
         }
         topicNumberTextField.borderStyle = .roundedRect
         
         //MARK: SendButton Settings
         
         view.addSubview(sendButton)
-        sendButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(view.snp.centerX)
-            make.height.equalTo(60)
-            make.width.equalTo(251)
-            make.top.equalTo(topicNumberTextField.snp.bottom).offset(20)
+        sendButton.snp.makeConstraints {
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.height.equalTo(60)
+            $0.width.equalTo(251)
+            $0.top.equalTo(topicNumberTextField.snp.bottom).offset(20)
         }
         sendButton.layer.cornerRadius = 30
         sendButton.layer.borderColor = UIColor.purple.cgColor
