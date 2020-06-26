@@ -14,8 +14,8 @@ class JogViewController: UIViewController {
     //MARK: NavigationBar
     var navigationBarView: UIView!
     var logoImageView: UIImageView!
-    var menuButton: UIButton!
-    var filterButton: UIButton!
+//    var menuButton: UIButton!
+//    var filterButton: UIButton!
     
     //MARK: ContentView
     var distanceTextFiled: UITextField!
@@ -34,9 +34,6 @@ class JogViewController: UIViewController {
     private let timeLabelText = "Time"
     private let distanceLabelText = "Distance"
     private let dateLabelText = "Date"
-    private let logoImageName = "logoImage"
-    private let filterImageName = "filterImage"
-    private let menuImageName = "menuImage"
     
     private let buttonTestLabelFont = UIFont(name: "SFUIText-Bold", size: 12.6)
     private let labelsFont = UIFont(name: "SFUIText-Regular", size: 13)
@@ -69,8 +66,8 @@ class JogViewController: UIViewController {
         
         navigationBarView = UIView()
         logoImageView = UIImageView()
-        menuButton = UIButton()
-        filterButton = UIButton()
+//        menuButton = UIButton()
+//        filterButton = UIButton()
         distanceTextFiled = UITextField()
         timeTextField = UITextField()
         dateTextField = UITextField()
@@ -222,25 +219,25 @@ class JogViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
-        logoImageView.image = UIImage(named: logoImageName)
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
         
-        //MARK: FilterButton Settings
-        
-        navigationBarView.addSubview(filterButton)
-        filterButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
-        }
-        filterButton.setImage(UIImage(named: filterImageName), for: .normal)
-        
-        //MARK: MenuButton Settings
-        
-        navigationBarView.addSubview(menuButton)
-        menuButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
-        }
-        menuButton.setImage(UIImage(named: menuImageName), for: .normal)
+//        //MARK: FilterButton Settings
+//
+//        navigationBarView.addSubview(filterButton)
+//        filterButton.snp.makeConstraints {
+//            (make) in
+//            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
+//        }
+//        filterButton.setImage(UIImage(named: filterImageName), for: .normal)
+//
+//        //MARK: MenuButton Settings
+//
+//        navigationBarView.addSubview(menuButton)
+//        menuButton.snp.makeConstraints {
+//            (make) in
+//            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
+//        }
+//        menuButton.setImage(UIImage(named: menuImageName), for: .normal)
     }
     
     @objc func close() {

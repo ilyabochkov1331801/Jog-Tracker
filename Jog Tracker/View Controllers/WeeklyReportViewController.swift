@@ -11,9 +11,6 @@ import UIKit
 class WeeklyReportViewController: UIViewController {
         
     private let cellIdentifier = "customCell"
-    private let logoImageName = "logoImage"
-    private let filterImageName = "filterSelectImage"
-    private let menuImageName = "menuImage"
     private let fromDateLabelText = "Date from"
     private let toDateLabelText = "Date to"
     private let labelsFont = UIFont(name: "SFUIText-Regular", size: 10)
@@ -94,7 +91,7 @@ class WeeklyReportViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
-        logoImageView.image = UIImage(named: logoImageName)
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
         
         //MARK: FilterButton Settings
         
@@ -103,7 +100,7 @@ class WeeklyReportViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
         }
-        filterButton.setImage(UIImage(named: filterImageName), for: .normal)
+        filterButton.setImage(UIImage(named: ImageName.filterSelectImageName), for: .normal)
         
         //MARK: MenuButton Settings
         
@@ -112,7 +109,7 @@ class WeeklyReportViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
-        menuButton.setImage(UIImage(named: menuImageName), for: .normal)
+        menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
         
         //MARK: FilterSettings Settings
         
@@ -159,11 +156,12 @@ class WeeklyReportViewController: UIViewController {
     @objc func openMenu() {
         let menuViewController =  MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
+        menuViewController.currentNavigationController = navigationController
         present(menuViewController, animated: true)
     }
     
     @objc func closeWeaklyReport() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
     
     @objc func reportFilterSettingsDidChange() {

@@ -10,100 +10,110 @@ import UIKit
 
 class SendFeedbackViewController: UIViewController {
 
-    @IBOutlet weak var feedbackTextView: UITextView! {
-        didSet {
-            feedbackTextView.layer.borderWidth = 1
-            feedbackTextView.layer.cornerRadius = 5
-        }
-    }
-    @IBOutlet weak var topicPicker: UIPickerView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var sendFeedbackButton: UIButton! {
-        didSet {
-            sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2 
-        }
-    }
+    //MARK: NavigationBar
+    var navigationBarView: UIView!
+    var logoImageView: UIImageView!
+    var menuButton: UIButton!
+
+    var feedbackTextView: UITextView!
+    var topicNumberLabel: UILabel!
+    var topicNumberTextField: UITextField!
     
     let activityView = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topicPicker.dataSource = self
-        topicPicker.delegate = self
+        navigationBarView = UIView()
+        logoImageView = UIImageView()
+        menuButton = UIButton()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardAction(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardAction(notification: )),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        feedbackTextView = UITextView()
+        topicNumberLabel = UILabel()
+        topicNumberTextField = UITextField()
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
-        swipeDown.delegate = self
-        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
-        view.addGestureRecognizer(swipeDown)
+        feedbackTextView.delegate = self
+        topicNumberTextField.delegate = self
+        
+        menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
+        
+        view.backgroundColor = .white
     }
-
-    @IBAction func sendButtonTupped(_ sender: UIButton) {
-        guard let textForFeedback = feedbackTextView.text else {
-            return
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        //MARK: NavigationBarView Settings
+        
+        view.addSubview(navigationBarView)
+        navigationBarView.snp.makeConstraints {
+            (make) in
+            make.width.equalTo(view.snp.width)
+            make.height.size.equalTo(77)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalTo(view.snp.centerX)
         }
-        let feedback = Feedback(topicId: topicPicker.selectedRow(inComponent: 0) + 1, feedback: textForFeedback)
-        feedback.delegate = self
-        feedback.sendFeedback()
-        activityView.frame = CGRect(x: 0,
-                                    y: 0,
-                                    width: 100,
-                                    height: 100)
-        activityView.center = view.center
-        activityView.hidesWhenStopped = true
-        view.addSubview(activityView)
-        activityView.startAnimating()
-    }
-    
-    @objc func keyboardAction(notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: Any], let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
+        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        
+        //MARK: LogoImageView Settings
+        
+        navigationBarView.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints {
+            (make) in
+            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
-        if notification.name == UIResponder.keyboardWillShowNotification {
-            let inset = UIEdgeInsets(top: 0,
-                                     left: 0,
-                                     bottom: keyboardFrame.height - view.safeAreaInsets.bottom - 20,
-                                     right: 0)
-            scrollView.contentInset = inset
-            scrollView.scrollIndicatorInsets = inset
-        } else {
-            scrollView.contentInset = .zero
-            scrollView.scrollIndicatorInsets = .zero
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
+        
+        //MARK: MenuButton Settings
+        
+        navigationBarView.addSubview(menuButton)
+        menuButton.snp.makeConstraints {
+            (make) in
+            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
+        menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
+        
+        //MARK: FeedbackTextView Settings
+        
+        view.addSubview(feedbackTextView)
+        feedbackTextView.snp.makeConstraints {
+            (make) in
+            make.top.equalTo(navigationBarView.snp.bottom).offset(20)
+            make.left.equalTo(view.snp.left).offset(20)
+            make.right.equalTo(view.snp.right).offset(-20)
+            make.height.equalTo(200)
+        }
+        feedbackTextView.layer.borderWidth = 1
+        feedbackTextView.layer.borderColor = UIColor.purple.cgColor
+        
+        //MARK: TopicNumberLabel and TopicNumberTextField Settings
+        
+        
     }
-    
-    @objc func hideKeyboardOnSwipeDown() {
-        feedbackTextView.resignFirstResponder()
-    }
-}
 
-extension SendFeedbackViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
+//    @IBAction func sendButtonTupped(_ sender: UIButton) {
+//        guard let textForFeedback = feedbackTextView.text else {
+//            return
+//        }
+//        let feedback = Feedback(topicId: topicPicker.selectedRow(inComponent: 0) + 1, feedback: textForFeedback)
+//        feedback.delegate = self
+//        feedback.sendFeedback()
+//        activityView.frame = CGRect(x: 0,
+//                                    y: 0,
+//                                    width: 100,
+//                                    height: 100)
+//        activityView.center = view.center
+//        activityView.hidesWhenStopped = true
+//        view.addSubview(activityView)
+//        activityView.startAnimating()
+//    }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        5
+    @objc func openMenu() {
+        let menuViewController =  MenuViewController()
+        menuViewController.modalPresentationStyle = .fullScreen
+        menuViewController.currentNavigationController = navigationController
+        present(menuViewController, animated: true)
     }
-}
-
-extension SendFeedbackViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(row + 1)
-    }
-}
-
-extension SendFeedbackViewController: UIGestureRecognizerDelegate {
-    
 }
 
 extension SendFeedbackViewController: FeedbackDelegate {
@@ -135,5 +145,11 @@ extension SendFeedbackViewController: FeedbackDelegate {
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+}
+
+extension SendFeedbackViewController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

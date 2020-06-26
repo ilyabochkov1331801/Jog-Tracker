@@ -22,10 +22,6 @@ class JogsViewController: UIViewController {
     var addNewJogButton: UIButton!
         
     private let cellIdentifier = "customCell"
-    private let logoImageName = "logoImage"
-    private let filterImageName = "filterImage"
-    private let menuImageName = "menuImage"
-    private let addJogImageName = "addJogImage"
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +90,7 @@ class JogsViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
-        logoImageView.image = UIImage(named: logoImageName)
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
         
         //MARK: FilterButton Settings
         
@@ -103,7 +99,7 @@ class JogsViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 26, left: 251, bottom: 25, right: 98))
         }
-        filterButton.setImage(UIImage(named: filterImageName), for: .normal)
+        filterButton.setImage(UIImage(named: ImageName.filterImageName), for: .normal)
         
         //MARK: MenuButton Settings
         
@@ -112,7 +108,7 @@ class JogsViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
         }
-        menuButton.setImage(UIImage(named: menuImageName), for: .normal)
+        menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
         
         //MARK: AddNewJogButton Settings
         
@@ -124,7 +120,7 @@ class JogsViewController: UIViewController {
             make.right.equalTo(view.snp.right).offset(-30)
             make.bottom.equalTo(view.snp.bottom).offset(-30)
         }
-        addNewJogButton.setImage(UIImage(named: addJogImageName), for: .normal)
+        addNewJogButton.setImage(UIImage(named: ImageName.addJogImageName), for: .normal)
     }
 
     @objc func newJog() {
@@ -139,11 +135,13 @@ class JogsViewController: UIViewController {
     @objc func openMenu() {
         let menuViewController =  MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
+        menuViewController.currentNavigationController = navigationController
         present(menuViewController, animated: true)
     }
+    
     @objc func presentWeaklyReport() {
         let weeklyReportViewController = WeeklyReportViewController()
-        navigationController?.pushViewController(weeklyReportViewController, animated: true)
+        navigationController?.pushViewController(weeklyReportViewController, animated: false)
     }
     
     private func alertConfiguration(with error: Error) {

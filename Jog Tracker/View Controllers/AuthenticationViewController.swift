@@ -13,16 +13,12 @@ class AuthenticationViewController: UIViewController {
     //MARK: NavigationBar
     var navigationBarView: UIView!
     var logoImageView: UIImageView!
-    var menuButton: UIButton!
     var authorizationButton: UIButton!
     var bearFaceImageView: UIImageView!
     
     private let errorKey = "error"
     private let authorizationButtonText = "Let me in"
     private let testUUID = "hello"
-    private let logoImageName = "logoImage"
-    private let menuImageName = "menuImage"
-    private let bearFaceImageName = "bearFaceImage"
     
     var authentication: Authentication!
     
@@ -31,7 +27,6 @@ class AuthenticationViewController: UIViewController {
         
         navigationBarView = UIView()
         logoImageView = UIImageView()
-        menuButton = UIButton()
         bearFaceImageView = UIImageView()
         authorizationButton = UIButton()
         authorizationButton.addTarget(self, action: #selector(authorizationButtonTupped), for: .touchUpInside)
@@ -70,16 +65,7 @@ class AuthenticationViewController: UIViewController {
             (make) in
             make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
-        logoImageView.image = UIImage(named: logoImageName)
-        
-        //MARK: MenuButton Settings
-        
-        navigationBarView.addSubview(menuButton)
-        menuButton.snp.makeConstraints {
-            (make) in
-            make.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
-        }
-        menuButton.setImage(UIImage(named: menuImageName), for: .normal)
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
         
         //MARK: AuthorizationButton Settings
         
@@ -101,7 +87,7 @@ class AuthenticationViewController: UIViewController {
             (make) in
             make.edges.equalTo(view).inset(UIEdgeInsets(top: 218, left: 107, bottom: 299, right: 107))
         }
-        bearFaceImageView.image = UIImage(named: bearFaceImageName)
+        bearFaceImageView.image = UIImage(named: ImageName.bearFaceImageName)
     }
     
     @objc func authorizationButtonTupped(_ sender: UIButton) {

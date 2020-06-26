@@ -15,13 +15,14 @@ class MenuViewController: UIViewController {
     private let infoButtonText = "INFO"
     private let contactButtonText = "CONTACT"
     private let closeButtonImageName = "closeImage"
-    private let logoImageName = "logoGreenImage"
 
     var logoImageView: UIImageView!
     var closeButton: UIButton!
     var jogsButton: UIButton!
     var infoButton: UIButton!
     var contactButton: UIButton!
+    
+    var currentNavigationController: UINavigationController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class MenuViewController: UIViewController {
         jogsButton.addTarget(self, action: #selector(jogsButtonTupped), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         contactButton.addTarget(self, action: #selector(openFeedbackViewController), for: .touchUpInside)
+        infoButton.addTarget(self, action: #selector(openInfoViewController), for: .touchUpInside)
         
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
@@ -93,10 +95,11 @@ class MenuViewController: UIViewController {
             (make) in
             make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: 20, left: 25, bottom: 610, right: 252))
         }
-        logoImageView.image = UIImage(named: logoImageName)
+        logoImageView.image = UIImage(named: ImageName.logoGreenImageName)
     }
     
     @objc func jogsButtonTupped() {
+        currentNavigationController?.viewControllers = [ JogsViewController() ]
         dismiss(animated: true)
     }
     
@@ -105,6 +108,12 @@ class MenuViewController: UIViewController {
     }
     
     @objc func openFeedbackViewController() {
-        present(SendFeedbackViewController(), animated: true)
+        currentNavigationController?.viewControllers = [ SendFeedbackViewController() ]
+        dismiss(animated: true)
+    }
+    
+    @objc func openInfoViewController() {
+        currentNavigationController?.viewControllers = [ InfoViewController() ]
+        dismiss(animated: true)
     }
 }
