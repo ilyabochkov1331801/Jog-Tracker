@@ -14,10 +14,10 @@ class AuthenticationService {
     private init() { }
     
     private let authenticationApiDataManager = AuthenticationApiDataManager()
-    private let authenticationKeychainDataManager = AuthenticationKeychainDataManager()
+    private let keychainDataManager = KeychainDataManager()
     
     var accessToken: String? {
-        return authenticationKeychainDataManager.accessToken()
+        return keychainDataManager.accessToken()
     }
     
     var isAuthorized: Bool {
@@ -28,7 +28,7 @@ class AuthenticationService {
         authenticationApiDataManager.authorization(with: UUID) {
             switch $0 {
             case .success(let newAccessToken):
-                self.authenticationKeychainDataManager.updateToken(with: newAccessToken)
+                self.keychainDataManager.updateToken(with: newAccessToken)
                 completionHandler(.success(()))
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -37,6 +37,6 @@ class AuthenticationService {
     }
     
     func logout() {
-        authenticationKeychainDataManager.logout()
+        keychainDataManager.logout()
     }
 }

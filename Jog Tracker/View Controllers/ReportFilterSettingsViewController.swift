@@ -14,6 +14,7 @@ class ReportFilterSettingsViewController: UIViewController {
     @IBOutlet weak var toDatePicker: UIDatePicker!
     
     private let weeklyReports = WeeklyReports.shared
+    var delegate: ReportFilterSettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,12 @@ class ReportFilterSettingsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        weeklyReports.reportFilter = ReportFilter(fromDate: fromDatePicker.date, toDate: toDatePicker.date)
+        weeklyReports.set(newReportFilter: ReportFilter(fromDate: fromDatePicker.date, toDate: toDatePicker.date)) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.delegate?.updateReport()
+        }
         super.viewWillDisappear(animated)
     }
 }

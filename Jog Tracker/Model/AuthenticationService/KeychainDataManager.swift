@@ -9,7 +9,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class AuthenticationKeychainDataManager {
+class KeychainDataManager {
     private let accessTokenKey = "accessToken"
     
     func accessToken() -> String? {

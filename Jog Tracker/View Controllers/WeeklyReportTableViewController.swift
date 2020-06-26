@@ -18,8 +18,9 @@ class WeeklyReportTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        weeklyReports.delegate = self
-        self.weeklyReports.calculateWeaklyReportsList()
+        self.weeklyReports.set(newReportFilter: ReportFilter()) { [weak self] in
+            self?.updateReport()
+        }
         tableView.rowHeight = 100
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
@@ -46,12 +47,14 @@ class WeeklyReportTableViewController: UITableViewController {
     }
     
     @objc func openReportFilterSettings() {
-        present(ReportFilterSettingsViewController(), animated: true)
+        let reportFilterSettingsViewController = ReportFilterSettingsViewController()
+        reportFilterSettingsViewController.delegate = self
+        present(reportFilterSettingsViewController, animated: true)
     }
 }
 
-extension WeeklyReportTableViewController: WeeklyReportsDelegate {
-    func updatingDataDidFinished() {
+extension WeeklyReportTableViewController: ReportFilterSettingsViewControllerDelegate {
+    func updateReport() {
         tableView.reloadData()
     }
 }

@@ -24,7 +24,7 @@ class JogsApiDataManager: ApiDataManager {
             completionHandler(.failure(ApiDataManagerErrors.nilRequest))
             return
         }
-        super.makeURLRequest(with: request) { (result: Result<JogsResponseMessage, Error>) in
+        makeURLRequest(with: request) { (result: Result<JogsResponseMessage, Error>) in
             switch result {
                 case .success(let newJogsResponseMessage):
                     completionHandler(.success(newJogsResponseMessage.response.jogs))
@@ -42,7 +42,7 @@ class JogsApiDataManager: ApiDataManager {
                                                            completionHandler(.failure(ApiDataManagerErrors.nilRequest))
                                                             return
         }
-        super.makeURLRequest(with: request) { (result: Result<UpdatedJogResponseMessage, Error>) in
+        makeURLRequest(with: request) { (result: Result<UpdatedJogResponseMessage, Error>) in
             switch result {
                 case .success(let newUpdatedJogResponseMessage):
                     let updatedJog = newUpdatedJogResponseMessage.response
@@ -68,7 +68,7 @@ class JogsApiDataManager: ApiDataManager {
                                                             completionHandler(.failure(ApiDataManagerErrors.nilRequest))
                                                             return
         }
-        super.makeURLRequest(with: request) { (result: Result<UpdatedJogResponseMessage, Error>) in
+        makeURLRequest(with: request) { (result: Result<UpdatedJogResponseMessage, Error>) in
             switch result {
                 case .success(let newUpdatedJogResponseMessage):
                     let updatedJog = newUpdatedJogResponseMessage.response

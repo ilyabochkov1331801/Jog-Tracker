@@ -10,12 +10,12 @@ import Foundation
 
 class FeedbackService {
     
-    private let authenticationService: AuthenticationService = AuthenticationService.shared
+    private let keychainDataManager = KeychainDataManager()
 
     private let feedbackApiDataManager = FeedbackApiDataManager()
     
     func sendFeedback(text: String, topicNumber: Int, completionHandler: @escaping (Result<Void, Error>) -> ()) {
-        guard let accessToken = authenticationService.accessToken else {
+        guard let accessToken = keychainDataManager.accessToken() else {
             return
         }
         feedbackApiDataManager.sendFeedback(accessToken: accessToken, topicId: topicNumber, text: text) {

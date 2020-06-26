@@ -13,28 +13,19 @@ class JogsService {
     static var shared = JogsService()
     private init() { }
     
-    private(set) var jogsList: Array<Jog> = [] {
-        didSet {
-            jogsCacheDataManager.updateToken(newJogsList: jogsList)
-            delegate?.updatingDataDidFinished()
-        }
-    }
-
-    private let authenticationService: AuthenticationService = AuthenticationService.shared
+    private let keychainDataManager = KeychainDataManager()
     
     private let jogsApiDataManager = JogsApiDataManager()
-    private let jogsCacheDataManager = JogsCacheDataManager.shared
-    
-    var delegate: JogsServiceDelegate?
-    
+    private let jogsCacheDataManager = JogsCacheDataManager()
+        
     func update(jog: Jog, completionHandler: @escaping (Result<Void, Error>) -> ()) {
-        guard let accessToken = authenticationService.accessToken else {
+        guard let accessToken = keychainDataManager.accessToken() else {
             return
         }
         jogsApiDataManager.updateJog(with: accessToken, jog: jog) {
             switch $0 {
             case .success(let newJog):
-                self.appendToList(newJog: newJog)
+                self.jogsCacheDataManager.updateCache(newJog: newJog)
                 completionHandler(.success(()))
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -43,13 +34,13 @@ class JogsService {
     }
     
     func add(date: Date, time: Int, distance: Double, completionHandler: @escaping (Result<Void, Error>) -> ()) {
-        guard let accessToken = authenticationService.accessToken else {
+        guard let accessToken = keychainDataManager.accessToken() else {
             return
         }
         jogsApiDataManager.addNewJog(with: accessToken, date: date, time: time, distance: distance) {
             switch $0 {
             case .success(let newJog):
-                self.appendToList(newJog: newJog)
+                self.jogsCacheDataManager.updateCache(newJog: newJog)
                 completionHandler(.success(()))
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -57,36 +48,22 @@ class JogsService {
         }
     }
     
-    func loadJogList(completionHandler: @escaping (Result<Void, Error>) -> ()) {
-        guard let accessToken = authenticationService.accessToken else {
-            return
-        }
+    func getJogs(completionHandler: @escaping (Result<Array<Jog>, Error>) -> ()) {
         if let cachedJogsList = jogsCacheDataManager.cachedJogsList() {
-            jogsList = cachedJogsList
-            completionHandler(.success(()))
-        }
-        jogsApiDataManager.loadJogsList(with: accessToken) {
-            switch $0 {
-            case .success(let newJogsList):
-                self.jogsList = newJogsList
-                completionHandler(.success(()))
-            case .failure(let error):
-                completionHandler(.failure(error))
+            completionHandler(.success(cachedJogsList))
+        } else {
+            guard let accessToken = keychainDataManager.accessToken() else {
+                return
             }
-        }
-    }
-    
-    private func appendToList(newJog: Jog) {
-        var flag = false
-        for (index, jog) in jogsList.enumerated() {
-            if jog.id == newJog.id {
-                jogsList[index] = newJog
-                flag = true
-                break
+            jogsApiDataManager.loadJogsList(with: accessToken) {
+                switch $0 {
+                case .success(let newJogsList):
+                    self.jogsCacheDataManager.updateCache(newJogsList: newJogsList)
+                    completionHandler(.success(newJogsList))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
             }
-        }
-        if !flag {
-            jogsList.append(newJog)
         }
     }
 }

@@ -10,9 +10,6 @@ import Foundation
 
 class JogsCacheDataManager {
     
-    static let shared = JogsCacheDataManager()
-    private init() {}
-    
     private var jogsList: Array<Jog>?
     
     func cachedJogsList() -> Array<Jog>? {
@@ -26,7 +23,25 @@ class JogsCacheDataManager {
         jogsList = nil
     }
     
-    func updateToken(newJogsList: Array<Jog>) {
+    func updateCache(newJog: Jog) {
+        appendToList(newJog: newJog)
+    }
+    
+    func updateCache(newJogsList: Array<Jog>) {
         jogsList = newJogsList
+    }
+    
+    private func appendToList(newJog: Jog) {
+        
+        let updatedJogIndex = jogsList?.firstIndex {
+            $0.id == newJog.id
+        }
+        
+        guard updatedJogIndex != nil else {
+            jogsList?.append(newJog)
+            return
+        }
+        
+        jogsList?[updatedJogIndex!] = newJog
     }
 }

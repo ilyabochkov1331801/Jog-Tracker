@@ -16,7 +16,7 @@ class AuthenticationApiDataManager: ApiDataManager {
             return
         }
         
-        super.makeURLRequest(with: request) { (result: Result<AuthenticationResponseMessage, Error>) in
+        makeURLRequest(with: request) { (result: Result<AuthenticationResponseMessage, Error>) in
             switch result {
                 case .success(let newAuthenticationResponseMessage):
                     completionHandler(.success(newAuthenticationResponseMessage.response.accessToken))

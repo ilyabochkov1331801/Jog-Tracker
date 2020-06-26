@@ -16,6 +16,7 @@ class JogViewController: UIViewController {
     
     private let controllerTitle = "Your jog"
     private var jog: Jog?
+    var delegate: JogViewControllerDelegate?
     
     init(newJog: Jog) {
         super.init(nibName: nil, bundle: nil)
@@ -74,7 +75,7 @@ class JogViewController: UIViewController {
                 }
                 switch result {
                 case .success(()):
-                    break
+                    self.delegate?.updateData()
                 case .failure(let error):
                     self.alertConfiguration(with: error)
                 }
@@ -87,7 +88,7 @@ class JogViewController: UIViewController {
                 }
                 switch result {
                 case .success(()):
-                    break
+                    self.delegate?.updateData()
                 case .failure(let error):
                     self.alertConfiguration(with: error)
                 }

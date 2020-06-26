@@ -16,7 +16,7 @@ class FeedbackApiDataManager: ApiDataManager {
                                                         completionHandler(.failure(ApiDataManagerErrors.nilRequest))
                                                         return
         }
-        super.makeURLRequest(with: request) { (result: Result<FeedbackResponseMessage, Error>) in
+        makeURLRequest(with: request) { (result: Result<FeedbackResponseMessage, Error>) in
             switch result {
                 case .success(let newFeedbackResponseMessage):
                     completionHandler(.success(newFeedbackResponseMessage.response))
