@@ -206,7 +206,7 @@ class JogViewController: UIViewController {
         navigationBarView.snp.makeConstraints {
             (make) in
             make.width.equalTo(view.snp.width)
-            make.height.size.equalTo(77)
+            make.height.equalTo(77)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalTo(view.snp.centerX)
         }

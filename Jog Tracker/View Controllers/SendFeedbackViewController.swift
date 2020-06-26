@@ -18,8 +18,11 @@ class SendFeedbackViewController: UIViewController {
     var feedbackTextView: UITextView!
     var topicNumberLabel: UILabel!
     var topicNumberTextField: UITextField!
+    var sendButton: UIButton!
     
     let activityView = UIActivityIndicatorView(style: .gray)
+    let topicNumberLabelText = "Topic number:"
+    let sendFeedbackButtonText = "Send"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +34,18 @@ class SendFeedbackViewController: UIViewController {
         feedbackTextView = UITextView()
         topicNumberLabel = UILabel()
         topicNumberTextField = UITextField()
+        sendButton = UIButton()
         
         feedbackTextView.delegate = self
         topicNumberTextField.delegate = self
         
         menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(sendButtonTupped), for: .touchUpInside)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        swipeDown.direction = .down
+        swipeDown.delegate = self
+        view.addGestureRecognizer(swipeDown)
         
         view.backgroundColor = .white
     }
@@ -49,7 +59,7 @@ class SendFeedbackViewController: UIViewController {
         navigationBarView.snp.makeConstraints {
             (make) in
             make.width.equalTo(view.snp.width)
-            make.height.size.equalTo(77)
+            make.height.equalTo(77)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalTo(view.snp.centerX)
         }
@@ -88,25 +98,60 @@ class SendFeedbackViewController: UIViewController {
         
         //MARK: TopicNumberLabel and TopicNumberTextField Settings
         
+        view.addSubview(topicNumberLabel)
+        topicNumberLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(feedbackTextView.snp.bottom).offset(26)
+            make.left.equalTo(view.snp.left).offset(20)
+        }
+        topicNumberLabel.text = topicNumberLabelText
+        view.addSubview(topicNumberTextField)
+        topicNumberTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(feedbackTextView.snp.bottom).offset(20)
+            make.left.equalTo(topicNumberLabel.snp.right).offset(20)
+            make.right.equalTo(view.snp.right).offset(-20)
+        }
+        topicNumberTextField.borderStyle = .roundedRect
         
+        //MARK: SendButton Settings
+        
+        view.addSubview(sendButton)
+        sendButton.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view.snp.centerX)
+            make.height.equalTo(60)
+            make.width.equalTo(251)
+            make.top.equalTo(topicNumberTextField.snp.bottom).offset(20)
+        }
+        sendButton.layer.cornerRadius = 30
+        sendButton.layer.borderColor = UIColor.purple.cgColor
+        sendButton.layer.borderWidth = 2
+        sendButton.setTitle(sendFeedbackButtonText, for: .normal)
+        sendButton.setTitleColor(.purple, for: .normal)
     }
 
-//    @IBAction func sendButtonTupped(_ sender: UIButton) {
-//        guard let textForFeedback = feedbackTextView.text else {
-//            return
-//        }
-//        let feedback = Feedback(topicId: topicPicker.selectedRow(inComponent: 0) + 1, feedback: textForFeedback)
-//        feedback.delegate = self
-//        feedback.sendFeedback()
-//        activityView.frame = CGRect(x: 0,
-//                                    y: 0,
-//                                    width: 100,
-//                                    height: 100)
-//        activityView.center = view.center
-//        activityView.hidesWhenStopped = true
-//        view.addSubview(activityView)
-//        activityView.startAnimating()
-//    }
+    @objc func sendButtonTupped() {
+        guard let textForFeedback = feedbackTextView.text else {
+            return
+        }
+        guard let topicIdString = topicNumberTextField.text,
+            let topicId = Int(topicIdString) else {
+                return
+        }
+        let feedback = Feedback(topicId: topicId, feedback: textForFeedback)
+        feedback.delegate = self
+        feedback.sendFeedback()
+        activityView.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: 100,
+                                    height: 100)
+        activityView.center = view.center
+        activityView.hidesWhenStopped = true
+        view.addSubview(activityView)
+        activityView.startAnimating()
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
     
     @objc func openMenu() {
         let menuViewController =  MenuViewController()
@@ -119,14 +164,18 @@ class SendFeedbackViewController: UIViewController {
 extension SendFeedbackViewController: FeedbackDelegate {
     func feedbackWasPosted() {
         DispatchQueue.main.async {
-            self.dismiss(animated: true)
+            self.activityView.stopAnimating()
+            let menuViewController =  MenuViewController()
+            menuViewController.modalPresentationStyle = .fullScreen
+            menuViewController.currentNavigationController = self.navigationController
+            self.present(menuViewController, animated: true)
         }
     }
     
     func feedbackWasCancel(with error: Error) {
         DispatchQueue.main.async {
-            self.alertConfiguration(with: error)
             self.activityView.stopAnimating()
+            self.alertConfiguration(with: error)
         }
     }
     
@@ -152,4 +201,8 @@ extension SendFeedbackViewController: UITextFieldDelegate, UITextViewDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
+}
+
+extension SendFeedbackViewController: UIGestureRecognizerDelegate {
+    
 }
