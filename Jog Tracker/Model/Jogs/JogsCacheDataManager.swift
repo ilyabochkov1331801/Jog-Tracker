@@ -36,12 +36,10 @@ class JogsCacheDataManager {
         let updatedJogIndex = jogsList?.firstIndex {
             $0.id == newJog.id
         }
-        
-        guard updatedJogIndex != nil else {
+        if let updatedJogIndex = updatedJogIndex {
+            jogsList?[updatedJogIndex] = newJog
+        } else {
             jogsList?.append(newJog)
-            return
         }
-        
-        jogsList?[updatedJogIndex!] = newJog
     }
 }
