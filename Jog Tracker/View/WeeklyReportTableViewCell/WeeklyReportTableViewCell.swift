@@ -66,8 +66,8 @@ class WeeklyReportTableViewCell: UITableViewCell {
         contentView.addSubview(jogIconImageView)
         jogIconImageView.snp.makeConstraints {
             (make) in
-            make.height.size.equalTo(87)
-            make.width.size.equalTo(87)
+            make.height.equalTo(87)
+            make.width.equalTo(87)
             make.left.equalTo(contentView).offset(66)
             make.centerY.equalToSuperview()
         }

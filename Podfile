@@ -4,5 +4,5 @@ use_frameworks!
 
 target 'Jog Tracker' do
   pod 'SwiftKeychainWrapper'
-  pod 'SnapKit', '~> 4.0'
+  pod 'SnapKit'
 end
