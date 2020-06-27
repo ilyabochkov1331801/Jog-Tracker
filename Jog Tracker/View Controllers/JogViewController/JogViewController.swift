@@ -50,13 +50,6 @@ class JogViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        return dateFormatter
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,9 +75,9 @@ class JogViewController: UIViewController {
         if let jog = jog {
             distanceTextFiled.text = String(jog.distance)
             timeTextField.text = String(jog.time)
-            dateTextField.text = dateFormatter.string(from: Date(timeIntervalSince1970: jog.date))
+            dateTextField.text = DateFormatters.jogVCDateFormatter.string(from: Date(timeIntervalSince1970: jog.date))
         } else {
-            dateTextField.text = dateFormatter.string(from: Date())
+            dateTextField.text = DateFormatters.jogVCDateFormatter.string(from: Date())
         }
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
@@ -215,7 +208,7 @@ class JogViewController: UIViewController {
             let distanceString = distanceTextFiled.text,
             let distance = Double(distanceString),
             let dateString = dateTextField.text,
-            let date = dateFormatter.date(from: dateString )else {
+            let date = DateFormatters.jogVCDateFormatter.date(from: dateString) else {
                 return
         }
         if let jog = jog {

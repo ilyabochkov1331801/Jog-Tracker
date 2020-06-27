@@ -29,13 +29,6 @@ class WeeklyReportTableViewCell: UITableViewCell {
     var speedLabel: UILabel!
     var speedValueLabel: UILabel!
     
-    private var dateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        return dateFormatter
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -133,13 +126,13 @@ class WeeklyReportTableViewCell: UITableViewCell {
     func configurateCell(distance: Double, time: Int, fromDate: Date, toDate: Date) {
         distanceValueLabel.text = String(format: stringFormat, distance) + distanceLabelValueUnit
         timeValueLabel.text = String(time) + timeLabelValueUnit
-        dateLabel.text = dateFormatter.string(from: fromDate) + " - " + dateFormatter.string(from: toDate)
+        dateLabel.text = DateFormatters.cellDateFromatter.string(from: fromDate) + " - " + DateFormatters.cellDateFromatter.string(from: toDate)
         speedValueLabel.text = String(format: stringFormat, speed(time: time, distance: distance)) + speedLabelValueUnit
     }
     
     private func convert(timeInterval: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: timeInterval)
-        return dateFormatter.string(from: date)
+        return DateFormatters.cellDateFromatter.string(from: date)
     }
     
     private func speed(time: Int, distance: Double) -> Double {

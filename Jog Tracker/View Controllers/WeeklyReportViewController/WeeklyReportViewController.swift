@@ -35,12 +35,6 @@ class WeeklyReportViewController: UIViewController {
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(WeeklyReportTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        self.weeklyReports.set(newReportFilter: ReportFilter()) {
-            self.tableView.reloadData()
-        }
-        tableView.rowHeight = 190
-        
         navigationBarView = UIView()
         logoImageView = UIImageView()
         menuButton = UIButton()
@@ -54,7 +48,10 @@ class WeeklyReportViewController: UIViewController {
         toDateTextFiled.delegate = self
         fromDateTextFiled.delegate = self
         toDateLabel = UILabel()
-    
+
+        tableView.register(WeeklyReportTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        self.weeklyReports.set(newReportFilter: ReportFilter(), completionHandler: completionHandler)
+        tableView.rowHeight = 190
         view.backgroundColor = .white
     }
     
@@ -118,7 +115,7 @@ class WeeklyReportViewController: UIViewController {
         
         filterSettingsView.addSubview(fromDateTextFiled)
         fromDateTextFiled.snp.makeConstraints {
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 106, bottom: 13, right: 197))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 106, bottom: 13, right: 190))
         }
         fromDateTextFiled.borderStyle = .roundedRect
 
@@ -134,13 +131,13 @@ class WeeklyReportViewController: UIViewController {
         
         filterSettingsView.addSubview(toDateTextFiled)
         toDateTextFiled.snp.makeConstraints {
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 274, bottom: 13, right: 29))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 267, bottom: 13, right: 29))
         }
         toDateTextFiled.borderStyle = .roundedRect
 
         filterSettingsView.addSubview(toDateLabel)
         toDateLabel.snp.makeConstraints { 
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 213, bottom: 21, right: 117))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 206, bottom: 21, right: 124))
         }
         toDateLabel.font = Fonts.weeklyReportVCLabelFont
         toDateLabel.text = toDateLabelText
@@ -156,6 +153,12 @@ class WeeklyReportViewController: UIViewController {
     
     @objc func closeWeaklyReport() {
         navigationController?.popViewController(animated: false)
+    }
+    
+    private lazy var completionHandler: () -> () = {
+        self.tableView.reloadData()
+        self.toDateTextFiled.text = DateFormatters.weeklyReportVCDateFormatter.string(from: self.weeklyReports.reportFilter.toDate)
+        self.fromDateTextFiled.text = DateFormatters.weeklyReportVCDateFormatter.string(from: self.weeklyReports.reportFilter.fromDate)
     }
 }
 
@@ -187,5 +190,16 @@ extension WeeklyReportViewController: UITableViewDataSource, UITableViewDelegate
 extension WeeklyReportViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let fromDateString = fromDateTextFiled.text,
+            let fromDate = DateFormatters.weeklyReportVCDateFormatter.date(from: fromDateString),
+            let toDateString = toDateTextFiled.text,
+            let toDate = DateFormatters.weeklyReportVCDateFormatter.date(from: toDateString) else {
+                return
+        }
+        let weeklyReportFilter = ReportFilter(fromDate: fromDate, toDate: toDate)
+        weeklyReports.set(newReportFilter: weeklyReportFilter, completionHandler: completionHandler)
     }
 }

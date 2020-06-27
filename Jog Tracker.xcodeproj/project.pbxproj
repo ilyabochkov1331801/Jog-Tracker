@@ -18,6 +18,7 @@
 		EA468E6724A7A6B000597036 /* JogViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */; };
 		EA468E6924A7A73000597036 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA468E6824A7A73000597036 /* Fonts.swift */; };
 		EA468E6B24A7AAF000597036 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA468E6A24A7AAF000597036 /* Colors.swift */; };
+		EA468E6D24A7B80A00597036 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA468E6C24A7B80A00597036 /* DateFormatters.swift */; };
 		EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */; };
 		EA6ABB66248FFB4D00E59BFB /* FeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB65248FFB4D00E59BFB /* FeedbackService.swift */; };
 		EA6ABB7124901CF700E59BFB /* WeeklyReports .swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7024901CF700E59BFB /* WeeklyReports .swift */; };
@@ -44,7 +45,6 @@
 		EAF7F65A24A4EDC60047A737 /* JogsApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65924A4EDC60047A737 /* JogsApiDataManager.swift */; };
 		EAF7F65C24A4F9820047A737 /* JogsCacheDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65B24A4F9820047A737 /* JogsCacheDataManager.swift */; };
 		EAF7F65E24A516D80047A737 /* FeedbackApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65D24A516D80047A737 /* FeedbackApiDataManager.swift */; };
-		EAF7F66C24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */; };
 		EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */; };
 		EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F56248E91B2008BE894 /* Assets.xcassets */; };
 		EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F58248E91B2008BE894 /* LaunchScreen.storyboard */; };
@@ -65,6 +65,7 @@
 		EA424CFB24A3D8F8001A5180 /* FeedbackResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackResponseMessage.swift; sourceTree = "<group>"; };
 		EA468E6824A7A73000597036 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EA468E6A24A7AAF000597036 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EA468E6C24A7B80A00597036 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackViewController.swift; sourceTree = "<group>"; };
 		EA6ABB65248FFB4D00E59BFB /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		EAF7F65B24A4F9820047A737 /* JogsCacheDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsCacheDataManager.swift; sourceTree = "<group>"; };
 		EAF7F65D24A516D80047A737 /* FeedbackApiDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackApiDataManager.swift; sourceTree = "<group>"; };
 		EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogViewControllerDelegate.swift; sourceTree = "<group>"; };
-		EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilterSettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		EAFB8F4A248E91AC008BE894 /* Jog Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jog Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFB8F56248E91B2008BE894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +167,7 @@
 				EAF7F65524A4E5190047A737 /* HTTPMethod.swift */,
 				EA468E6824A7A73000597036 /* Fonts.swift */,
 				EA468E6A24A7AAF000597036 /* Colors.swift */,
+				EA468E6C24A7B80A00597036 /* DateFormatters.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -183,7 +184,6 @@
 		EA468E6524A7A61900597036 /* WeeklyReportViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */,
 				EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */,
 				EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */,
 			);
@@ -446,7 +446,6 @@
 				EA6ABB7B24902A8800E59BFB /* WeeklyReportTableViewCell.swift in Sources */,
 				EA468E6B24A7AAF000597036 /* Colors.swift in Sources */,
 				EAF7F65C24A4F9820047A737 /* JogsCacheDataManager.swift in Sources */,
-				EAF7F66C24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift in Sources */,
 				EAF7F65424A4E4320047A737 /* ApiKeys.swift in Sources */,
 				EAF7F65024A4D8C70047A737 /* AuthenticationApiDataManager.swift in Sources */,
 				EAF6E503248EE1AA0093FD16 /* JogsResponse.swift in Sources */,
@@ -473,6 +472,7 @@
 				EAF6E4F4248ECD2E0093FD16 /* JogsService.swift in Sources */,
 				EA424CED24A3AD23001A5180 /* AuthenticationResponseMessage.swift in Sources */,
 				EA468E6924A7A73000597036 /* Fonts.swift in Sources */,
+				EA468E6D24A7B80A00597036 /* DateFormatters.swift in Sources */,
 				EAF7F65A24A4EDC60047A737 /* JogsApiDataManager.swift in Sources */,
 				EAF6E501248EE1100093FD16 /* JogsResponseMessage.swift in Sources */,
 				EAF7F65E24A516D80047A737 /* FeedbackApiDataManager.swift in Sources */,

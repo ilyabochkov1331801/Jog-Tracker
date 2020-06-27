@@ -130,11 +130,8 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     private func convert(timeInterval: TimeInterval) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
         let date = Date(timeIntervalSince1970: timeInterval)
-        return dateFormatter.string(from: date)
+        return DateFormatters.cellDateFromatter.string(from: date)
     }
     private func speed(time: Int, distance: Double) -> Double {
         let hoursTime = Double(time) / 60.0
