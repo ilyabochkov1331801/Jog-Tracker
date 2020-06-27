@@ -16,7 +16,6 @@ class AuthenticationViewController: UIViewController {
     var authorizationButton: UIButton!
     var bearFaceImageView: UIImageView!
     
-    private let errorKey = "error"
     private let authorizationButtonText = "Let me in"
     private let testUUID = "hello"
     
@@ -46,7 +45,7 @@ class AuthenticationViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)
         }
-        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        navigationBarView.backgroundColor = Colors.appGreen
         
         //MARK: LogoImageView Settings
         
@@ -64,7 +63,7 @@ class AuthenticationViewController: UIViewController {
         }
         authorizationButton.layer.cornerRadius = 30
         authorizationButton.layer.borderWidth = 2
-        authorizationButton.layer.borderColor = UIColor.purple.cgColor
+        authorizationButton.layer.borderColor = Colors.appPurple.cgColor
         authorizationButton.setTitle(authorizationButtonText, for: .normal)
         authorizationButton.setTitleColor(.purple, for: .normal)
         

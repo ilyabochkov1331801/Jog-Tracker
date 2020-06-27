@@ -33,9 +33,6 @@ class JogViewController: UIViewController {
     private let distanceLabelText = "Distance"
     private let dateLabelText = "Date"
     
-    private let buttonTestLabelFont = UIFont(name: "SFUIText-Bold", size: 12.6)
-    private let labelsFont = UIFont(name: "SFUIText-Regular", size: 13)
-    
     private var jog: Jog?
     var delegate: JogViewControllerDelegate?
     
@@ -102,7 +99,7 @@ class JogViewController: UIViewController {
             $0.edges.equalTo(view).inset(UIEdgeInsets(top: 159, left: 34, bottom: 128, right: 34))
         }
         contentView.layer.cornerRadius = 20
-        contentView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        contentView.backgroundColor = Colors.appGreen
         
         //MARK: SaveButton Settings
         
@@ -123,7 +120,7 @@ class JogViewController: UIViewController {
         buttonTextLabel.text = buttonTextLabelText
         buttonTextLabel.textColor = .white
         buttonTextLabel.textAlignment = .center
-        buttonTextLabel.font = buttonTestLabelFont
+        buttonTextLabel.font = Fonts.jogVCButtonTextLabelFont
         
         //MARK: DateTextFiled Settings
         
@@ -167,7 +164,7 @@ class JogViewController: UIViewController {
             $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 136, left: 38, bottom: 229, right: 215))
         }
         timeLabel.text = timeLabelText
-        timeLabel.font = labelsFont
+        timeLabel.font = Fonts.jogVCLabelFont
         
         //MARK: DistanceLabel Settings
         
@@ -176,7 +173,7 @@ class JogViewController: UIViewController {
             $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 64, left: 38, bottom: 301, right: 200))
         }
         distanceLabel.text = distanceLabelText
-        distanceLabel.font = labelsFont
+        distanceLabel.font = Fonts.jogVCLabelFont
         
         //MARK: DateLabel Settings
         
@@ -185,7 +182,7 @@ class JogViewController: UIViewController {
             $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 208, left: 38, bottom: 157, right: 215))
         }
         dateLabel.text = dateLabelText
-        dateLabel.font = labelsFont
+        dateLabel.font = Fonts.jogVCLabelFont
         
         //MARK: NavigationBarView Settings
         
@@ -196,7 +193,7 @@ class JogViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)
         }
-        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        navigationBarView.backgroundColor = Colors.appGreen
         
         //MARK: LogoImageView Settings
         
@@ -227,33 +224,23 @@ class JogViewController: UIViewController {
                              distance: distance,
                              time: time,
                              date: date.timeIntervalSince1970)
-            jogs.update(jog: newJog) {
-                [weak self] (result) in
-                guard let self = self else {
-                    return
-                }
-                switch result {
-                case .success(()):
-                    self.delegate?.updateData()
-                    self.navigationController?.popViewController(animated: true)
-                case .failure(let error):
-                    self.alertConfiguration(with: error)
-                }
-            }
+            jogs.update(jog: newJog, completionHandler: completionHandler)
         } else {
-            jogs.add(date: date, time: time, distance: distance) {
-                [weak self] (result) in
-                guard let self = self else {
-                    return
-                }
-                switch result {
-                case .success(()):
-                    self.delegate?.updateData()
-                    self.navigationController?.popViewController(animated: true)
-                case .failure(let error):
-                    self.alertConfiguration(with: error)
-                }
-            }
+            jogs.add(date: date, time: time, distance: distance, completionHandler: completionHandler)
+        }
+    }
+    
+    private lazy var completionHandler: (Result<Void, Error>) -> () = {
+        [weak self] (result) in
+        guard let self = self else {
+            return
+        }
+        switch result {
+        case .success(()):
+            self.delegate?.updateData()
+            self.navigationController?.popViewController(animated: true)
+        case .failure(let error):
+            self.alertConfiguration(with: error)
         }
     }
 }

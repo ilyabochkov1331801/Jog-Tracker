@@ -13,9 +13,6 @@ class InfoViewController: UIViewController {
     private let titleText = "INFO"
     private let text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
     
-    private let titleFont = UIFont(name: "SFUIText-Bold", size: 25)
-    private let textFont = UIFont(name: "SFUIText-Regular", size: 12)
-    
     //MARK: NavigationBar
     var navigationBarView: UIView!
     var logoImageView: UIImageView!
@@ -50,7 +47,7 @@ class InfoViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)
         }
-        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        navigationBarView.backgroundColor = Colors.appGreen
         
         //MARK: LogoImageView Settings
         
@@ -75,9 +72,9 @@ class InfoViewController: UIViewController {
             $0.top.equalTo(navigationBarView.snp.bottom).offset(24)
             $0.left.equalTo(view.snp.left).offset(25)
         }
-        titleLabel.font = titleFont
+        titleLabel.font = Fonts.infoVCTitleFont
         titleLabel.text = titleText
-        titleLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        titleLabel.textColor = Colors.appGreen
         
         //MARK: TextLabel Settings
         
@@ -86,9 +83,8 @@ class InfoViewController: UIViewController {
             $0.left.equalTo(view.snp.left).offset(25)
             $0.right.equalTo(view.snp.right).offset(-25)
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            $0.bottom.equalTo(view.snp.bottom).offset(-20)
         }
-        textLabel.font = textFont
+        textLabel.font = Fonts.infoVCLabelFont
         textLabel.text = text
         textLabel.numberOfLines = 0
     }

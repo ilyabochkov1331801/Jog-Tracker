@@ -76,7 +76,7 @@ class JogsViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)
         }
-        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        navigationBarView.backgroundColor = Colors.appGreen
         
         //MARK: LogoImageView Settings
         

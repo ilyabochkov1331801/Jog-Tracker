@@ -52,8 +52,9 @@ class MenuViewController: UIViewController {
             $0.edges.equalTo(view).inset(UIEdgeInsets(top: 183, left: 103, bottom: 433, right: 103))
         }
         jogsButton.setTitle(jogsButtonText, for: .normal)
+        jogsButton.titleLabel?.font = Fonts.menuVCButtonTextFont
         jogsButton.setTitleColor(.black, for: .normal)
-        jogsButton.setTitleColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), for: .highlighted)
+        jogsButton.setTitleColor(Colors.appGreen, for: .highlighted)
         
         //MARK: InfoButton Settings
         
@@ -62,8 +63,9 @@ class MenuViewController: UIViewController {
             $0.edges.equalTo(view).inset(UIEdgeInsets(top: 233, left: 103, bottom: 383, right: 103))
         }
         infoButton.setTitle(infoButtonText, for: .normal)
+        infoButton.titleLabel?.font = Fonts.menuVCButtonTextFont
         infoButton.setTitleColor(.black, for: .normal)
-        infoButton.setTitleColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), for: .highlighted)
+        infoButton.setTitleColor(Colors.appGreen, for: .highlighted)
         
         //MARK: InfoButton Settings
         
@@ -72,8 +74,9 @@ class MenuViewController: UIViewController {
             $0.edges.equalTo(view).inset(UIEdgeInsets(top: 283, left: 103, bottom: 333, right: 103))
         }
         contactButton.setTitle(contactButtonText, for: .normal)
+        contactButton.titleLabel?.font = Fonts.menuVCButtonTextFont
         contactButton.setTitleColor(.black, for: .normal)
-        contactButton.setTitleColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), for: .highlighted)
+        contactButton.setTitleColor(Colors.appGreen, for: .highlighted)
         
         //MARK: CloseButton Settings
         

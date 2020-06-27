@@ -63,7 +63,7 @@ class SendFeedbackViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)
         }
-        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        navigationBarView.backgroundColor = Colors.appGreen
         
         //MARK: LogoImageView Settings
         
@@ -91,7 +91,7 @@ class SendFeedbackViewController: UIViewController {
             $0.height.equalTo(200)
         }
         feedbackTextView.layer.borderWidth = 1
-        feedbackTextView.layer.borderColor = UIColor.purple.cgColor
+        feedbackTextView.layer.borderColor = Colors.appPurple.cgColor
         
         //MARK: TopicNumberLabel and TopicNumberTextField Settings
         
@@ -119,10 +119,10 @@ class SendFeedbackViewController: UIViewController {
             $0.top.equalTo(topicNumberTextField.snp.bottom).offset(20)
         }
         sendButton.layer.cornerRadius = 30
-        sendButton.layer.borderColor = UIColor.purple.cgColor
+        sendButton.layer.borderColor = Colors.appPurple.cgColor
         sendButton.layer.borderWidth = 2
         sendButton.setTitle(sendFeedbackButtonText, for: .normal)
-        sendButton.setTitleColor(.purple, for: .normal)
+        sendButton.setTitleColor(Colors.appPurple, for: .normal)
     }
 
     @objc func sendButtonTupped() {

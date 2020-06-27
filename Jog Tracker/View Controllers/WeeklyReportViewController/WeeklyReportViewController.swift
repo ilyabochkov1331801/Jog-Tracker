@@ -13,7 +13,6 @@ class WeeklyReportViewController: UIViewController {
     private let cellIdentifier = "customCell"
     private let fromDateLabelText = "Date from"
     private let toDateLabelText = "Date to"
-    private let labelsFont = UIFont(name: "SFUIText-Regular", size: 10)
     
     private var weeklyReports = WeeklyReports.shared
     private var tableView: UITableView!
@@ -78,7 +77,7 @@ class WeeklyReportViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)
         }
-        navigationBarView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        navigationBarView.backgroundColor = Colors.appGreen
         
         //MARK: LogoImageView Settings
         
@@ -113,37 +112,39 @@ class WeeklyReportViewController: UIViewController {
             $0.width.equalTo(375)
             $0.height.equalTo(60)
         }
-        filterSettingsView.backgroundColor = .lightGray
+        filterSettingsView.backgroundColor = Colors.appGray
         
         //MARK: FromDateTextFiled and FromDateLabel Settings
         
         filterSettingsView.addSubview(fromDateTextFiled)
         fromDateTextFiled.snp.makeConstraints {
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 111, bottom: 13, right: 193))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 106, bottom: 13, right: 197))
         }
         fromDateTextFiled.borderStyle = .roundedRect
 
         filterSettingsView.addSubview(fromDateLabel)
         fromDateLabel.snp.makeConstraints {
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 19, bottom: 21, right: 280))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 29, bottom: 21, right: 285))
         }
-        fromDateLabel.font = labelsFont
+        fromDateLabel.font = Fonts.weeklyReportVCLabelFont
         fromDateLabel.text = fromDateLabelText
+        fromDateLabel.textColor = .gray
         
         //MARK: ToDateTextFiled and ToDateLabel Settings
         
         filterSettingsView.addSubview(toDateTextFiled)
         toDateTextFiled.snp.makeConstraints {
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 284, bottom: 13, right: 19))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 16, left: 274, bottom: 13, right: 29))
         }
         toDateTextFiled.borderStyle = .roundedRect
 
         filterSettingsView.addSubview(toDateLabel)
         toDateLabel.snp.makeConstraints { 
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 210, bottom: 21, right: 107))
+            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 213, bottom: 21, right: 117))
         }
-        toDateLabel.font = labelsFont
+        toDateLabel.font = Fonts.weeklyReportVCLabelFont
         toDateLabel.text = toDateLabelText
+        toDateLabel.textColor = .gray
     }
     
     @objc func openMenu() {
