@@ -121,7 +121,8 @@ class WeeklyReportViewController: UIViewController {
 
         filterSettingsView.addSubview(fromDateLabel)
         fromDateLabel.snp.makeConstraints {
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 29, bottom: 21, right: 285))
+            $0.centerY.equalTo(fromDateTextFiled)
+            $0.right.equalTo(fromDateTextFiled.snp.left).offset(-16)
         }
         fromDateLabel.font = Fonts.weeklyReportVCLabelFont
         fromDateLabel.text = fromDateLabelText
@@ -137,7 +138,8 @@ class WeeklyReportViewController: UIViewController {
 
         filterSettingsView.addSubview(toDateLabel)
         toDateLabel.snp.makeConstraints { 
-            $0.edges.equalTo(filterSettingsView).inset(UIEdgeInsets(top: 24, left: 206, bottom: 21, right: 124))
+            $0.centerY.equalTo(toDateTextFiled)
+            $0.right.equalTo(toDateTextFiled.snp.left).offset(-16)
         }
         toDateLabel.font = Fonts.weeklyReportVCLabelFont
         toDateLabel.text = toDateLabelText

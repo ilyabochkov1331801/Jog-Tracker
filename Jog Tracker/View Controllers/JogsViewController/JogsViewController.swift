@@ -71,7 +71,7 @@ class JogsViewController: UIViewController {
         
         view.addSubview(navigationBarView)
         navigationBarView.snp.makeConstraints {
-            $0.width.equalTo(375)
+            $0.width.equalTo(view.snp.width)
             $0.height.equalTo(77)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalTo(view.snp.centerX)

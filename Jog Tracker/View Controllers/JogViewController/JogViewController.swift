@@ -108,7 +108,8 @@ class JogViewController: UIViewController {
         
         saveButton.addSubview(buttonTextLabel)
         buttonTextLabel.snp.makeConstraints {
-            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 315, left: 127, bottom: 50, right: 127))
+            $0.centerX.equalTo(saveButton)
+            $0.centerY.equalTo(saveButton)
         }
         buttonTextLabel.text = buttonTextLabelText
         buttonTextLabel.textColor = .white
@@ -154,7 +155,9 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(timeLabel)
         timeLabel.snp.makeConstraints {
-            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 136, left: 38, bottom: 229, right: 215))
+            //$0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 136, left: 38, bottom: 229, right: 215))
+            $0.left.equalTo(contentView).offset(38)
+            $0.top.equalTo(contentView).offset(136)
         }
         timeLabel.text = timeLabelText
         timeLabel.font = Fonts.jogVCLabelFont
@@ -163,7 +166,9 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(distanceLabel)
         distanceLabel.snp.makeConstraints {
-            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 64, left: 38, bottom: 301, right: 200))
+            //$0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 64, left: 38, bottom: 301, right: 200))
+            $0.left.equalTo(contentView).offset(38)
+            $0.top.equalTo(contentView).offset(64)
         }
         distanceLabel.text = distanceLabelText
         distanceLabel.font = Fonts.jogVCLabelFont
@@ -172,7 +177,9 @@ class JogViewController: UIViewController {
         
         contentView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 208, left: 38, bottom: 157, right: 215))
+            //$0.edges.equalTo(contentView).inset(UIEdgeInsets(top: 208, left: 38, bottom: 157, right: 215))
+            $0.left.equalTo(contentView).offset(38)
+            $0.top.equalTo(contentView).offset(208)
         }
         dateLabel.text = dateLabelText
         dateLabel.font = Fonts.jogVCLabelFont

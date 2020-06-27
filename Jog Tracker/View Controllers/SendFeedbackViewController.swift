@@ -20,7 +20,6 @@ class SendFeedbackViewController: UIViewController {
     var topicNumberTextField: UITextField!
     var sendButton: UIButton!
     
-    let activityView = UIActivityIndicatorView(style: .gray)
     let topicNumberLabelText = "Topic number:"
     let sendFeedbackButtonText = "Send"
     let feedbackService = FeedbackService()
@@ -147,18 +146,8 @@ class SendFeedbackViewController: UIViewController {
                 self.present(menuViewController, animated: true)
             case .failure(let error):
                 self.alertConfiguration(with: error)
-                self.activityView.stopAnimating()
             }
         }
-        
-        activityView.frame = CGRect(x: 0,
-                                    y: 0,
-                                    width: 100,
-                                    height: 100)
-        activityView.center = view.center
-        activityView.hidesWhenStopped = true
-        view.addSubview(activityView)
-        activityView.startAnimating()
     }
     
     @objc func hideKeyboard() {
@@ -170,27 +159,6 @@ class SendFeedbackViewController: UIViewController {
         menuViewController.modalPresentationStyle = .fullScreen
         menuViewController.currentNavigationController = navigationController
         present(menuViewController, animated: true)
-    }
-}
-
-extension SendFeedbackViewController {
-
-    
-    override func alertConfiguration(with error: Error) {
-        let alert = UIAlertController(title: "Error",
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
-        let cancelAction = UIAlertAction(title: "Go to main screen",
-                                         style: .cancel) {
-                                            [weak self] (_) in
-                                            self?.dismiss(animated: true)
-                                            
-        }
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
     }
 }
 
