@@ -20,21 +20,18 @@ class WeeklyReportTableViewCell: UITableViewCell {
     private let distanceLabelValueUnit = " km"
     private let speedLabelValueUnit = " m/s"
     
-    var jogIconImageView: UIImageView!
-    var dateLabel: UILabel!
-    var distanceLabel: UILabel!
-    var distanceValueLabel: UILabel!
-    var timeLabel: UILabel!
-    var timeValueLabel: UILabel!
-    var speedLabel: UILabel!
-    var speedValueLabel: UILabel!
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+    private var jogIconImageView: UIImageView!
+    private var dateLabel: UILabel!
+    private var distanceLabel: UILabel!
+    private var distanceValueLabel: UILabel!
+    private var timeLabel: UILabel!
+    private var timeValueLabel: UILabel!
+    private var speedLabel: UILabel!
+    private var speedValueLabel: UILabel!
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         jogIconImageView = UIImageView()
         dateLabel = UILabel()
         distanceLabel = UILabel()
@@ -126,13 +123,13 @@ class WeeklyReportTableViewCell: UITableViewCell {
     func configurateCell(distance: Double, time: Int, fromDate: Date, toDate: Date) {
         distanceValueLabel.text = String(format: stringFormat, distance) + distanceLabelValueUnit
         timeValueLabel.text = String(time) + timeLabelValueUnit
-        dateLabel.text = DateFormatters.cellDateFromatter.string(from: fromDate) + " - " + DateFormatters.cellDateFromatter.string(from: toDate)
+        dateLabel.text = DateFormatters.weeklyReportTableViewCellDateFormatter.string(from: fromDate) + " - " + DateFormatters.weeklyReportTableViewCellDateFormatter.string(from: toDate)
         speedValueLabel.text = String(format: stringFormat, speed(time: time, distance: distance)) + speedLabelValueUnit
     }
     
     private func convert(timeInterval: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: timeInterval)
-        return DateFormatters.cellDateFromatter.string(from: date)
+        return DateFormatters.weeklyReportTableViewCellDateFormatter.string(from: date)
     }
     
     private func speed(time: Int, distance: Double) -> Double {

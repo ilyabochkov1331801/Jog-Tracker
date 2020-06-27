@@ -11,22 +11,6 @@ import SnapKit
 
 class JogViewController: UIViewController {
     
-    //MARK: NavigationBar
-    var navigationBarView: UIView!
-    var logoImageView: UIImageView!
-    
-    //MARK: ContentView
-    var distanceTextFiled: UITextField!
-    var timeTextField: UITextField!
-    var dateTextField: UITextField!
-    var contentView: UIView!
-    var saveButton: UIButton!
-    var buttonTextLabel: UILabel!
-    var closeButton: UIButton!
-    var dateLabel: UILabel!
-    var timeLabel: UILabel!
-    var distanceLabel: UILabel!
-    
     private let buttonTextLabelText = "Save"
     private let closeImageName = "closeImage"
     private let timeLabelText = "Time"
@@ -35,6 +19,32 @@ class JogViewController: UIViewController {
     
     private var jog: Jog?
     var delegate: JogViewControllerDelegate?
+    private lazy var completionHandler: (Result<Void, Error>) -> () = {
+        [weak self] (result) in
+        guard let self = self else {
+            return
+        }
+        switch result {
+        case .success(()):
+            self.delegate?.updateData()
+            self.navigationController?.popViewController(animated: true)
+        case .failure(let error):
+            self.alertConfiguration(with: error)
+        }
+    }
+    
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var distanceTextFiled: UITextField!
+    private var timeTextField: UITextField!
+    private var dateTextField: UITextField!
+    private var contentView: UIView!
+    private var saveButton: UIButton!
+    private var buttonTextLabel: UILabel!
+    private var closeButton: UIButton!
+    private var dateLabel: UILabel!
+    private var timeLabel: UILabel!
+    private var distanceLabel: UILabel!
     
     init(newJog: Jog) {
         super.init(nibName: nil, bundle: nil)
@@ -43,7 +53,6 @@ class JogViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +80,14 @@ class JogViewController: UIViewController {
         distanceTextFiled.delegate = self
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-                
+                        
+        view.backgroundColor = .white
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        swipeDown.direction = .down
+        swipeDown.delegate = self
+        view.addGestureRecognizer(swipeDown)
+        
         if let jog = jog {
             distanceTextFiled.text = String(jog.distance)
             timeTextField.text = String(jog.time)
@@ -79,13 +95,6 @@ class JogViewController: UIViewController {
         } else {
             dateTextField.text = DateFormatters.jogVCDateFormatter.string(from: Date())
         }
-        
-        view.backgroundColor = .white
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        swipeDown.direction = .down
-        swipeDown.delegate = self
-        view.addGestureRecognizer(swipeDown)
     }
     
     override func viewDidLayoutSubviews() {
@@ -209,16 +218,16 @@ class JogViewController: UIViewController {
         logoImageView.image = UIImage(named: ImageName.logoImageName)
     }
     
-    @objc func close() {
+    @objc private func close() {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
     
-    @objc func save() {
-        let jogs = JogsService.shared
+    @objc private func save() {
+        let jogsService = JogsService.shared
         guard let timeString = timeTextField.text,
             let time = Int(timeString),
             let distanceString = distanceTextFiled.text,
@@ -233,23 +242,9 @@ class JogViewController: UIViewController {
                              distance: distance,
                              time: time,
                              date: date.timeIntervalSince1970)
-            jogs.update(jog: newJog, completionHandler: completionHandler)
+            jogsService.update(jog: newJog, completionHandler: completionHandler)
         } else {
-            jogs.add(date: date, time: time, distance: distance, completionHandler: completionHandler)
-        }
-    }
-    
-    private lazy var completionHandler: (Result<Void, Error>) -> () = {
-        [weak self] (result) in
-        guard let self = self else {
-            return
-        }
-        switch result {
-        case .success(()):
-            self.delegate?.updateData()
-            self.navigationController?.popViewController(animated: true)
-        case .failure(let error):
-            self.alertConfiguration(with: error)
+            jogsService.add(date: date, time: time, distance: distance, completionHandler: completionHandler)
         }
     }
 }

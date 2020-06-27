@@ -10,20 +10,20 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
 
-    //MARK: NavigationBar
-    var navigationBarView: UIView!
-    var logoImageView: UIImageView!
-    var authorizationButton: UIButton!
-    var bearFaceImageView: UIImageView!
-    
     private let authorizationButtonText = "Let me in"
     private let testUUID = "hello"
     
-    var authentication: AuthenticationService!
+    private var authenticationService: AuthenticationService!
+    
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var authorizationButton: UIButton!
+    private var bearFaceImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authentication = AuthenticationService.shared
+        
+        authenticationService = AuthenticationService.shared
         navigationBarView = UIView()
         logoImageView = UIImageView()
         bearFaceImageView = UIImageView()
@@ -76,8 +76,8 @@ class AuthenticationViewController: UIViewController {
         bearFaceImageView.image = UIImage(named: ImageName.bearFaceImageName)
     }
     
-    @objc func authorizationButtonTupped(_ sender: UIButton) {
-        authentication.authorization(with: testUUID) {
+    @objc private func authorizationButtonTupped(_ sender: UIButton) {
+        authenticationService.authorization(with: testUUID) {
             [weak self] (result) in
             guard let self = self else {
                 return

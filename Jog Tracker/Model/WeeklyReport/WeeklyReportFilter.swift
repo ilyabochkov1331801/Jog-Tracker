@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ReportFilter {
+struct WeeklyReportFilter {
     var fromDate: Date = Date(timeIntervalSince1970: 0)
     var toDate: Date = Date()
 }

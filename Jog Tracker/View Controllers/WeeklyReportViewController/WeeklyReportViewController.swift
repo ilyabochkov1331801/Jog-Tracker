@@ -14,15 +14,18 @@ class WeeklyReportViewController: UIViewController {
     private let fromDateLabelText = "Date from"
     private let toDateLabelText = "Date to"
     
-    private var weeklyReports = WeeklyReports.shared
+    private var weeklyReportsService = WeeklyReportsService.shared
     private var tableView: UITableView!
+    private lazy var completionHandler: () -> () = {
+        self.tableView.reloadData()
+        self.toDateTextFiled.text = DateFormatters.weeklyReportVCDateFormatter.string(from: self.weeklyReportsService.weeklyReportFilter.toDate)
+        self.fromDateTextFiled.text = DateFormatters.weeklyReportVCDateFormatter.string(from: self.weeklyReportsService.weeklyReportFilter.fromDate)
+    }
     
-    //MARK: NavigationBar
     var navigationBarView: UIView!
     var logoImageView: UIImageView!
     var menuButton: UIButton!
     var filterButton: UIButton!
-    
     var filterSettingsView: UIView!
     var fromDateTextFiled: UITextField!
     var fromDateLabel: UILabel!
@@ -50,9 +53,14 @@ class WeeklyReportViewController: UIViewController {
         toDateLabel = UILabel()
 
         tableView.register(WeeklyReportTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        self.weeklyReports.set(newReportFilter: ReportFilter(), completionHandler: completionHandler)
+        self.weeklyReportsService.set(completionHandler: completionHandler)
         tableView.rowHeight = 190
         view.backgroundColor = .white
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        swipeDown.direction = .down
+        swipeDown.delegate = self
+        view.addGestureRecognizer(swipeDown)
     }
     
     override func viewDidLayoutSubviews() {
@@ -146,21 +154,19 @@ class WeeklyReportViewController: UIViewController {
         toDateLabel.textColor = .gray
     }
     
-    @objc func openMenu() {
+    @objc private func openMenu() {
         let menuViewController =  MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
         menuViewController.currentNavigationController = navigationController
         present(menuViewController, animated: true)
     }
     
-    @objc func closeWeaklyReport() {
-        navigationController?.popViewController(animated: false)
+    @objc private func closeWeaklyReport() {
+        navigationController?.viewControllers = [ JogsViewController() ]
     }
     
-    private lazy var completionHandler: () -> () = {
-        self.tableView.reloadData()
-        self.toDateTextFiled.text = DateFormatters.weeklyReportVCDateFormatter.string(from: self.weeklyReports.reportFilter.toDate)
-        self.fromDateTextFiled.text = DateFormatters.weeklyReportVCDateFormatter.string(from: self.weeklyReports.reportFilter.fromDate)
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -170,13 +176,13 @@ extension WeeklyReportViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weeklyReports.weaklyReportsList.count
+        return weeklyReportsService.weeklyReportsList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
         for: indexPath) as! WeeklyReportTableViewCell
-        let weeklyReport = weeklyReports.weaklyReportsList[indexPath.row]
+        let weeklyReport = weeklyReportsService.weeklyReportsList[indexPath.row]
         cell.configurateCell(distance: weeklyReport.allDistance,
                              time: weeklyReport.allTime,
                              fromDate: weeklyReport.beginOfWeek,
@@ -201,7 +207,11 @@ extension WeeklyReportViewController: UITextFieldDelegate {
             let toDate = DateFormatters.weeklyReportVCDateFormatter.date(from: toDateString) else {
                 return
         }
-        let weeklyReportFilter = ReportFilter(fromDate: fromDate, toDate: toDate)
-        weeklyReports.set(newReportFilter: weeklyReportFilter, completionHandler: completionHandler)
+        let weeklyReportFilter = WeeklyReportFilter(fromDate: fromDate, toDate: toDate)
+        weeklyReportsService.set(newWeeklyReportFilter: weeklyReportFilter, completionHandler: completionHandler)
     }
+}
+
+extension WeeklyReportViewController: UIGestureRecognizerDelegate {
+    
 }

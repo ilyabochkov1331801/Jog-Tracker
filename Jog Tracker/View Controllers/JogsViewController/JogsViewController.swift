@@ -10,19 +10,17 @@ import UIKit
 
 class JogsViewController: UIViewController {
     
-    let jogs = JogsService.shared
-    var jogsList: Array<Jog> = []
+    private let jogsService = JogsService.shared
+    private var jogsList: Array<Jog> = []
     
-    //MARK: NavigationBar
-    var navigationBarView: UIView!
-    var logoImageView: UIImageView!
-    var menuButton: UIButton!
-    var filterButton: UIButton!
+    private let cellIdentifier = "JogTableViewCell"
     
-    var tableView: UITableView!
-    var addNewJogButton: UIButton!
-        
-    private let cellIdentifier = "customCell"
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var menuButton: UIButton!
+    private var filterButton: UIButton!
+    private var tableView: UITableView!
+    private var addNewJogButton: UIButton!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +28,25 @@ class JogsViewController: UIViewController {
         navigationBarView = UIView()
         logoImageView = UIImageView()
         menuButton = UIButton()
-        menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
         filterButton = UIButton()
-        filterButton.addTarget(self, action: #selector(presentWeaklyReport), for: .touchUpInside)
         addNewJogButton = UIButton()
+        
         addNewJogButton.addTarget(self, action: #selector(newJog), for: .touchUpInside)
+        menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
+        filterButton.addTarget(self, action: #selector(presentWeaklyReport), for: .touchUpInside)
         
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 190
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-                
-        let authentication = AuthenticationService.shared
-        if authentication.isAuthorized {
-            jogs.getJogs { [weak self] (result) in
+        tableView.register(JogTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    
+        navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .white
+        
+        let authenticationService = AuthenticationService.shared
+        if authenticationService.isAuthorized {
+            jogsService.getJogs { [weak self] (result) in
                 self?.updateData()
             }
         } else {
@@ -52,9 +54,6 @@ class JogsViewController: UIViewController {
             authenticationViewController.modalPresentationStyle = .fullScreen
             present(authenticationViewController, animated: true)
         }
-    
-        navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .white
     }
 
     override func viewDidLayoutSubviews() {
@@ -123,22 +122,21 @@ class JogsViewController: UIViewController {
         addNewJogButton.setImage(UIImage(named: ImageName.addJogImageName), for: .normal)
     }
 
-    @objc func newJog() {
+    @objc private func newJog() {
         let jogViewController = JogViewController()
         jogViewController.delegate = self
         navigationController?.pushViewController(jogViewController, animated: true)
     }
     
-    @objc func openMenu() {
+    @objc private func openMenu() {
         let menuViewController =  MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
         menuViewController.currentNavigationController = navigationController
         present(menuViewController, animated: true)
     }
     
-    @objc func presentWeaklyReport() {
-        let weeklyReportViewController = WeeklyReportViewController()
-        navigationController?.pushViewController(weeklyReportViewController, animated: false)
+    @objc private func presentWeaklyReport() {
+        navigationController?.viewControllers = [ WeeklyReportViewController() ]
     }
 }
 
@@ -153,7 +151,7 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
-        for: indexPath) as! CustomTableViewCell
+        for: indexPath) as! JogTableViewCell
         let jog = jogsList[indexPath.row]
         cell.configurateCell(distance: jog.distance, time: jog.time, date: jog.date)
         return cell
@@ -169,7 +167,7 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension JogsViewController: JogViewControllerDelegate {
     func updateData() {
-        jogs.getJogs {
+        jogsService.getJogs {
             [weak self] (result) in
             guard let self = self else {
                 return

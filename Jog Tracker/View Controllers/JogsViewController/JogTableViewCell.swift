@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class JogTableViewCell: UITableViewCell {
     
     private let stringFormat = "%.1f"
     private let jogIconImageName = "jogIconImage"
@@ -19,21 +19,18 @@ class CustomTableViewCell: UITableViewCell {
     private let distanceLabelValueUnit = " km"
     private let speedLabelValueUnit = " m/s"
     
-    var jogIconImageView: UIImageView!
-    var dateLabel: UILabel!
-    var distanceLabel: UILabel!
-    var distanceValueLabel: UILabel!
-    var timeLabel: UILabel!
-    var timeValueLabel: UILabel!
-    var speedLabel: UILabel!
-    var speedValueLabel: UILabel!
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    private var jogIconImageView: UIImageView!
+    private var dateLabel: UILabel!
+    private var distanceLabel: UILabel!
+    private var distanceValueLabel: UILabel!
+    private var timeLabel: UILabel!
+    private var timeValueLabel: UILabel!
+    private var speedLabel: UILabel!
+    private var speedValueLabel: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         jogIconImageView = UIImageView()
         dateLabel = UILabel()
         distanceLabel = UILabel()
@@ -131,8 +128,9 @@ class CustomTableViewCell: UITableViewCell {
     
     private func convert(timeInterval: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: timeInterval)
-        return DateFormatters.cellDateFromatter.string(from: date)
+        return DateFormatters.jogTableViewCellDateFormatter.string(from: date)
     }
+    
     private func speed(time: Int, distance: Double) -> Double {
         let hoursTime = Double(time) / 60.0
         return distance / hoursTime

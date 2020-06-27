@@ -10,19 +10,18 @@ import UIKit
 
 class SendFeedbackViewController: UIViewController {
 
-    //MARK: NavigationBar
-    var navigationBarView: UIView!
-    var logoImageView: UIImageView!
-    var menuButton: UIButton!
-
-    var feedbackTextView: UITextView!
-    var topicNumberLabel: UILabel!
-    var topicNumberTextField: UITextField!
-    var sendButton: UIButton!
+    private let topicNumberLabelText = "Topic number:"
+    private let sendFeedbackButtonText = "Send"
     
-    let topicNumberLabelText = "Topic number:"
-    let sendFeedbackButtonText = "Send"
-    let feedbackService = FeedbackService()
+    private let feedbackService = FeedbackService()
+    
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var menuButton: UIButton!
+    private var feedbackTextView: UITextView!
+    private var topicNumberLabel: UILabel!
+    private var topicNumberTextField: UITextField!
+    private var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,6 @@ class SendFeedbackViewController: UIViewController {
         navigationBarView = UIView()
         logoImageView = UIImageView()
         menuButton = UIButton()
-        
         feedbackTextView = UITextView()
         topicNumberLabel = UILabel()
         topicNumberTextField = UITextField()
@@ -38,7 +36,6 @@ class SendFeedbackViewController: UIViewController {
         
         feedbackTextView.delegate = self
         topicNumberTextField.delegate = self
-        
         menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
         sendButton.addTarget(self, action: #selector(sendButtonTupped), for: .touchUpInside)
         
@@ -124,7 +121,7 @@ class SendFeedbackViewController: UIViewController {
         sendButton.setTitleColor(Colors.appPurple, for: .normal)
     }
 
-    @objc func sendButtonTupped() {
+    @objc private func sendButtonTupped() {
         guard let textForFeedback = feedbackTextView.text else {
             return
         }
@@ -150,11 +147,11 @@ class SendFeedbackViewController: UIViewController {
         }
     }
     
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
     
-    @objc func openMenu() {
+    @objc private func openMenu() {
         let menuViewController = MenuViewController()
         menuViewController.modalPresentationStyle = .fullScreen
         menuViewController.currentNavigationController = navigationController

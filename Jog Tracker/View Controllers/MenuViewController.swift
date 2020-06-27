@@ -16,13 +16,13 @@ class MenuViewController: UIViewController {
     private let contactButtonText = "CONTACT"
     private let closeButtonImageName = "closeImage"
 
-    var logoImageView: UIImageView!
-    var closeButton: UIButton!
-    var jogsButton: UIButton!
-    var infoButton: UIButton!
-    var contactButton: UIButton!
-    
     var currentNavigationController: UINavigationController?
+    
+    private var logoImageView: UIImageView!
+    private var closeButton: UIButton!
+    private var jogsButton: UIButton!
+    private var infoButton: UIButton!
+    private var contactButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,6 @@ class MenuViewController: UIViewController {
         contactButton.addTarget(self, action: #selector(openFeedbackViewController), for: .touchUpInside)
         infoButton.addTarget(self, action: #selector(openInfoViewController), for: .touchUpInside)
         
-        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
     }
     
@@ -96,21 +95,21 @@ class MenuViewController: UIViewController {
         logoImageView.image = UIImage(named: ImageName.logoGreenImageName)
     }
     
-    @objc func jogsButtonTupped() {
+    @objc private func jogsButtonTupped() {
         currentNavigationController?.viewControllers = [ JogsViewController() ]
         dismiss(animated: true)
     }
     
-    @objc func close() {
+    @objc private func close() {
         dismiss(animated: true)
     }
     
-    @objc func openFeedbackViewController() {
+    @objc private func openFeedbackViewController() {
         currentNavigationController?.viewControllers = [ SendFeedbackViewController() ]
         dismiss(animated: true)
     }
     
-    @objc func openInfoViewController() {
+    @objc private func openInfoViewController() {
         currentNavigationController?.viewControllers = [ InfoViewController() ]
         dismiss(animated: true)
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class ApiDataManager {
     
-    var decoder: JSONDecoder {
+    private var decoder: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

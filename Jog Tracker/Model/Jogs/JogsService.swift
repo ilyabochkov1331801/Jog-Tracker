@@ -14,7 +14,6 @@ class JogsService {
     private init() { }
     
     private let keychainDataManager = KeychainDataManager()
-    
     private let jogsApiDataManager = JogsApiDataManager()
     private let jogsCacheDataManager = JogsCacheDataManager()
         

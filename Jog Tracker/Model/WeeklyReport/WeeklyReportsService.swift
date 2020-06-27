@@ -8,30 +8,30 @@
 
 import Foundation
 
-class WeeklyReports {
+class WeeklyReportsService {
     
-    static let shared = WeeklyReports()
+    static let shared = WeeklyReportsService()
     private init() { }
+
+    private(set) var weeklyReportsList: Array<WeeklyReport> = []
     
-    var jogsList: Array<Jog> = []
-    private(set) var weaklyReportsList: Array<WeaklyReport> = []
+    private var jogsList: Array<Jog> = []
     private let jogs = JogsService.shared
     private let weekTimeInterval = TimeInterval(60 * 60 * 24 * 7)
-    private var mondayDate: TimeInterval {
+    private(set) var weeklyReportFilter: WeeklyReportFilter!
+    private var mondayDateTimeInterval: TimeInterval {
         return Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))!.timeIntervalSince1970 + weekTimeInterval
     }
     
-    var reportFilter = ReportFilter()
-    
-    func set(newReportFilter: ReportFilter, completionHandler: @escaping () -> ()) {
-        self.reportFilter = newReportFilter
+    func set(newWeeklyReportFilter: WeeklyReportFilter = WeeklyReportFilter(), completionHandler: @escaping () -> ()) {
+        self.weeklyReportFilter = newWeeklyReportFilter
         DispatchQueue.global(qos: .userInitiated).async {
             self.calculateWeaklyReportsList(completionHandler: completionHandler)
         }
     }
     
     private func calculateWeaklyReportsList(completionHandler: @escaping () -> ()) {
-        self.weaklyReportsList.removeAll()
+        weeklyReportsList.removeAll()
         
         jogs.getJogs {
             [weak self] (result) in
@@ -50,37 +50,38 @@ class WeeklyReports {
         
         for jog in jogsList {
             let date = Date(timeIntervalSince1970: jog.date)
-            if date.compare(reportFilter.fromDate) == .orderedAscending || date.compare(reportFilter.toDate) == .orderedDescending {
+            if date.compare(weeklyReportFilter.fromDate) == .orderedAscending || date.compare(weeklyReportFilter.toDate) == .orderedDescending {
                 continue
             }
-            let weekNumber = Int((mondayDate - jog.date) / weekTimeInterval)
+            let weekNumber = Int((mondayDateTimeInterval - jog.date) / weekTimeInterval)
             if weeks[weekNumber] != nil {
                 weeks[weekNumber]!.append(jog)
             } else {
                 weeks[weekNumber] = [ jog ]
             }
         }
-        weaklyReportsList = weeks.map { (key, value) -> WeaklyReport in
+        weeklyReportsList = weeks.map { (key, value) -> WeeklyReport in
             var allDistance: Double = 0.0
             var allTime: Int = 0
             for jog in value {
                 allDistance += jog.distance
                 allTime += jog.time
             }
-            let weaklyReport = WeaklyReport(numberOfWeek: key,
-                                            beginOfWeek: Date(timeIntervalSince1970: TimeInterval(mondayDate - Double((key + 1)) * weekTimeInterval)),
-                                                endOfWeek: Date(timeIntervalSince1970: TimeInterval(mondayDate - Double(key) * weekTimeInterval)),
+            let weaklyReport = WeeklyReport(numberOfWeek: key,
+                                            beginOfWeek: Date(timeIntervalSince1970: TimeInterval(mondayDateTimeInterval - Double((key + 1)) * weekTimeInterval)),
+                                                endOfWeek: Date(timeIntervalSince1970: TimeInterval(mondayDateTimeInterval - Double(key) * weekTimeInterval)),
                                             avaregeSpeed: (allDistance * 1000) / (Double(allTime) * 60),
                                             allTime: allTime,
                                             allDistance: allDistance)
             return weaklyReport
         }
 
-        self.weaklyReportsList.sort {
+        self.weeklyReportsList.sort {
             $0.numberOfWeek < $1.numberOfWeek
         }
-        weaklyReportsList[0].endOfWeek = reportFilter.toDate
-        weaklyReportsList[weaklyReportsList.count - 1].beginOfWeek = reportFilter.fromDate
+        weeklyReportsList[0].endOfWeek = weeklyReportFilter.toDate
+        weeklyReportsList[max(weeklyReportsList.count - 1, 0)].beginOfWeek = weeklyReportFilter.fromDate
+        
         DispatchQueue.main.async {
             completionHandler()
         }

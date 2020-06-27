@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct WeaklyReport {
-    var numberOfWeek: Int
+struct WeeklyReport {
+    let numberOfWeek: Int
     var beginOfWeek: Date
     var endOfWeek: Date
     
-    var avaregeSpeed: Double
-    var allTime: Int
-    var allDistance: Double
+    let avaregeSpeed: Double
+    let allTime: Int
+    let allDistance: Double
 }

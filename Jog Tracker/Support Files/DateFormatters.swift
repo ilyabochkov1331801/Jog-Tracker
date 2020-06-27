@@ -9,9 +9,16 @@
 import Foundation
 
 enum DateFormatters {
-    static var cellDateFromatter: DateFormatter {
+    static var weeklyReportTableViewCellDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }
+    
+    static var jogTableViewCellDateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         return dateFormatter
     }
@@ -19,7 +26,7 @@ enum DateFormatters {
     static var jogVCDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }
     
@@ -31,11 +38,11 @@ enum DateFormatters {
     }
     
     static var jogsApiDateManagerDateFormatter: ISO8601DateFormatter {
-        let newDateFormatter = ISO8601DateFormatter()
-        newDateFormatter.formatOptions = [.withFullDate,
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate,
                                    .withTime,
                                    .withDashSeparatorInDate,
                                    .withColonSeparatorInTime]
-        return newDateFormatter
+        return dateFormatter
     }
 }
