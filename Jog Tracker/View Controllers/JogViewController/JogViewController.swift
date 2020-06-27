@@ -79,8 +79,13 @@ class JogViewController: UIViewController {
         } else {
             dateTextField.text = DateFormatters.jogVCDateFormatter.string(from: Date())
         }
-        navigationController?.navigationBar.isHidden = true
+        
         view.backgroundColor = .white
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        swipeDown.direction = .down
+        swipeDown.delegate = self
+        view.addGestureRecognizer(swipeDown)
     }
     
     override func viewDidLayoutSubviews() {
@@ -208,6 +213,10 @@ class JogViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc func save() {
         let jogs = JogsService.shared
         guard let timeString = timeTextField.text,
@@ -249,4 +258,8 @@ extension JogViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
+}
+
+extension JogViewController: UIGestureRecognizerDelegate {
+    
 }
