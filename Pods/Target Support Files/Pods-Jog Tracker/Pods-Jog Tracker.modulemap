@@ -1,4 +1,4 @@
-module Pods_Jog_Tracker {
+framework module Pods_Jog_Tracker {
   umbrella header "Pods-Jog Tracker-umbrella.h"
 
   export *
