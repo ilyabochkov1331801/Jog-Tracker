@@ -10,27 +10,74 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
 
-    private let errorKey = "error"
+    private let authorizationButtonText = "Let me in"
+    private let testUUID = "hello"
     
-    var authentication: AuthenticationService!
+    private var authenticationService: AuthenticationService!
     
-    @IBOutlet weak var authorizationButton: UIButton! {
-        didSet {
-            authorizationButton.layer.cornerRadius = authorizationButton.bounds.height / 2
-        }
-    }
-    @IBOutlet weak var uuidTextField: UITextField!
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var authorizationButton: UIButton!
+    private var bearFaceImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authentication = AuthenticationService.shared
-        uuidTextField.delegate = self
+        
+        authenticationService = AuthenticationService.shared
+        navigationBarView = UIView()
+        logoImageView = UIImageView()
+        bearFaceImageView = UIImageView()
+        authorizationButton = UIButton()
+        authorizationButton.addTarget(self, action: #selector(authorizationButtonTupped), for: .touchUpInside)
+        
+        view.backgroundColor = .white
     }
-    @IBAction func authorizationButtonTupped(_ sender: UIButton) {
-        guard let uuid = uuidTextField.text else {
-            return
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        //MARK: NavigationBarView Settings
+        
+        view.addSubview(navigationBarView)
+        navigationBarView.snp.makeConstraints {
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
-        authentication.authorization(with: uuid) {
+        navigationBarView.backgroundColor = Colors.appGreen
+        
+        //MARK: LogoImageView Settings
+        
+        navigationBarView.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints {
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+        }
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
+        
+        //MARK: AuthorizationButton Settings
+        
+        view.addSubview(authorizationButton)
+        authorizationButton.snp.makeConstraints {
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 471, left: 112, bottom: 136, right: 112))
+        }
+        authorizationButton.layer.cornerRadius = 30
+        authorizationButton.layer.borderWidth = 2
+        authorizationButton.layer.borderColor = Colors.appPurple.cgColor
+        authorizationButton.setTitle(authorizationButtonText, for: .normal)
+        authorizationButton.setTitleColor(.purple, for: .normal)
+        
+        //MARK: BearFaceImageView Settings
+
+        view.addSubview(bearFaceImageView)
+        bearFaceImageView.snp.makeConstraints {
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 218, left: 107, bottom: 299, right: 107))
+        }
+        bearFaceImageView.image = UIImage(named: ImageName.bearFaceImageName)
+    }
+    
+    @objc private func authorizationButtonTupped(_ sender: UIButton) {
+        authenticationService.authorization(with: testUUID) {
             [weak self] (result) in
             guard let self = self else {
                 return
@@ -42,12 +89,5 @@ class AuthenticationViewController: UIViewController {
                 self.alertConfiguration(with: error)
             }
         }
-    }
-}
-
-extension AuthenticationViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

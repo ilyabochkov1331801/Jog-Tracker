@@ -19,10 +19,6 @@ class JogsCacheDataManager {
         return jogsList
     }
     
-    func clearCache() {
-        jogsList = nil
-    }
-    
     func updateCache(newJog: Jog) {
         appendToList(newJog: newJog)
     }

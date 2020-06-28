@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */; };
 		EA424CEA24A3ACBE001A5180 /* ApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CE824A3ACBE001A5180 /* ApiDataManager.swift */; };
 		EA424CEB24A3ACBE001A5180 /* ApiDataManagerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CE924A3ACBE001A5180 /* ApiDataManagerErrors.swift */; };
 		EA424CED24A3AD23001A5180 /* AuthenticationResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CEC24A3AD23001A5180 /* AuthenticationResponseMessage.swift */; };
@@ -16,31 +15,28 @@
 		EA424CF524A3C95F001A5180 /* UpdatedJog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CF424A3C95F001A5180 /* UpdatedJog.swift */; };
 		EA424CFA24A3D65F001A5180 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CF924A3D65F001A5180 /* AuthenticationResponse.swift */; };
 		EA424CFC24A3D8F8001A5180 /* FeedbackResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA424CFB24A3D8F8001A5180 /* FeedbackResponseMessage.swift */; };
-		EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */; };
-		EA6ABB5F248FEC3300E59BFB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */; };
+		EA468E6724A7A6B000597036 /* JogViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */; };
+		EA468E6924A7A73000597036 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA468E6824A7A73000597036 /* Fonts.swift */; };
+		EA468E6B24A7AAF000597036 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA468E6A24A7AAF000597036 /* Colors.swift */; };
+		EA468E6D24A7B80A00597036 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA468E6C24A7B80A00597036 /* DateFormatters.swift */; };
 		EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */; };
-		EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */; };
 		EA6ABB66248FFB4D00E59BFB /* FeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB65248FFB4D00E59BFB /* FeedbackService.swift */; };
-		EA6ABB7124901CF700E59BFB /* WeeklyReports .swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7024901CF700E59BFB /* WeeklyReports .swift */; };
-		EA6ABB7324901E0400E59BFB /* WeaklyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7224901E0400E59BFB /* WeaklyReport.swift */; };
-		EA6ABB7724902A6300E59BFB /* WeeklyReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7524902A6300E59BFB /* WeeklyReportTableViewController.swift */; };
-		EA6ABB7824902A6300E59BFB /* WeeklyReportTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB7624902A6300E59BFB /* WeeklyReportTableViewController.xib */; };
+		EA6ABB7124901CF700E59BFB /* WeeklyReportsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7024901CF700E59BFB /* WeeklyReportsService.swift */; };
+		EA6ABB7324901E0400E59BFB /* WeeklyReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7224901E0400E59BFB /* WeeklyReport.swift */; };
+		EA6ABB7724902A6300E59BFB /* WeeklyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */; };
 		EA6ABB7B24902A8800E59BFB /* WeeklyReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */; };
-		EA6ABB7C24902A8800E59BFB /* WeeklyReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB7A24902A8800E59BFB /* WeeklyReportTableViewCell.xib */; };
-		EA6ABB812490D58F00E59BFB /* ReportFilterSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB7F2490D58F00E59BFB /* ReportFilterSettingsViewController.swift */; };
-		EA6ABB822490D58F00E59BFB /* ReportFilterSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */; };
-		EA6ABB862490EC6E00E59BFB /* ReportFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */; };
+		EA6ABB862490EC6E00E59BFB /* WeeklyReportFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABB852490EC6E00E59BFB /* WeeklyReportFilter.swift */; };
 		EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EA81B49B2493BBE900DA5D48 /* .gitignore */; };
+		EAF36E1C24A649850080E25D /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36E1B24A649840080E25D /* ImageName.swift */; };
+		EAF36E1E24A64A610080E25D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36E1D24A64A610080E25D /* MenuViewController.swift */; };
+		EAF36E2024A64A800080E25D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36E1F24A64A800080E25D /* InfoViewController.swift */; };
+		EAF36E2224A64B1F0080E25D /* JogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF36E2124A64B1F0080E25D /* JogsViewController.swift */; };
 		EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F0248ECC560093FD16 /* Jog.swift */; };
 		EAF6E4F4248ECD2E0093FD16 /* JogsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E4F3248ECD2E0093FD16 /* JogsService.swift */; };
 		EAF6E501248EE1100093FD16 /* JogsResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E500248EE1100093FD16 /* JogsResponseMessage.swift */; };
 		EAF6E503248EE1AA0093FD16 /* JogsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E502248EE1AA0093FD16 /* JogsResponse.swift */; };
-		EAF6E507248EE3020093FD16 /* JogsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */; };
-		EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */; };
-		EAF6E50B248EE8200093FD16 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */; };
-		EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */; };
+		EAF6E50B248EE8200093FD16 /* JogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E509248EE8200093FD16 /* JogTableViewCell.swift */; };
 		EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */; };
-		EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6E510248F7E3E0093FD16 /* JogViewController.xib */; };
 		EAF7F65024A4D8C70047A737 /* AuthenticationApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F64F24A4D8C70047A737 /* AuthenticationApiDataManager.swift */; };
 		EAF7F65224A4D9CB0047A737 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65124A4D9CB0047A737 /* ApiRequest.swift */; };
 		EAF7F65424A4E4320047A737 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65324A4E4320047A737 /* ApiKeys.swift */; };
@@ -49,19 +45,15 @@
 		EAF7F65A24A4EDC60047A737 /* JogsApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65924A4EDC60047A737 /* JogsApiDataManager.swift */; };
 		EAF7F65C24A4F9820047A737 /* JogsCacheDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65B24A4F9820047A737 /* JogsCacheDataManager.swift */; };
 		EAF7F65E24A516D80047A737 /* FeedbackApiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F65D24A516D80047A737 /* FeedbackApiDataManager.swift */; };
-		EAF7F66A24A5E1AE0047A737 /* JogViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */; };
-		EAF7F66C24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */; };
 		EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */; };
 		EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F56248E91B2008BE894 /* Assets.xcassets */; };
 		EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F58248E91B2008BE894 /* LaunchScreen.storyboard */; };
 		EAFB8F63248E9773008BE894 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F61248E9773008BE894 /* AuthenticationViewController.swift */; };
-		EAFB8F64248E9773008BE894 /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFB8F62248E9773008BE894 /* AuthenticationViewController.xib */; };
 		EAFB8F69248E97EF008BE894 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB8F68248E97EF008BE894 /* AuthenticationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		25B0CFCC96C9AE6F2608FC96 /* Pods-Jog Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.debug.xcconfig"; sourceTree = "<group>"; };
-		50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jog Tracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05103ED1D26E120DD23844A /* Pods-Jog Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jog Tracker.release.xcconfig"; path = "Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		EA424CE824A3ACBE001A5180 /* ApiDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiDataManager.swift; sourceTree = "<group>"; };
 		EA424CE924A3ACBE001A5180 /* ApiDataManagerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiDataManagerErrors.swift; sourceTree = "<group>"; };
@@ -71,31 +63,28 @@
 		EA424CF424A3C95F001A5180 /* UpdatedJog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedJog.swift; sourceTree = "<group>"; };
 		EA424CF924A3D65F001A5180 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		EA424CFB24A3D8F8001A5180 /* FeedbackResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackResponseMessage.swift; sourceTree = "<group>"; };
+		EA468E6824A7A73000597036 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		EA468E6A24A7AAF000597036 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EA468E6C24A7B80A00597036 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
-		EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
 		EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackViewController.swift; sourceTree = "<group>"; };
-		EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendFeedbackViewController.xib; sourceTree = "<group>"; };
 		EA6ABB65248FFB4D00E59BFB /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
-		EA6ABB7024901CF700E59BFB /* WeeklyReports .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyReports .swift"; sourceTree = "<group>"; };
-		EA6ABB7224901E0400E59BFB /* WeaklyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaklyReport.swift; sourceTree = "<group>"; };
-		EA6ABB7524902A6300E59BFB /* WeeklyReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportTableViewController.swift; sourceTree = "<group>"; };
-		EA6ABB7624902A6300E59BFB /* WeeklyReportTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeeklyReportTableViewController.xib; sourceTree = "<group>"; };
+		EA6ABB7024901CF700E59BFB /* WeeklyReportsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportsService.swift; sourceTree = "<group>"; };
+		EA6ABB7224901E0400E59BFB /* WeeklyReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReport.swift; sourceTree = "<group>"; };
+		EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportViewController.swift; sourceTree = "<group>"; };
 		EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportTableViewCell.swift; sourceTree = "<group>"; };
-		EA6ABB7A24902A8800E59BFB /* WeeklyReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeeklyReportTableViewCell.xib; sourceTree = "<group>"; };
-		EA6ABB7F2490D58F00E59BFB /* ReportFilterSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilterSettingsViewController.swift; sourceTree = "<group>"; };
-		EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportFilterSettingsViewController.xib; sourceTree = "<group>"; };
-		EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilter.swift; sourceTree = "<group>"; };
+		EA6ABB852490EC6E00E59BFB /* WeeklyReportFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportFilter.swift; sourceTree = "<group>"; };
 		EA81B49B2493BBE900DA5D48 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EAF36E1B24A649840080E25D /* ImageName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
+		EAF36E1D24A64A610080E25D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EAF36E1F24A64A800080E25D /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		EAF36E2124A64B1F0080E25D /* JogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogsViewController.swift; sourceTree = "<group>"; };
 		EAF6E4F0248ECC560093FD16 /* Jog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jog.swift; sourceTree = "<group>"; };
 		EAF6E4F3248ECD2E0093FD16 /* JogsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsService.swift; sourceTree = "<group>"; };
 		EAF6E500248EE1100093FD16 /* JogsResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsResponseMessage.swift; sourceTree = "<group>"; };
 		EAF6E502248EE1AA0093FD16 /* JogsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsResponse.swift; sourceTree = "<group>"; };
-		EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsTableViewController.swift; sourceTree = "<group>"; };
-		EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogsTableViewController.xib; sourceTree = "<group>"; };
-		EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		EAF6E509248EE8200093FD16 /* JogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogTableViewCell.swift; sourceTree = "<group>"; };
 		EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogViewController.swift; sourceTree = "<group>"; };
-		EAF6E510248F7E3E0093FD16 /* JogViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JogViewController.xib; sourceTree = "<group>"; };
 		EAF7F64F24A4D8C70047A737 /* AuthenticationApiDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApiDataManager.swift; sourceTree = "<group>"; };
 		EAF7F65124A4D9CB0047A737 /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		EAF7F65324A4E4320047A737 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -105,14 +94,12 @@
 		EAF7F65B24A4F9820047A737 /* JogsCacheDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsCacheDataManager.swift; sourceTree = "<group>"; };
 		EAF7F65D24A516D80047A737 /* FeedbackApiDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackApiDataManager.swift; sourceTree = "<group>"; };
 		EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogViewControllerDelegate.swift; sourceTree = "<group>"; };
-		EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFilterSettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		EAFB8F4A248E91AC008BE894 /* Jog Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jog Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFB8F4D248E91AC008BE894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFB8F56248E91B2008BE894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAFB8F59248E91B2008BE894 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAFB8F5B248E91B2008BE894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAFB8F61248E9773008BE894 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
-		EAFB8F62248E9773008BE894 /* AuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
 		EAFB8F68248E97EF008BE894 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90AF486B7B89165F117A0506 /* libPods-Jog Tracker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +126,6 @@
 		60F36FA8818D09653140D0A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				50075A1E9DF3CDADD3C19402 /* libPods-Jog Tracker.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,10 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				EA424CE824A3ACBE001A5180 /* ApiDataManager.swift */,
-				EAF7F65124A4D9CB0047A737 /* ApiRequest.swift */,
 				EA424CE924A3ACBE001A5180 /* ApiDataManagerErrors.swift */,
-				EAF7F65324A4E4320047A737 /* ApiKeys.swift */,
-				EAF7F65524A4E5190047A737 /* HTTPMethod.swift */,
+				EAF7F65124A4D9CB0047A737 /* ApiRequest.swift */,
 			);
 			path = ApiDataManager;
 			sourceTree = "<group>";
@@ -175,6 +158,47 @@
 			path = AuthenticationResponseMessage;
 			sourceTree = "<group>";
 		};
+		EA468E6324A7A5D200597036 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA424CEF24A3C699001A5180 /* ViewControllerErrorAlertExtension.swift */,
+				EAF36E1B24A649840080E25D /* ImageName.swift */,
+				EAF7F65324A4E4320047A737 /* ApiKeys.swift */,
+				EAF7F65524A4E5190047A737 /* HTTPMethod.swift */,
+				EA468E6824A7A73000597036 /* Fonts.swift */,
+				EA468E6A24A7AAF000597036 /* Colors.swift */,
+				EA468E6C24A7B80A00597036 /* DateFormatters.swift */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		EA468E6424A7A5FD00597036 /* JogsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAF36E2124A64B1F0080E25D /* JogsViewController.swift */,
+				EAF6E509248EE8200093FD16 /* JogTableViewCell.swift */,
+			);
+			path = JogsViewController;
+			sourceTree = "<group>";
+		};
+		EA468E6524A7A61900597036 /* WeeklyReportViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */,
+				EA6ABB7524902A6300E59BFB /* WeeklyReportViewController.swift */,
+			);
+			path = WeeklyReportViewController;
+			sourceTree = "<group>";
+		};
+		EA468E6624A7A63900597036 /* JogViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */,
+				EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */,
+			);
+			path = JogViewController;
+			sourceTree = "<group>";
+		};
 		EA6ABB64248FFB2A00E59BFB /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,29 +212,19 @@
 		EA6ABB74249028EC00E59BFB /* WeeklyReport */ = {
 			isa = PBXGroup;
 			children = (
-				EA6ABB7024901CF700E59BFB /* WeeklyReports .swift */,
-				EA6ABB7224901E0400E59BFB /* WeaklyReport.swift */,
-				EA6ABB852490EC6E00E59BFB /* ReportFilter.swift */,
+				EA6ABB7024901CF700E59BFB /* WeeklyReportsService.swift */,
+				EA6ABB7224901E0400E59BFB /* WeeklyReport.swift */,
+				EA6ABB852490EC6E00E59BFB /* WeeklyReportFilter.swift */,
 			);
 			path = WeeklyReport;
 			sourceTree = "<group>";
 		};
-		EA6ABB7D249033C300E59BFB /* WeeklyReportTableViewCell */ = {
+		EAF36E1A24A648FD0080E25D /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				EA6ABB7924902A8800E59BFB /* WeeklyReportTableViewCell.swift */,
-				EA6ABB7A24902A8800E59BFB /* WeeklyReportTableViewCell.xib */,
+				EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */,
 			);
-			path = WeeklyReportTableViewCell;
-			sourceTree = "<group>";
-		};
-		EA6ABB7E249033D700E59BFB /* CustomTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				EAF6E509248EE8200093FD16 /* CustomTableViewCell.swift */,
-				EAF6E50A248EE8200093FD16 /* CustomTableViewCell.xib */,
-			);
-			path = CustomTableViewCell;
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		EAF6E4ED248EB4540093FD16 /* Application */ = {
@@ -225,34 +239,15 @@
 		EAF6E4EE248EB4640093FD16 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EAF6E50F248F7E3E0093FD16 /* JogViewController.swift */,
-				EAF7F66924A5E1AE0047A737 /* JogViewControllerDelegate.swift */,
-				EAF6E505248EE3020093FD16 /* JogsTableViewController.swift */,
+				EA468E6424A7A5FD00597036 /* JogsViewController */,
+				EA468E6624A7A63900597036 /* JogViewController */,
+				EA468E6524A7A61900597036 /* WeeklyReportViewController */,
 				EAFB8F61248E9773008BE894 /* AuthenticationViewController.swift */,
-				EA6ABB5C248FEC3300E59BFB /* LeftMenuViewController.swift */,
+				EAF36E1F24A64A800080E25D /* InfoViewController.swift */,
 				EA6ABB60248FF26B00E59BFB /* SendFeedbackViewController.swift */,
-				EA6ABB7524902A6300E59BFB /* WeeklyReportTableViewController.swift */,
-				EAF7F66B24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift */,
-				EA6ABB7F2490D58F00E59BFB /* ReportFilterSettingsViewController.swift */,
-				EA424CEF24A3C699001A5180 /* ViewControllerErrorAlertExtension.swift */,
+				EAF36E1D24A64A610080E25D /* MenuViewController.swift */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		EAF6E4EF248EB4750093FD16 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EA6ABB7D249033C300E59BFB /* WeeklyReportTableViewCell */,
-				EA6ABB7E249033D700E59BFB /* CustomTableViewCell */,
-				EA6ABB5D248FEC3300E59BFB /* LeftMenuViewController.xib */,
-				EAF6E510248F7E3E0093FD16 /* JogViewController.xib */,
-				EAF6E506248EE3020093FD16 /* JogsTableViewController.xib */,
-				EAFB8F62248E9773008BE894 /* AuthenticationViewController.xib */,
-				EA6ABB61248FF26B00E59BFB /* SendFeedbackViewController.xib */,
-				EA6ABB7624902A6300E59BFB /* WeeklyReportTableViewController.xib */,
-				EA6ABB802490D58F00E59BFB /* ReportFilterSettingsViewController.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		EAF6E4F2248ECD1C0093FD16 /* Jogs */ = {
@@ -285,6 +280,7 @@
 				EAFB8F4B248E91AC008BE894 /* Products */,
 				4F270808216391446997ED2C /* Pods */,
 				60F36FA8818D09653140D0A6 /* Frameworks */,
+				EAF36E1A24A648FD0080E25D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,8 +297,8 @@
 			children = (
 				EAF6E4ED248EB4540093FD16 /* Application */,
 				EAFB8F6A248E97F8008BE894 /* Model */,
-				EAF6E4EF248EB4750093FD16 /* View */,
 				EAF6E4EE248EB4640093FD16 /* View Controllers */,
+				EA468E6324A7A5D200597036 /* Support Files */,
 				EAFB8F56248E91B2008BE894 /* Assets.xcassets */,
 				EAFB8F5B248E91B2008BE894 /* Info.plist */,
 			);
@@ -343,6 +339,7 @@
 				EAFB8F46248E91AC008BE894 /* Sources */,
 				EAFB8F47248E91AC008BE894 /* Frameworks */,
 				EAFB8F48248E91AC008BE894 /* Resources */,
+				16ACF89DB1A464099D69A2A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,17 +388,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAFB8F64248E9773008BE894 /* AuthenticationViewController.xib in Resources */,
 				EAFB8F5A248E91B2008BE894 /* LaunchScreen.storyboard in Resources */,
-				EA6ABB7C24902A8800E59BFB /* WeeklyReportTableViewCell.xib in Resources */,
-				EAF6E508248EE3020093FD16 /* JogsTableViewController.xib in Resources */,
 				EA81B49C2493BBE900DA5D48 /* .gitignore in Resources */,
-				EAF6E512248F7E3E0093FD16 /* JogViewController.xib in Resources */,
-				EAF6E50C248EE8200093FD16 /* CustomTableViewCell.xib in Resources */,
-				EA6ABB63248FF26B00E59BFB /* SendFeedbackViewController.xib in Resources */,
-				EA6ABB822490D58F00E59BFB /* ReportFilterSettingsViewController.xib in Resources */,
-				EA6ABB7824902A6300E59BFB /* WeeklyReportTableViewController.xib in Resources */,
-				EA6ABB5F248FEC3300E59BFB /* LeftMenuViewController.xib in Resources */,
 				EAFB8F57248E91B2008BE894 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +397,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16ACF89DB1A464099D69A2A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jog Tracker/Pods-Jog Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		365BC163456BFCF67A4F14B2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,40 +444,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA6ABB7B24902A8800E59BFB /* WeeklyReportTableViewCell.swift in Sources */,
+				EA468E6B24A7AAF000597036 /* Colors.swift in Sources */,
 				EAF7F65C24A4F9820047A737 /* JogsCacheDataManager.swift in Sources */,
-				EAF7F66C24A5E8FC0047A737 /* ReportFilterSettingsViewControllerDelegate.swift in Sources */,
 				EAF7F65424A4E4320047A737 /* ApiKeys.swift in Sources */,
 				EAF7F65024A4D8C70047A737 /* AuthenticationApiDataManager.swift in Sources */,
 				EAF6E503248EE1AA0093FD16 /* JogsResponse.swift in Sources */,
 				EA6ABB66248FFB4D00E59BFB /* FeedbackService.swift in Sources */,
-				EA6ABB7324901E0400E59BFB /* WeaklyReport.swift in Sources */,
+				EA6ABB7324901E0400E59BFB /* WeeklyReport.swift in Sources */,
 				EAF7F65624A4E5190047A737 /* HTTPMethod.swift in Sources */,
 				EAF7F65824A4E7360047A737 /* KeychainDataManager.swift in Sources */,
 				EA6ABB62248FF26B00E59BFB /* SendFeedbackViewController.swift in Sources */,
-				EA6ABB7124901CF700E59BFB /* WeeklyReports .swift in Sources */,
-				EA6ABB7724902A6300E59BFB /* WeeklyReportTableViewController.swift in Sources */,
-				EA6ABB862490EC6E00E59BFB /* ReportFilter.swift in Sources */,
+				EA6ABB7124901CF700E59BFB /* WeeklyReportsService.swift in Sources */,
+				EA6ABB7724902A6300E59BFB /* WeeklyReportViewController.swift in Sources */,
+				EA6ABB862490EC6E00E59BFB /* WeeklyReportFilter.swift in Sources */,
 				EA424CEB24A3ACBE001A5180 /* ApiDataManagerErrors.swift in Sources */,
 				EA424CFC24A3D8F8001A5180 /* FeedbackResponseMessage.swift in Sources */,
-				EAF6E50B248EE8200093FD16 /* CustomTableViewCell.swift in Sources */,
-				EA6ABB812490D58F00E59BFB /* ReportFilterSettingsViewController.swift in Sources */,
+				EAF36E1C24A649850080E25D /* ImageName.swift in Sources */,
+				EAF6E50B248EE8200093FD16 /* JogTableViewCell.swift in Sources */,
 				EAFB8F63248E9773008BE894 /* AuthenticationViewController.swift in Sources */,
 				EA424CF324A3C92C001A5180 /* UpdatedJogApiMessage.swift in Sources */,
 				EAF6E4F1248ECC560093FD16 /* Jog.swift in Sources */,
 				EAF6E511248F7E3E0093FD16 /* JogViewController.swift in Sources */,
-				EAF7F66A24A5E1AE0047A737 /* JogViewControllerDelegate.swift in Sources */,
+				EA468E6724A7A6B000597036 /* JogViewControllerDelegate.swift in Sources */,
+				EAF36E2024A64A800080E25D /* InfoViewController.swift in Sources */,
 				EAFB8F4E248E91AC008BE894 /* AppDelegate.swift in Sources */,
 				EA424CF524A3C95F001A5180 /* UpdatedJog.swift in Sources */,
 				EAF6E4F4248ECD2E0093FD16 /* JogsService.swift in Sources */,
 				EA424CED24A3AD23001A5180 /* AuthenticationResponseMessage.swift in Sources */,
+				EA468E6924A7A73000597036 /* Fonts.swift in Sources */,
+				EA468E6D24A7B80A00597036 /* DateFormatters.swift in Sources */,
 				EAF7F65A24A4EDC60047A737 /* JogsApiDataManager.swift in Sources */,
 				EAF6E501248EE1100093FD16 /* JogsResponseMessage.swift in Sources */,
 				EAF7F65E24A516D80047A737 /* FeedbackApiDataManager.swift in Sources */,
-				EA6ABB5E248FEC3300E59BFB /* LeftMenuViewController.swift in Sources */,
 				EA424CEA24A3ACBE001A5180 /* ApiDataManager.swift in Sources */,
+				EAF36E1E24A64A610080E25D /* MenuViewController.swift in Sources */,
 				EA424CF024A3C699001A5180 /* ViewControllerErrorAlertExtension.swift in Sources */,
-				EAF6E507248EE3020093FD16 /* JogsTableViewController.swift in Sources */,
 				EAFB8F69248E97EF008BE894 /* AuthenticationService.swift in Sources */,
+				EAF36E2224A64B1F0080E25D /* JogsViewController.swift in Sources */,
 				EA424CFA24A3D65F001A5180 /* AuthenticationResponse.swift in Sources */,
 				EAF7F65224A4D9CB0047A737 /* ApiRequest.swift in Sources */,
 			);
