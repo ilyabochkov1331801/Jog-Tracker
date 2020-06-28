@@ -10,66 +10,84 @@ import UIKit
 
 class AuthenticationViewController: UIViewController {
 
-    private let errorKey = "error"
+    private let authorizationButtonText = "Let me in"
+    private let testUUID = "hello"
     
-    var authentication: Authentication!
+    private var authenticationService: AuthenticationService!
     
-    @IBOutlet weak var authorizationButton: UIButton! {
-        didSet {
-            authorizationButton.layer.cornerRadius = authorizationButton.bounds.height / 2
-        }
-    }
-    @IBOutlet weak var uuidTextField: UITextField!
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var authorizationButton: UIButton!
+    private var bearFaceImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authentication = AuthenticationWithUUID.shared
-        uuidTextField.delegate = self
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(successAuthentication(param:)),
-                                               name: .AuthenticationPassed,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(cancelAuthentication(param:)),
-                                               name: .AuthenticationPassedWithError,
-                                               object: nil)
-    }
-    @IBAction func authorizationButtonTupped(_ sender: UIButton) {
-        guard let uuid = uuidTextField.text else {
-            return
-        }
-        authentication.authorization(with: uuid)
+        
+        authenticationService = AuthenticationService.shared
+        navigationBarView = UIView()
+        logoImageView = UIImageView()
+        bearFaceImageView = UIImageView()
+        authorizationButton = UIButton()
+        authorizationButton.addTarget(self, action: #selector(authorizationButtonTupped), for: .touchUpInside)
+        
+        view.backgroundColor = .white
     }
     
-    @objc func successAuthentication(param: Notification) {
-        DispatchQueue.main.async {
-            self.dismiss(animated: true)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        //MARK: NavigationBarView Settings
+        
+        view.addSubview(navigationBarView)
+        navigationBarView.snp.makeConstraints {
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
         }
-    }
-    @objc func cancelAuthentication(param: Notification) {
-        guard let error = (param.userInfo as? [String: Any])?[errorKey] as? Error else {
-            return
+        navigationBarView.backgroundColor = Colors.appGreen
+        
+        //MARK: LogoImageView Settings
+        
+        navigationBarView.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints {
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
         }
-        DispatchQueue.main.async {
-            self.alertConfiguration(with: error)
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
+        
+        //MARK: AuthorizationButton Settings
+        
+        view.addSubview(authorizationButton)
+        authorizationButton.snp.makeConstraints {
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 471, left: 112, bottom: 136, right: 112))
         }
-    }
-    
-    func alertConfiguration(with error: Error) {
-        let alert = UIAlertController(title: "Error",
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
-        alert.addAction(okAction)
-        present(alert,
-                animated: true)
-    }
-}
+        authorizationButton.layer.cornerRadius = 30
+        authorizationButton.layer.borderWidth = 2
+        authorizationButton.layer.borderColor = Colors.appPurple.cgColor
+        authorizationButton.setTitle(authorizationButtonText, for: .normal)
+        authorizationButton.setTitleColor(.purple, for: .normal)
+        
+        //MARK: BearFaceImageView Settings
 
-extension AuthenticationViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        view.addSubview(bearFaceImageView)
+        bearFaceImageView.snp.makeConstraints {
+            $0.edges.equalTo(view).inset(UIEdgeInsets(top: 218, left: 107, bottom: 299, right: 107))
+        }
+        bearFaceImageView.image = UIImage(named: ImageName.bearFaceImageName)
+    }
+    
+    @objc private func authorizationButtonTupped(_ sender: UIButton) {
+        authenticationService.authorization(with: testUUID) {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success():
+                self.dismiss(animated: true)
+            case .failure(let error):
+                self.alertConfiguration(with: error)
+            }
+        }
     }
 }

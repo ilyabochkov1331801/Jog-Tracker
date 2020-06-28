@@ -10,130 +10,161 @@ import UIKit
 
 class SendFeedbackViewController: UIViewController {
 
-    @IBOutlet weak var feedbackTextView: UITextView! {
-        didSet {
-            feedbackTextView.layer.borderWidth = 1
-            feedbackTextView.layer.cornerRadius = 5
-        }
-    }
-    @IBOutlet weak var topicPicker: UIPickerView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var sendFeedbackButton: UIButton! {
-        didSet {
-            sendFeedbackButton.layer.cornerRadius = sendFeedbackButton.bounds.height / 2 
-        }
-    }
+    private let topicNumberLabelText = "Topic number:"
+    private let sendFeedbackButtonText = "Send"
     
-    let activityView = UIActivityIndicatorView(style: .gray)
+    private let feedbackService = FeedbackService()
+    
+    private var navigationBarView: UIView!
+    private var logoImageView: UIImageView!
+    private var menuButton: UIButton!
+    private var feedbackTextView: UITextView!
+    private var topicNumberLabel: UILabel!
+    private var topicNumberTextField: UITextField!
+    private var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topicPicker.dataSource = self
-        topicPicker.delegate = self
+        navigationBarView = UIView()
+        logoImageView = UIImageView()
+        menuButton = UIButton()
+        feedbackTextView = UITextView()
+        topicNumberLabel = UILabel()
+        topicNumberTextField = UITextField()
+        sendButton = UIButton()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardAction(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardAction(notification: )),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        feedbackTextView.delegate = self
+        topicNumberTextField.delegate = self
+        menuButton.addTarget(self, action: #selector(openMenu), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(sendButtonTupped), for: .touchUpInside)
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboardOnSwipeDown))
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        swipeDown.direction = .down
         swipeDown.delegate = self
-        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         view.addGestureRecognizer(swipeDown)
+        
+        view.backgroundColor = .white
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        //MARK: NavigationBarView Settings
+        
+        view.addSubview(navigationBarView)
+        navigationBarView.snp.makeConstraints {
+            $0.width.equalTo(view.snp.width)
+            $0.height.equalTo(77)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalTo(view.snp.centerX)
+        }
+        navigationBarView.backgroundColor = Colors.appGreen
+        
+        //MARK: LogoImageView Settings
+        
+        navigationBarView.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints {
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 20, left: 25, bottom: 20, right: 252))
+        }
+        logoImageView.image = UIImage(named: ImageName.logoImageName)
+        
+        //MARK: MenuButton Settings
+        
+        navigationBarView.addSubview(menuButton)
+        menuButton.snp.makeConstraints {
+            $0.edges.equalTo(navigationBarView).inset(UIEdgeInsets(top: 27, left: 322, bottom: 26, right: 25))
+        }
+        menuButton.setImage(UIImage(named: ImageName.menuImageName), for: .normal)
+        
+        //MARK: FeedbackTextView Settings
+        
+        view.addSubview(feedbackTextView)
+        feedbackTextView.snp.makeConstraints {
+            $0.top.equalTo(navigationBarView.snp.bottom).offset(20)
+            $0.left.equalTo(view.snp.left).offset(20)
+            $0.right.equalTo(view.snp.right).offset(-20)
+            $0.height.equalTo(200)
+        }
+        feedbackTextView.layer.borderWidth = 1
+        feedbackTextView.layer.borderColor = Colors.appPurple.cgColor
+        
+        //MARK: TopicNumberLabel and TopicNumberTextField Settings
+        
+        view.addSubview(topicNumberLabel)
+        topicNumberLabel.snp.makeConstraints {
+            $0.top.equalTo(feedbackTextView.snp.bottom).offset(26)
+            $0.left.equalTo(view.snp.left).offset(20)
+        }
+        topicNumberLabel.text = topicNumberLabelText
+        view.addSubview(topicNumberTextField)
+        topicNumberTextField.snp.makeConstraints {
+            $0.top.equalTo(feedbackTextView.snp.bottom).offset(20)
+            $0.left.equalTo(topicNumberLabel.snp.right).offset(20)
+            $0.right.equalTo(view.snp.right).offset(-20)
+        }
+        topicNumberTextField.borderStyle = .roundedRect
+        
+        //MARK: SendButton Settings
+        
+        view.addSubview(sendButton)
+        sendButton.snp.makeConstraints {
+            $0.centerX.equalTo(view.snp.centerX)
+            $0.height.equalTo(60)
+            $0.width.equalTo(251)
+            $0.top.equalTo(topicNumberTextField.snp.bottom).offset(20)
+        }
+        sendButton.layer.cornerRadius = 30
+        sendButton.layer.borderColor = Colors.appPurple.cgColor
+        sendButton.layer.borderWidth = 2
+        sendButton.setTitle(sendFeedbackButtonText, for: .normal)
+        sendButton.setTitleColor(Colors.appPurple, for: .normal)
     }
 
-    @IBAction func sendButtonTupped(_ sender: UIButton) {
+    @objc private func sendButtonTupped() {
         guard let textForFeedback = feedbackTextView.text else {
             return
         }
-        let feedback = Feedback(topicId: topicPicker.selectedRow(inComponent: 0) + 1, feedback: textForFeedback)
-        feedback.delegate = self
-        feedback.sendFeedback()
-        activityView.frame = CGRect(x: 0,
-                                    y: 0,
-                                    width: 100,
-                                    height: 100)
-        activityView.center = view.center
-        activityView.hidesWhenStopped = true
-        view.addSubview(activityView)
-        activityView.startAnimating()
-    }
-    
-    @objc func keyboardAction(notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: Any], let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
+        guard let topicIdString = topicNumberTextField.text,
+            let topicId = Int(topicIdString) else {
+                return
         }
-        if notification.name == UIResponder.keyboardWillShowNotification {
-            let inset = UIEdgeInsets(top: 0,
-                                     left: 0,
-                                     bottom: keyboardFrame.height - view.safeAreaInsets.bottom - 20,
-                                     right: 0)
-            scrollView.contentInset = inset
-            scrollView.scrollIndicatorInsets = inset
-        } else {
-            scrollView.contentInset = .zero
-            scrollView.scrollIndicatorInsets = .zero
+   
+        feedbackService.sendFeedback(text: textForFeedback, topicNumber: topicId) {
+            [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(()):
+                let menuViewController =  MenuViewController()
+                menuViewController.modalPresentationStyle = .fullScreen
+                menuViewController.currentNavigationController = self.navigationController
+                self.present(menuViewController, animated: true)
+            case .failure(let error):
+                self.alertConfiguration(with: error)
+            }
         }
     }
     
-    @objc func hideKeyboardOnSwipeDown() {
-        feedbackTextView.resignFirstResponder()
-    }
-}
-
-extension SendFeedbackViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        5
+    @objc private func openMenu() {
+        let menuViewController = MenuViewController()
+        menuViewController.modalPresentationStyle = .fullScreen
+        menuViewController.currentNavigationController = navigationController
+        present(menuViewController, animated: true)
     }
 }
 
-extension SendFeedbackViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(row + 1)
+extension SendFeedbackViewController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
 
 extension SendFeedbackViewController: UIGestureRecognizerDelegate {
     
-}
-
-extension SendFeedbackViewController: FeedbackDelegate {
-    func feedbackWasPosted() {
-        DispatchQueue.main.async {
-            self.dismiss(animated: true)
-        }
-    }
-    
-    func feedbackWasCancel(with error: Error) {
-        DispatchQueue.main.async {
-            self.alertConfiguration(with: error)
-            self.activityView.stopAnimating()
-        }
-    }
-    
-    private func alertConfiguration(with error: Error) {
-        let alert = UIAlertController(title: "Error",
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
-        let cancelAction = UIAlertAction(title: "Go to main screen",
-                                         style: .cancel) {
-                                            [weak self] (_) in
-                                            self?.dismiss(animated: true)
-                                            
-        }
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
-    }
 }
